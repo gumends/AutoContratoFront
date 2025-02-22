@@ -1,0 +1,41 @@
+import { Component } from '@angular/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { featherAirplay } from '@ng-icons/feather-icons';
+import { heroAcademicCap, heroMagnifyingGlass, heroPlus } from '@ng-icons/heroicons/outline';
+import { heroArrowSmallLeftSolid, heroArrowSmallRightSolid, heroCheckSolid, heroHomeModernSolid, heroHomeSolid, heroMoonSolid, heroSunSolid, heroUserCircleSolid, heroUserGroupSolid, heroUserPlusSolid, heroUserSolid, heroXMarkSolid } from '@ng-icons/heroicons/solid';
+import { Input } from '@angular/core';
+import { NgStyle } from '@angular/common';
+import { ionExit } from '@ng-icons/ionicons';
+
+@Component({
+    selector: 'mode-theme-icon',
+    template: '<ng-icon [ngStyle]="{ width: size, height: size, color: cor }" name="{{icon}}" />',
+    imports: [NgIcon, NgStyle],
+    viewProviders: [
+        provideIcons({
+            featherAirplay,
+            heroMoonSolid,
+            heroSunSolid,
+            heroCheckSolid,
+            heroHomeSolid,
+            heroAcademicCap,
+            heroUserPlusSolid,
+            heroUserGroupSolid,
+            heroHomeModernSolid,
+            heroUserCircleSolid,
+            heroUserSolid,
+            ionExit,
+            heroMagnifyingGlass,
+            heroPlus,
+            heroArrowSmallRightSolid,
+            heroArrowSmallLeftSolid,
+            heroXMarkSolid
+        })]
+})
+export class AppComponent {
+
+    @Input() icon: string = ""
+    @Input() size: string = ""
+    @Input() cor: string = ""
+
+}
