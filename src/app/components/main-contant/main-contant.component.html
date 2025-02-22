@@ -1,0 +1,43 @@
+<main class="w-full h-screen flex bg-background">
+    <!-- Sidebar -->
+    <aside class="w-1/6 h-screen bg-card shadow-lg border-r border-border">
+        <nav>
+            <h1 class="text-xl font-bold text-foreground m-6">Auto Contrato</h1>
+            <ul class="space-y-5 mt-10">
+                <li *ngFor="let p of pagesRender">
+                    <a [routerLink]="p.url"
+                        class="flex items-center border-l-4 border-{{p.url == page ? 'primary' : 'background'}} hover:border-primary pl-3 cursor-pointer hover:text-primary">
+                        <mode-theme-icon size="25px" icon="{{p.icon}}" class="text-foreground" />
+                        <p class="ml-5 text:{{p.url == page ? 'primary' : 'foreground'}}">{{p.title}}</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col">
+
+        <header class="bg-card shadow-sm p-4 border-b border-border flex items-center justify-between w-full">
+            <div class="flex items-center">
+                <app-theme-mode />
+            </div>
+            <div class="flex items-center gap-2">
+                <input type="text" placeholder="Pesquisar" class="border border-border rounded-lg py-1 px-3 w-96">
+                <mode-theme-icon size="25px" icon="heroMagnifyingGlass" class="text-foreground cursor-pointer" />
+            </div>
+            <div class="flex items-center gap-7">
+                <spartan-dropdown-preview class="text-foreground cursor-pointer" />
+            </div>
+        </header>
+        <div class="flex-1 p-6 overflow-y-auto bg-background border border-border rounded-lg m-4">
+            <div class="flex items-center gap-5 mb-4">
+                <h1 class="text-2xl font-bold text-foreground">{{title}}</h1>
+                <mode-theme-icon size="25px" icon="heroPlus" class="text-foreground cursor-pointer" />
+            </div>
+
+            <ng-content>
+
+            </ng-content>
+        </div>
+    </div>
+</main>
