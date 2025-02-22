@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MainContantComponent } from "../../components/main-contant/main-contant.component";
 import { LocatarioService } from '../../services/locatario.service';
 import { ILocatarioPaginado } from '../../Types/LocatarioResponse';
@@ -8,20 +8,63 @@ import { AppComponent } from "../../components/icons/moon/moon.component";
 import { Subject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { takeUntil } from 'rxjs/operators';
+import { HlmDialogComponent } from "../../../../libs/ui/ui-dialog-helm/src/lib/hlm-dialog.component";
+import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
+import { HlmDialogContentComponent, HlmDialogDescriptionDirective, HlmDialogFooterComponent, HlmDialogHeaderComponent, HlmDialogTitleDirective } from '@spartan-ng/ui-dialog-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { LabelInputComponent } from "../../components/input/input.component";
+import { ButtonPreviewComponent } from "../../components/button/button.component";
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-locatario',
-  imports: [MainContantComponent, NgFor, FormatarDataPipe, AppComponent],
+  standalone: true,
+  imports: [
+    MainContantComponent,
+    NgFor,
+    FormatarDataPipe,
+    AppComponent,
+    HlmDialogComponent,
+    BrnDialogTriggerDirective,
+    BrnDialogContentDirective,
+    HlmDialogComponent,
+    HlmDialogContentComponent,
+    HlmDialogHeaderComponent,
+    HlmDialogFooterComponent,
+    HlmDialogTitleDirective,
+    HlmDialogDescriptionDirective,
+    HlmButtonDirective,
+    LabelInputComponent,
+    ReactiveFormsModule,
+    FormsModule
+  ],
   templateUrl: './locatario.component.html',
   styleUrl: './locatario.component.css'
 })
 export class LocatarioComponent implements OnInit, OnDestroy {
+
   conteudo: any[] = [];
   pagina!: number;
   total!: number;
+
   private destroy$ = new Subject<void>();
 
-  constructor(private service: LocatarioService, private authService: AuthService) {}
+  form: FormGroup
+
+  passwordValue: string = "";
+
+  constructor(
+    private service: LocatarioService,
+    private authService: AuthService,
+    private fb: FormBuilder
+  ) {
+    this.form = this.fb.group({
+      nome: ["", [Validators.required, Validators.minLength(6)]],
+      cpf: ["", [Validators.required, Validators.minLength(11)]],
+    });
+  }
 
   ngOnInit() {
     this.carregarDados();
@@ -30,6 +73,10 @@ export class LocatarioComponent implements OnInit, OnDestroy {
     ).subscribe(() => {
       this.carregarDados();
     });
+  }
+
+  register() {
+
   }
 
   carregarDados() {

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { MainContantComponent } from "../../components/main-contant/main-contant.component";
 
 @Component({
   selector: 'app-usuario',
-  imports: [],
+  imports: [MainContantComponent],
   templateUrl: './usuario.component.html',
   styleUrl: './usuario.component.css'
 })

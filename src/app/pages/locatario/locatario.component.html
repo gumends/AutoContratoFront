@@ -47,3 +47,21 @@
         </div>
     </div>
 </app-main-contant>
+<hlm-dialog>
+    <button id="edit-profile" brnDialogTrigger hlmBtn variant="outline" class="fixed bottom-10 right-10">Novo Locatário</button>
+    <hlm-dialog-content class="sm:max-w-[425px]" *brnDialogContent="let ctx">
+      <hlm-dialog-header>
+        <h3 hlmDialogTitle>Edit profile</h3>
+        <p hlmDialogDescription>Make changes to your profile here. Click save when you're done.</p>
+      </hlm-dialog-header>
+      <form [formGroup]="form" (ngSubmit)="ctx.close()">
+        <div class="py-4 grid gap-4">
+            <label-input class="w-full" name="nome" [label]="'Nome'" [placeholder]="'Nome'" formControlName="nome" ></label-input>
+            <label-input class="w-full" name="cpf" [label]="'CPF'" [placeholder]="'CPF'" formControlName="cpf" ></label-input>
+          </div>
+          <hlm-dialog-footer>
+            <button hlmBtn type="submit">Save changes</button>
+          </hlm-dialog-footer>
+      </form>
+    </hlm-dialog-content>
+  </hlm-dialog>

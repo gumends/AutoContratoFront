@@ -14,6 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     <input
       class={{class}}
       hlmInput
+      mask="000.000.000-00"
       [type]="type"
       [placeholder]="placeholder"
       [value]="value"
