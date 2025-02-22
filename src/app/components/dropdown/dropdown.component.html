@@ -5,18 +5,22 @@
 </div>
 <ng-template #menu>
     <hlm-menu class="w-56 my-1">
-        <hlm-menu-label>My Account</hlm-menu-label>
+        <hlm-menu-group class="flex items-center gap-2 justify-center flex-col w-full py-2">
+            <mode-theme-icon icon="heroUserCircleSolid" size="40px" />
+            <span class="text-sm font-bold">{{nome}}</span>
+            <span class="text-xs">{{email}}</span>
+            <span class="text-xs border border-border py-1 px-2 rounded-2xl">{{role}}</span>
+        </hlm-menu-group>
         <hlm-menu-separator />
         <hlm-menu-group>
-            <button hlmMenuItem class="flex items-center gap-2">
+            <button hlmMenuItem [routerLink]="['/usuario/{{id}}']" routerLinkActive="router-link-active" class="flex items-center gap-2">
                 <mode-theme-icon icon="heroUserCircleSolid" size="20px" />
                 <span>Perfil</span>
             </button>
+            <button hlmMenuItem (click)="logout()" class="flex items-center gap-2">
+                <mode-theme-icon icon="ionExit" size="20px" />
+                <span>Sair</span>
+            </button>
         </hlm-menu-group>
-
-        <button hlmMenuItem (click)="logout()" class="flex items-center gap-2">
-            <mode-theme-icon icon="ionExit" size="20px" />
-            <span>Sair</span>
-        </button>
     </hlm-menu>
 </ng-template>

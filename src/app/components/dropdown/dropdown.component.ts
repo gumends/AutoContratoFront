@@ -29,6 +29,9 @@ import {
 import { AppComponent } from "../icons/moon/moon.component";
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Jwt } from '../../Types/jwt';
+import { jwtDecode } from 'jwt-decode';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'spartan-dropdown-preview',
@@ -37,11 +40,11 @@ import { ToastrService } from 'ngx-toastr';
     BrnMenuTriggerDirective,
     HlmMenuComponent,
     HlmMenuItemDirective,
-    HlmMenuLabelComponent,
     HlmMenuSeparatorComponent,
     HlmMenuGroupComponent,
     HlmButtonDirective,
-    AppComponent
+    AppComponent,
+    RouterLink
   ],
   providers: [
     provideIcons({
@@ -72,22 +75,37 @@ export class DropdownPreviewComponent implements OnInit{
 
   token!: string;
   exp!: string;
+  decodedToken!: Jwt;
+  nome!: string;
+  email!: string;
+  id!: string;
+  role!: string;
+
+  modelRole = [
+    "ADMIN",
+    "USER"
+  ]
   
   ngOnInit(): void {
     this.token = localStorage.getItem('auth-token') as string;
 
-    console.log(this.token);
+    this.decodedToken = jwtDecode(this.token)
 
+    this.id = this.decodedToken.id
+    this.email = this.decodedToken.email
+    this.role = this.modelRole[this.decodedToken.role]
+    this.nome = this.decodedToken.nome
+    
     if (this.token) {
       this.exp = JSON.parse(atob(this.token.split('.')[1])).exp
       if (parseInt(this.exp) < Date.now() / 1000) {
         this.logout()
       }
-    }
+    }    
   }
 
   logout() {
-    this.toastr.info('Logout realizado com sucesso', 'Ate logo!')
+    this.toastr.info('Saida realizada com sucesso', 'Ate logo!')
     setTimeout(() => {
       this.service.logout()
     }, 3000)
