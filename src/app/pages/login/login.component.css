@@ -1,0 +1,91 @@
+.cotainer_main-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container_login {
+    display: flex;
+    background-color: hsl(var(--background-grey));
+    width: 70%;
+    height: 70%;
+    border-radius: 10px;
+    border: 1px solid hsl(var(--border));
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+.imagem {
+    width: 50%;
+    height: 100%;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+p {
+    font-size: 15px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container_button {
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.container_theme-mode {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+}
+
+h1 {
+    color: hsl(var(--foreground));
+}
+
+p {
+    color: hsl(var(--muted-foreground));
+}
+
+a {
+    color: hsl(var(--accent-foreground));
+}
+
+.container_button app-button {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+}
+
+.imagem {
+    background-image: var(--img-login);
+    background-size: cover;
+    background-position: center;
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+}

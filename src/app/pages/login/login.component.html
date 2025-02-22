@@ -1,0 +1,26 @@
+<app-main-login>
+  <h1 class="text-primary">Entre com sua conta</h1>
+  <p class="text-secondary">Ainda não tem uma conta? <a href="/register" class="text-accent">Clique aqui</a></p>
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="flex flex-col gap-2">
+    <label-input
+      name="login"
+      [label]="'Login'"
+      [placeholder]="'Seu Login'"
+      formControlName="login"
+      class="w-full"
+    ></label-input>
+
+    <label-input
+      name="password"
+      [label]="'Senha'"
+      [placeholder]="'Sua Senha'"
+      [type]="'password'"
+      formControlName="password"
+      class="w-full"
+    ></label-input>
+
+    <div class="container_button">
+      <app-button text="Entrar" type="submit" class="rounded-sm" [disabled]="loginForm.invalid || loading" />
+    </div>
+  </form>
+</app-main-login>
