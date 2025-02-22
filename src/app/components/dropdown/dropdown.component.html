@@ -1,0 +1,22 @@
+<div class="flex items-center justify-center">
+    <button hlmBtn variant="outline"[brnMenuTriggerFor]="menu" class="border-none hover:bg-transparent">
+        <mode-theme-icon size="25px" icon="heroUserCircleSolid" />
+    </button>
+</div>
+<ng-template #menu>
+    <hlm-menu class="w-56 my-1">
+        <hlm-menu-label>My Account</hlm-menu-label>
+        <hlm-menu-separator />
+        <hlm-menu-group>
+            <button hlmMenuItem class="flex items-center gap-2">
+                <mode-theme-icon icon="heroUserCircleSolid" size="20px" />
+                <span>Perfil</span>
+            </button>
+        </hlm-menu-group>
+
+        <button hlmMenuItem (click)="logout()" class="flex items-center gap-2">
+            <mode-theme-icon icon="ionExit" size="20px" />
+            <span>Sair</span>
+        </button>
+    </hlm-menu>
+</ng-template>
