@@ -1,0 +1,49 @@
+<app-main-contant>
+    <div class="bg-card shadow-sm rounded-lg p-6">
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+
+                <caption class="text-sm text-muted-foreground mb-4">
+                    A list of your recent invoices.
+                </caption>
+
+                <thead>
+                    <tr class="border-b border-border">
+                        <th class="px-4 py-3 text-sm font-semibold text-foreground">Nome</th>
+                        <th class="px-4 py-3 text-sm font-semibold text-foreground">Nascimento</th>
+                        <th class="px-4 py-3 text-sm font-semibold text-foreground">CPF</th>
+                        <th class="px-4 py-3 text-sm font-semibold text-foreground">RG</th>
+                        <th class="px-4 py-3 text-sm font-semibold text-foreground">Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let item of conteudo" class="hover:bg-accent transition-colors duration-200">
+                        <td class="px-4 py-3 text-sm text-foreground">{{item.nome}}</td>
+                        <td class="px-4 py-3 text-sm text-foreground">{{item.nascimento | formatarData}}</td>
+                        <td class="px-4 py-3 text-sm text-foreground">{{item.cpf}}</td>
+                        <td class="px-4 py-3 text-sm text-foreground">{{item.rg}}</td>
+                        <td class="px-4 py-3 text-sm text-foreground">{{item.status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="flex justify-end mt-6">
+            <nav class="inline-flex rounded-md shadow-sm">
+                <a (click)="mudarPagina(pagina - 1)"
+                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md">
+                    <mode-theme-icon size="20px" icon="heroArrowSmallLeftSolid" />
+                </a>
+                <p
+                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border">
+                    {{pagina + 1}} de {{total}}</p>
+                <a (click)="mudarPagina(pagina + 1)"
+                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md">
+                    <mode-theme-icon size="20px" icon="heroArrowSmallRightSolid" />
+                </a>
+            </nav>
+        </div>
+    </div>
+</app-main-contant>
