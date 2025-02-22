@@ -1,0 +1,68 @@
+<app-main-contant>
+    <div class="bg-card shadow-sm rounded-lg p-6">
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+
+                <caption class="text-sm text-muted-foreground mb-4">
+                    A list of your recent invoices.
+                </caption>
+                <thead>
+                    <tr class="border-b border-border">
+                        <th class="px-4 py-3 text-sm font-semibold text-foreground">Invoice</th>
+                        <th class="px-4 py-3 text-sm font-semibold text-foreground">Status</th>
+                        <th class="px-4 py-3 text-sm font-semibold text-foreground">Method</th>
+                        <th class="px-4 py-3 text-sm font-semibold text-foreground">Amount</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <tr class="hover:bg-accent transition-colors duration-200">
+                        <td class="px-4 py-3 text-sm text-foreground">INV001</td>
+                        <td class="px-4 py-3 text-sm text-foreground">
+                            <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full">Paid</span>
+                        </td>
+                        <td class="px-4 py-3 text-sm text-foreground">Credit Card</td>
+                        <td class="px-4 py-3 text-sm text-foreground">$250.00</td>
+                    </tr>
+                    <tr class="hover:bg-accent transition-colors duration-200">
+                        <td class="px-4 py-3 text-sm text-foreground">INV002</td>
+                        <td class="px-4 py-3 text-sm text-foreground">
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full">Pending</span>
+                        </td>
+                        <td class="px-4 py-3 text-sm text-foreground">PayPal</td>
+                        <td class="px-4 py-3 text-sm text-foreground">$150.00</td>
+                    </tr>
+                    <tr class="hover:bg-accent transition-colors duration-200">
+                        <td class="px-4 py-3 text-sm text-foreground">INV003</td>
+                        <td class="px-4 py-3 text-sm text-foreground">
+                            <span class="px-2 py-1 bg-red-100 text-red-700 rounded-full">Unpaid</span>
+                        </td>
+                        <td class="px-4 py-3 text-sm text-foreground">Bank Transfer</td>
+                        <td class="px-4 py-3 text-sm text-foreground">$350.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        <div class="flex justify-end mt-6">
+            <nav class="inline-flex rounded-md shadow-sm">
+                <a href="#" class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md">
+                    Previous
+                </a>
+                <a href="#" class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border">
+                    1
+                </a>
+                <a href="#" class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border">
+                    2
+                </a>
+                <a href="#" class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border">
+                    3
+                </a>
+                <a href="#" class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md">
+                    Next
+                </a>
+            </nav>
+        </div>
+    </div>
+</app-main-contant>
