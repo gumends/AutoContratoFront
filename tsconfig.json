@@ -1,5 +1,3 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -16,7 +14,45 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022"
+    "module": "ES2022",
+    "paths": {
+      "@spartan-ng/ui-card-helm": [
+        "./libs/ui/ui-card-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-button-helm": [
+        "./libs/ui/ui-button-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-calendar-helm": [
+        "./libs/ui/ui-calendar-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-icon-helm": [
+        "./libs/ui/ui-icon-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-label-helm": [
+        "./libs/ui/ui-label-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-input-helm": [
+        "./libs/ui/ui-input-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-formfield-helm": [
+        "./libs/ui/ui-formfield-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-typography-helm": [
+        "./libs/ui/ui-typography-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-sonner-helm": [
+        "./libs/ui/ui-sonner-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-table-helm": [
+        "./libs/ui/ui-table-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-spinner-helm": [
+        "./libs/ui/ui-spinner-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-menu-helm": [
+        "./libs/ui/ui-menu-helm/src/index.ts"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
