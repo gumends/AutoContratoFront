@@ -7,6 +7,7 @@ import { LocatarioComponent } from './pages/locatario/locatario.component';
 import { PropriedadeComponent } from './pages/propriedade/propriedade.component';
 import { ProprietarioComponent } from './pages/proprietario/proprietario.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
 
 export const routes: Routes = [
     {
@@ -45,6 +46,11 @@ export const routes: Routes = [
     {
         path: 'usuarios',
         component: UsuariosComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'usuario/:id',
+        component: UsuarioComponent,
         canActivate: [AuthGuard]
     }
 
