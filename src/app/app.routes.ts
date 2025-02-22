@@ -1,3 +1,51 @@
 import { Routes } from '@angular/router';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { HomeComponent } from './pages/home/home.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { LocatarioComponent } from './pages/locatario/locatario.component';
+import { PropriedadeComponent } from './pages/propriedade/propriedade.component';
+import { ProprietarioComponent } from './pages/proprietario/proprietario.component';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+    {
+        path: 'register',
+        component: RegisterComponent
+    },
+    {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: '',
+        redirectTo: '/login',
+        pathMatch: 'full'
+    },
+    {
+        path: 'locatario',
+        component: LocatarioComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'propriedade',
+        component: PropriedadeComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'proprietario',
+        component: ProprietarioComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'usuarios',
+        component: UsuariosComponent,
+        canActivate: [AuthGuard]
+    }
+
+];
