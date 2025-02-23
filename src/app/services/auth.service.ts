@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   register(nome: string, idade: string, email: string, login: string, senha: string){
-    return this.http.post(`http://localhost:8080/auth/register`, { "nome": nome, "idade": idade, "email": email, "login": login, "senha": senha, "role": "USER" })
+    return this.http.post(`http://localhost:8080/auth/registrar`, { "nome": nome, "idade": idade, "email": email, "login": login, "senha": senha, "role": "USER" })
     .pipe(
       tap((res: any) => {
         console.log(res);
