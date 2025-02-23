@@ -12,7 +12,7 @@ export class LocatarioService {
   baseUrl = 'http://localhost:8080/locatario';
   token = localStorage.getItem('auth-token');
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   getLocatarios( pagina: number): Observable<ILocatarioPaginado> {
     const headers = new HttpHeaders({
