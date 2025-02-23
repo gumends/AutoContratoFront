@@ -4,11 +4,12 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { FormsModule } from '@angular/forms';
 import { forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
-  selector: 'label-input',
+  selector: 'label-input-cpf',
   standalone: true,
-  imports: [HlmLabelDirective, HlmInputDirective, FormsModule],
+  imports: [HlmLabelDirective, HlmInputDirective, FormsModule, NgxMaskDirective],
   template: `
   <div>
     <label hlmLabel>{{ label }}</label>
@@ -16,6 +17,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       class={{class}}
       hlmInput
       [type]="type"
+      [mask]="'000.000.000-00'"
       [placeholder]="placeholder"
       [value]="value"
       (input)="onInput($event)"
@@ -25,12 +27,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 providers: [
   {
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => LabelInputComponent),
+    useExisting: forwardRef(() => LabelInputCpfComponent),
     multi: true,
   },
 ],
 })
-export class LabelInputComponent implements ControlValueAccessor {
+export class LabelInputCpfComponent implements ControlValueAccessor {
 
   @Input() class: string = '';
   @Input() label: string = '';
