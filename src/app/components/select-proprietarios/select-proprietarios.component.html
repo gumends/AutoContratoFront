@@ -1,0 +1,8 @@
+<brn-select class="inline-block" placeholder="Select an option">
+    <hlm-select-trigger>
+        <hlm-select-value />
+    </hlm-select-trigger>
+    <hlm-select-content class="w-56">
+            <option *ngFor="let p of propriedades" value={{p.id}} >{{p.rua + ' - ' + p.numero}}</option>
+    </hlm-select-content>
+</brn-select>
