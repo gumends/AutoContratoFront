@@ -11,12 +11,10 @@ import { takeUntil } from 'rxjs/operators';
 import { HlmDialogComponent } from "../../../../libs/ui/ui-dialog-helm/src/lib/hlm-dialog.component";
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
 import { HlmDialogContentComponent, HlmDialogDescriptionDirective, HlmDialogFooterComponent, HlmDialogHeaderComponent, HlmDialogTitleDirective } from '@spartan-ng/ui-dialog-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { LabelInputComponent } from "../../components/input/input.component";
-import { ButtonPreviewComponent } from "../../components/button/button.component";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SelectProprietariosComponent } from "../../components/select-proprietarios/select-proprietarios.component";
 
 @Component({
   selector: 'app-locatario',
@@ -32,14 +30,14 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
     HlmDialogComponent,
     HlmDialogContentComponent,
     HlmDialogHeaderComponent,
-    HlmDialogFooterComponent,
     HlmDialogTitleDirective,
     HlmDialogDescriptionDirective,
     HlmButtonDirective,
     LabelInputComponent,
     ReactiveFormsModule,
-    FormsModule
-  ],
+    FormsModule,
+    SelectProprietariosComponent
+],
   templateUrl: './locatario.component.html',
   styleUrl: './locatario.component.css'
 })
@@ -62,7 +60,7 @@ export class LocatarioComponent implements OnInit, OnDestroy {
   ) {
     this.form = this.fb.group({
       nome: ["", [Validators.required, Validators.minLength(6)]],
-      cpf: ["", [Validators.required, Validators.minLength(11)]],
+      cpf: ["", [Validators.required]],
     });
   }
 
