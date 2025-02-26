@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { IPropriedade } from '../Types/propriedade';
+import { IPropriedadePaginado } from '../Types/propriedade';
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +12,16 @@ export class PropriedadeService {
 
   }
 
-  baseUrl = 'http://localhost:8080/propriedade'
+  baseUrl = 'http://localhost:8080/propriedades'
   token = localStorage.getItem('auth-token');
 
 
-  getPropriedades(): Observable<IPropriedade> {
+  getPropriedades(): Observable<IPropriedadePaginado> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.get(`${this.baseUrl}/todos`, { headers }).pipe(
-      map((response: any) => response as IPropriedade)
+    return this.http.get(`${this.baseUrl}`, { headers }).pipe(
+      map((response: any) => response as IPropriedadePaginado)
     );
   }
 
