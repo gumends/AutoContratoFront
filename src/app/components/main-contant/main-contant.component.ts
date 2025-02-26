@@ -1,16 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeModeComponent } from "../theme-mode/theme-mode.component";
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { AppComponent } from "../icons/moon/moon.component";
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { AuthService } from '../../services/auth.service';
 import { DropdownPreviewComponent } from "../dropdown/dropdown.component";
+import {
+  HlmBreadcrumbDirective,
+  HlmBreadcrumbEllipsisComponent,
+  HlmBreadcrumbItemDirective,
+  HlmBreadcrumbLinkDirective,
+  HlmBreadcrumbListDirective,
+  HlmBreadcrumbPageDirective,
+  HlmBreadcrumbSeparatorComponent,
+} from '@spartan-ng/ui-breadcrumb-helm';
 
 @Component({
   selector: 'app-main-contant',
-  imports: [ThemeModeComponent, NgFor, AppComponent, RouterModule, DropdownPreviewComponent],
+  imports: [ThemeModeComponent, TitleCasePipe, NgFor, NgIf, AppComponent, RouterModule, DropdownPreviewComponent, HlmBreadcrumbDirective, HlmBreadcrumbEllipsisComponent, HlmBreadcrumbItemDirective, HlmBreadcrumbLinkDirective, HlmBreadcrumbListDirective, HlmBreadcrumbPageDirective, HlmBreadcrumbSeparatorComponent],
   templateUrl: './main-contant.component.html',
   styleUrl: './main-contant.component.css'
 })
@@ -64,8 +73,18 @@ export class MainContantComponent implements OnInit {
     "USER"
   ]
 
+  rotas: any[] = []
+
   ngOnInit() {
-    this.title = this.pages.find(p => p.url === this.router.url)?.title || "Undefined";
+
+    this.rotas = this.router.url
+    .split("/")
+    .filter(rotas => rotas !== "")
+    .map((rota, index, array) => ({
+      label: rota,
+      url: "/" + array.slice(0, index + 1).join("/")
+    }));
+
     if (this.tokenDecoded) {
       this.pagesRender = this.pages.filter((p) => p.role === this.role[this.tokenDecoded.role]);
       this.pagesRender.push(...this.pages.filter((p) => p.role === "USER"));
@@ -75,7 +94,7 @@ export class MainContantComponent implements OnInit {
     this.page = this.router.url;
   }
 
-  sair(){
+  sair() {
     this.service.logout()
   }
 }

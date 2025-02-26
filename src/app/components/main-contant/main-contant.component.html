@@ -30,13 +30,18 @@
             </div>
         </header>
         <div class="flex-1 p-6 overflow-y-auto bg-background border border-border rounded-lg m-4">
-            <div class="flex items-center gap-5 mb-4">
-                <h1 class="text-2xl font-bold text-foreground">{{title}}</h1>
-                <mode-theme-icon size="25px" icon="heroPlus" class="text-foreground cursor-pointer" />
-            </div>
-
+            <h1 class="text-3xl font-bold text-foreground mb-4">{{rotas[0].label | titlecase}}</h1>
+            <nav hlmBreadcrumb>
+                <ol hlmBreadcrumbList>
+                    <div hlmBreadcrumbItem *ngFor="let item of rotas; let i = index">
+                        <li hlmBreadcrumbSeparator *ngIf="i !== 0"></li>
+                        <li hlmBreadcrumbItem>
+                            <span hlmBreadcrumbPage class="cursor-pointer" [routerLink]="item.url">{{ item.label }}</span>
+                        </li>
+                    </div>                    
+                </ol>
+            </nav>
             <ng-content>
-
             </ng-content>
         </div>
     </div>
