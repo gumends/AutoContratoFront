@@ -1,73 +1,104 @@
 <app-main-contant>
-    <div class="bg-card shadow-sm rounded-lg p-6">
+    <div class="bg-card rounded-lg p-6">
 
         <div class="overflow-x-auto">
-            <table class="w-full text-left">
-
-                <caption class="text-sm text-muted-foreground mb-4">
-                    A list of your recent invoices.
-                </caption>
-
+            <div class="p-4 flex gap-5 border border-solid border-border rounded-t-lg">
+                <div class="flex items-center gap-2">
+                    <mode-theme-icon (click)="recarregar()" size="20px" icon="heroArrowPath"
+                        class="text-foreground cursor-pointer hover:text-primary transition-colors duration-200" />
+                </div>
+                <div class="flex items-center gap-2">
+                    <brn-select class="inline-block" placeholder="Filtro" [(ngModel)]="status"
+                        (ngModelChange)="onStatus()">
+                        <hlm-select-trigger class="w-56">
+                            <hlm-select-value />
+                        </hlm-select-trigger>
+                        <hlm-select-content>
+                            <hlm-option value="true">Ativo</hlm-option>
+                            <hlm-option value="false">Inativo</hlm-option>
+                        </hlm-select-content>
+                    </brn-select>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input hlmInput type="text" [(ngModel)]="nome"
+                        class="w-64 px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Pesquisar por nome..." />
+                    <mode-theme-icon (click)="buscar()" size="23px" icon="heroMagnifyingGlass"
+                        class="text-foreground cursor-pointer hover:text-primary transition-colors duration-200" />
+                </div>
+            </div>
+            <table class="w-full text-left border border-solid border-border">
                 <thead>
-                    <tr class="border-b border-border">
-                        <th class="px-4 py-3 text-sm font-semibold text-foreground">Nome</th>
-                        <th class="px-4 py-3 text-sm font-semibold text-foreground">Nascimento</th>
-                        <th class="px-4 py-3 text-sm font-semibold text-foreground">CPF</th>
-                        <th class="px-4 py-3 text-sm font-semibold text-foreground">RG</th>
-                        <th class="px-4 py-3 text-sm font-semibold text-foreground">Status</th>
+                    <tr class="border-b border-border bg-muted">
+                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Nome</th>
+                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Nascimento</th>
+                        <th class="px-6 py-4 text-sm font-semibold text-foreground">CPF</th>
+                        <th class="px-6 py-4 text-sm font-semibold text-foreground">RG</th>
+                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Status</th>
+                        <th class="px-2 py-4 text-sm font-semibold text-foreground"></th>
+                        <th class="px-2 py-4 text-sm font-semibold text-foreground"></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr *ngFor="let item of conteudo" class="hover:bg-accent transition-colors duration-200">
-                        <td class="px-4 py-3 text-sm text-foreground">{{item.nome}}</td>
-                        <td class="px-4 py-3 text-sm text-foreground">{{item.nascimento | formatarData}}</td>
-                        <td class="px-4 py-3 text-sm text-foreground">{{item.cpf}}</td>
-                        <td class="px-4 py-3 text-sm text-foreground">{{item.rg}}</td>
-                        <td class="px-4 py-3 text-sm text-foreground">{{item.status}}</td>
+                    <tr *ngFor="let item of conteudo" class="transition-colors duration-200 hover:bg-muted/50">
+                        <td class="px-6 py-4 text-sm text-foreground">{{item.nome}}</td>
+                        <td class="px-6 py-4 text-sm text-foreground">{{item.nascimento | formatarData}}</td>
+                        <td class="px-6 py-4 text-sm text-foreground">{{item.cpf}}</td>
+                        <td class="px-6 py-4 text-sm text-foreground">{{item.rg}}</td>
+                        <td class="px-6 py-4 text-sm text-foreground">
+                            <div hlmBadge variant="secondary">
+                                {{item.status ? 'Ativo' : 'Inativo'}}
+                            </div>
+                        </td>
+                        <td class="px-2 py-4 text-sm text-foreground">
+                            <a [routerLink]="['/locatario/detalhes', item.id]">
+                                <mode-theme-icon size="20px" icon="heroPencilSolid"
+                                    class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-primary hover:text-primary-foreground" />
+                            </a>
+                        </td>
+                        <td class="px-2 py-4 text-sm text-foreground">
+                            <hlm-alert-dialog>
+                                <button id='edit-profile'  [ngClass]="{ 'bg-red-600': item.status, 'bg-green-600': !item.status, 'hover:bg-red-600': item.status, 'hover:bg-green-600': !item.status,}" brnAlertDialogTrigger hlmBtn>
+                                    <mode-theme-icon
+                                    class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 text-white"
+                                    size="25px" icon="{{ item.status ? 'heroXCircle' : 'heroCheckSolid' }}">
+                                </mode-theme-icon>
+                                </button>
+                                <hlm-alert-dialog-content *brnAlertDialogContent='let ctx'>
+                                    <hlm-alert-dialog-header>
+                                        <h3 hlmAlertDialogTitle>Você tem certeza?</h3>
+                                        <p hlmAlertDialogDescription>
+                                            Caso confirme, essa ação este locátario será desativado.
+                                        </p>
+                                    </hlm-alert-dialog-header>
+                                    <hlm-alert-dialog-footer class="gap-2">
+                                        <button hlmAlertDialogCancel (click)='ctx.close()'>Cancelar</button>
+                                        <button hlmAlertDialogAction
+                                            (click)='desativar(item.id); ctx.close()'>Confirmar</button>
+                                    </hlm-alert-dialog-footer>
+                                </hlm-alert-dialog-content>
+                            </hlm-alert-dialog>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
         <div class="flex justify-end mt-6">
             <nav class="inline-flex rounded-md shadow-sm">
                 <a (click)="mudarPagina(pagina - 1)"
-                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md">
+                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md hover:bg-muted/50 transition-colors duration-200">
                     <mode-theme-icon size="20px" icon="heroArrowSmallLeftSolid" />
                 </a>
                 <p
                     class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border">
                     {{pagina + 1}} de {{total}}</p>
                 <a (click)="mudarPagina(pagina + 1)"
-                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md">
+                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md hover:bg-muted/50 transition-colors duration-200">
                     <mode-theme-icon size="20px" icon="heroArrowSmallRightSolid" />
                 </a>
             </nav>
         </div>
     </div>
+    <button hlmBtn variant="outline" [routerLink]="['/locatario/detalhes']" class="fixed bottom-10 right-10">Novo Locatário</button>
 </app-main-contant>
-<hlm-dialog>
-    <button id="edit-profile" brnDialogTrigger hlmBtn variant="outline" class="fixed bottom-10 right-10">Novo
-        Locatário</button>
-    <hlm-dialog-content class="sm:max-w-[425px]" *brnDialogContent="let ctx">
-        <hlm-dialog-header>
-            <h3 hlmDialogTitle>Edit profile</h3>
-            <p hlmDialogDescription>Make changes to your profile here. Click save when you're done.</p>
-        </hlm-dialog-header>
-        <form [formGroup]="form" (ngSubmit)="register()">
-            <div class="py-4 grid gap-4">
-                <label-input class="w-full" name="nome" [label]="'Nome'" [placeholder]="'Nome'"
-                    formControlName="nome"></label-input>
-                <label-input class="w-full" label="CPF" placeholder="Digite seu CPF" name="cpf"
-                    formControlName="cpf"></label-input>
-                <div>
-                    <label-input class="w-full" label="CPF" type="date" placeholder="Digite seu CPF" name="cpf"
-                    formControlName="cpf"></label-input>
-                </div>
-                <app-select-proprietarios />
-            </div>
-            <button hlmBtn type="submit">Save changes</button>
-        </form>
-    </hlm-dialog-content>
-</hlm-dialog>

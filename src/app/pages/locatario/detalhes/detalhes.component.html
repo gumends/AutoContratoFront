@@ -1,0 +1,56 @@
+<app-main-contant>
+    <main class="w-full h-max flex justify-center items-center">
+        <form action="" [formGroup]="form" (ngSubmit)="salvar()"
+            class="w-2/4 mt-20 flex flex-col gap-5 border border-border p-5 rounded-xl">
+            <div class="flex gap-4 w-full">
+                <label class="w-full" hlmLabel>Nome
+                    <input class="w-full" hlmInput type="text" name="nome" formControlName="nome"
+                        placeholder="Digite o nome" />
+                </label>
+                <label class="w-full" hlmLabel>Nascimento
+                    <input hlmInput class="w-full" type="date" formControlName="nascimento" />
+                </label>
+            </div>
+            <div class="flex gap-4 w-full">
+                <label class="w-full" hlmLabel>CPF
+                    <input class="w-full" hlmInput type="text" appCpfMask name="cpf" formControlName="cpf"
+                        placeholder="Digite o CPF" />
+                </label>
+                <label class="w-full" hlmLabel>RG
+                    <input hlmInput class="w-full" type="text" name="rg" appRgMask formControlName="rg"
+                        placeholder="Digite o RG" />
+                </label>
+            </div>
+            <div class="flex gap-4 w-full">
+                <label class="w-full" hlmLabel>status
+                    <brn-select class="w-full" placeholder="Select an option" formControlName="status">
+                        <hlm-select-trigger class="w-full mt-1">
+                            <hlm-select-value />
+                        </hlm-select-trigger>
+                        <hlm-select-content class="w-full">
+                            <hlm-option value="true">Ativo</hlm-option>
+                            <hlm-option value="false">Inativo</hlm-option>
+                        </hlm-select-content>
+                    </brn-select>
+                </label>
+                <label class="w-full" hlmLabel>Propriedade
+                    <brn-select class="w-full" placeholder="Select an option" formControlName="propriedadeId">
+                        <hlm-select-trigger class="w-full mt-1">
+                            <hlm-select-value />
+                        </hlm-select-trigger>
+                        <hlm-select-content class="w-full">
+                            <hlm-option *ngFor="let item of propriedades" [value]="item.id"
+                                class="flex flex-col w-full justify-center text-center pl-3  cursor-pointer">
+                                <p>{{ item.rua }}</p>
+                                <p>{{ item.bairro }}</p>
+                            </hlm-option>
+                        </hlm-select-content>
+                    </brn-select>
+                </label>
+            </div>
+            <div class="flex justify-end">
+                <app-button text="Salvar" type="submit" class="rounded" />
+            </div>
+        </form>
+    </main>
+</app-main-contant>
