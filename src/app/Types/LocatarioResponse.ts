@@ -12,7 +12,7 @@ export type ILocatarioPaginado = {
     empty: boolean
 }
 
-type Content = {
+export type Content = {
     id: string
     nome: string
     rg: string
