@@ -57,6 +57,15 @@
       ],
       "@spartan-ng/ui-select-helm": [
         "./libs/ui/ui-select-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-badge-helm": [
+        "./libs/ui/ui-badge-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-alertdialog-helm": [
+        "./libs/ui/ui-alertdialog-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-breadcrumb-helm": [
+        "./libs/ui/ui-breadcrumb-helm/src/index.ts"
       ]
     }
   },
