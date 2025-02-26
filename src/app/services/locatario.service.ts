@@ -9,18 +9,53 @@ import { ILocatarioPaginado } from '../Types/LocatarioResponse';
 })
 export class LocatarioService {
 
-  baseUrl = 'http://localhost:8080/locatario';
+  baseUrl = 'http://localhost:8080/locatarios';
   token = localStorage.getItem('auth-token');
 
   constructor(private http: HttpClient) { }
 
-  getLocatarios( pagina: number): Observable<ILocatarioPaginado> {
+  buscarLocatarios(pagina: number, status?: boolean, nome: string = ''): Observable<ILocatarioPaginado> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.get(`${this.baseUrl}/todos?page=${pagina}`, { headers })
+    return this.http.get(`${this.baseUrl}?status=${status}&nome=${nome}`, { headers })
       .pipe(
         map((response: any) => response as ILocatarioPaginado)
       );
+  }
+  desativarLocatario(id: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.patch(`${this.baseUrl}/${id}/status`, null, { headers });
+  }
+
+  criarLocatario(locatario: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    console.log(locatario);
+    return this.http.post(`${this.baseUrl}`, locatario, { headers });
+  }
+
+  atualizarLocatario(locatario: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.put(`${this.baseUrl}/${locatario.id}`, locatario, { headers });
+  }
+
+  buscarLocatario(id: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.get(`${this.baseUrl}/${id}`, { headers });
+  }
+
+  atualizar(id: string, locatario: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.patch(`${this.baseUrl}/${id}`, locatario, { headers });
   }
 }
