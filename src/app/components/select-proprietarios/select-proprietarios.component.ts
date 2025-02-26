@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 import { PropriedadeService } from '../../services/propriedade.service';
-import { IPropriedade } from '../../Types/propriedade';
+import { IPropriedadePaginado, IContent } from '../../Types/propriedade';
 import { NgFor } from '@angular/common';
 
 @Component({
@@ -14,18 +14,28 @@ import { NgFor } from '@angular/common';
 export class SelectProprietariosComponent implements OnInit {
   constructor(private service: PropriedadeService) { }
 
-  propriedades: IPropriedade[] = []
+  nome: string = "";
+  id: string = "";
+
+  propriedades: IContent[] = [];
+
+  @Output() selectedValue = new EventEmitter<string>(); // Emite o valor selecionado
 
   ngOnInit(): void {
-    this.service.getPropriedades().subscribe(
-      (res: IPropriedade) => {
-        console.log(res);
+    this.service.getPropriedades().subscribe({
+      next: (response) => {
+        this.propriedades = response.content;
       },
-      (error) => {
-        console.error('Erro ao carregar locatários:', error);
+      error: (error) => {
+        console.log(error);
       }
-    );
-    console.log(this.propriedades);
+    });
+  }
 
+  onSelectChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedValue = selectElement.value;
+    console.log('Valor selecionado no componente:', selectedValue); // Verifique se o valor está correto
+    this.selectedValue.emit(selectedValue);
   }
 }
