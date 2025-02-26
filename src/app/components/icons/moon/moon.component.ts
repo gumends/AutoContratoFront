@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { featherAirplay } from '@ng-icons/feather-icons';
-import { heroAcademicCap, heroMagnifyingGlass, heroPlus } from '@ng-icons/heroicons/outline';
-import { heroArrowSmallLeftSolid, heroArrowSmallRightSolid, heroCheckSolid, heroHomeModernSolid, heroHomeSolid, heroMoonSolid, heroSunSolid, heroUserCircleSolid, heroUserGroupSolid, heroUserPlusSolid, heroUserSolid, heroXMarkSolid } from '@ng-icons/heroicons/solid';
+import { heroAcademicCap, heroArrowPath, heroMagnifyingGlass, heroPencil, heroPlus, heroTrash, heroXCircle } from '@ng-icons/heroicons/outline';
+import { heroArrowSmallLeftSolid, heroArrowSmallRightSolid, heroCheckSolid, heroHomeModernSolid, heroHomeSolid, heroMoonSolid, heroPencilSolid, heroSunSolid, heroUserCircleSolid, heroUserGroupSolid, heroUserPlusSolid, heroUserSolid, heroXMarkSolid } from '@ng-icons/heroicons/solid';
 import { Input } from '@angular/core';
 import { NgStyle } from '@angular/common';
 import { ionExit } from '@ng-icons/ionicons';
@@ -29,7 +29,11 @@ import { ionExit } from '@ng-icons/ionicons';
             heroPlus,
             heroArrowSmallRightSolid,
             heroArrowSmallLeftSolid,
-            heroXMarkSolid
+            heroXMarkSolid,
+            heroPencilSolid,
+            heroTrash,
+            heroArrowPath,
+            heroXCircle,
         })]
 })
 export class AppComponent {
