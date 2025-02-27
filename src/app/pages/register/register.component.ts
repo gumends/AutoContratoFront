@@ -6,6 +6,8 @@ import { Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { routes } from '../../app.routes';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -32,14 +34,15 @@ export class RegisterComponent {
   constructor(
     private service: AuthService,
     private toastr: ToastrService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.registerForm = this.fb.group({
-      login: ["", [Validators.required, Validators.minLength(5)]],
-      password: ["", [Validators.required, Validators.minLength(6)]],
+      senha: ["", [Validators.required, Validators.minLength(6)]],
       email: ["", [Validators.required, Validators.email]],
       idade: ["", [Validators.required, Validators.min(1)]],
-      nome: ["", [Validators.required]]
+      nome: ["", [Validators.required]],
+      role: "USER"
     });
   }
 
@@ -49,10 +52,10 @@ export class RegisterComponent {
       this.toastr.success('Confira os dados informados', 'Erro!');
     }
 
-    this.service.register(this.nome, this.idade, this.email, this.loginValue, this.passwordValue)
+    this.service.register(this.registerForm.value)
       .subscribe({
         next: (res: any) => {
-          console.log(res);
+          this.router.navigate(['/home']);
           this.toastr.success('Registro realizado com sucesso', 'Bem vindo!');
         },
         error: (error) => {
