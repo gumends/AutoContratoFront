@@ -22,12 +22,10 @@ export class AuthService {
   private accountChangedSubject = new Subject<void>();
   accountChanged$ = this.accountChangedSubject.asObservable();
 
-  register(nome: string, idade: string, email: string, login: string, senha: string){
-    return this.http.post(`http://localhost:8080/auth/registrar`, { "nome": nome, "idade": idade, "email": email, "login": login, "senha": senha, "role": "USER" })
+  register(registro: any){
+    return this.http.post(`http://localhost:8080/auth/registrar`, registro)
     .pipe(
       tap((res: any) => {
-        console.log(res);
-        
         localStorage.setItem("auth-token", res.token)
       })
     )
