@@ -1,5 +1,5 @@
 export type ILocatarioPaginado = {
-    content: Content[]
+    content: ILocatarioContent[]
     pageable: Pageable
     last: boolean
     totalPages: number
@@ -12,7 +12,7 @@ export type ILocatarioPaginado = {
     empty: boolean
 }
 
-export type Content = {
+export type ILocatarioContent = {
     id: string
     nome: string
     rg: string
