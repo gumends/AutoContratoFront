@@ -19,7 +19,7 @@ import {
 
 @Component({
   selector: 'app-main-contant',
-  imports: [ThemeModeComponent, TitleCasePipe, NgFor, NgIf, AppComponent, RouterModule, DropdownPreviewComponent, HlmBreadcrumbDirective, HlmBreadcrumbEllipsisComponent, HlmBreadcrumbItemDirective, HlmBreadcrumbLinkDirective, HlmBreadcrumbListDirective, HlmBreadcrumbPageDirective, HlmBreadcrumbSeparatorComponent],
+  imports: [ThemeModeComponent, TitleCasePipe, NgFor, NgIf, AppComponent, RouterModule, DropdownPreviewComponent, HlmBreadcrumbDirective, HlmBreadcrumbItemDirective, HlmBreadcrumbListDirective, HlmBreadcrumbPageDirective, HlmBreadcrumbSeparatorComponent],
   templateUrl: './main-contant.component.html',
   styleUrl: './main-contant.component.css'
 })
