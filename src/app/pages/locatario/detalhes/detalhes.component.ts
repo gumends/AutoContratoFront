@@ -8,7 +8,7 @@ import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { ButtonPreviewComponent } from "../../../components/button/button.component";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PropriedadeService } from '../../../services/propriedade.service';
-import { IContent } from '../../../Types/propriedade';
+import { IPropriedadeContent } from '../../../Types/propriedade';
 import { NgFor } from '@angular/common';
 import { CpfMaskDirective } from '../../../directives/cpf-mask.directive';
 import { RgMaskDirective } from '../../../directives/rg-mask.directive';
@@ -21,7 +21,6 @@ import { RouterLink } from '@angular/router';
   selector: 'app-detalhes',
   imports: [
     MainContantComponent,
-    AppComponent,
     HlmInputDirective,
     HlmLabelDirective,
     BrnSelectImports,
@@ -32,8 +31,6 @@ import { RouterLink } from '@angular/router';
     NgFor,
     CpfMaskDirective,
     RgMaskDirective,
-    HlmButtonDirective,
-    RouterLink
   ],
   templateUrl: './detalhes.component.html',
   styleUrl: './detalhes.component.css'
@@ -46,7 +43,7 @@ export class DetalhesComponent implements OnInit {
   rg: string = '';
   propriedadeId: string = '';
   status!: boolean;
-  propriedades: IContent[] = [];
+  propriedades: IPropriedadeContent[] = [];
   id: string = '';
 
 
@@ -69,7 +66,7 @@ export class DetalhesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.servicePropriedade.getPropriedades().subscribe({
+    this.servicePropriedade.buscarPropriedades().subscribe({
       next: (response) => {
         this.propriedades = response.content;
       },
@@ -87,7 +84,7 @@ export class DetalhesComponent implements OnInit {
   }
 
   salvar() {
-    if (this.id != '') {
+    if (this.id) {
       this.serviceLocatario.atualizar(this.id, this.form.value).subscribe({
         next: (response) => {
           if (this.form.valid) {
@@ -99,7 +96,7 @@ export class DetalhesComponent implements OnInit {
           }
         },
         error: (error) => {
-          this.toastr.error('Não foi possivel realizar o cadastro', 'Erro!');
+          this.toastr.error('Não fsoi possivel realizar o cadastro', 'Erro!');
           console.log(error);
         }
       })
