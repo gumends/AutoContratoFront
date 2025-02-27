@@ -1,7 +1,8 @@
-import { Content } from "./LocatarioResponse"
+import { ILocatarioContent } from "./LocatarioResponse"
+import { IContentProprietario } from "./Proprietario"
 
 export type IPropriedadePaginado = {
-  content: IContent[]
+  content: IPropriedadeContent[]
   pageable: Pageable
   last: boolean
   totalPages: number
@@ -14,17 +15,20 @@ export type IPropriedadePaginado = {
   empty: boolean
 }
 
-export type IContent = {
+export type IPropriedadeContent = {
   id: string
   rua: string
   numero: number
+  numCasa: number
   bairro: string
   cep: string
   localizacao: string
-  locatario: Content;
+  locatario: ILocatarioContent;
   aluguel: string
   dataPagamento: string
-  proprietarioID: string
+  status: boolean
+  proprietario: IContentProprietario
+  propriedade: IPropriedadeContent
 }
 
 type Pageable = {
