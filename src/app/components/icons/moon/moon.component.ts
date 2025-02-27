@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { featherAirplay } from '@ng-icons/feather-icons';
 import { heroAcademicCap, heroArrowPath, heroMagnifyingGlass, heroPencil, heroPlus, heroTrash, heroXCircle } from '@ng-icons/heroicons/outline';
-import { heroArrowSmallLeftSolid, heroArrowSmallRightSolid, heroCheckSolid, heroHomeModernSolid, heroHomeSolid, heroMoonSolid, heroPencilSolid, heroSunSolid, heroUserCircleSolid, heroUserGroupSolid, heroUserPlusSolid, heroUserSolid, heroXMarkSolid } from '@ng-icons/heroicons/solid';
+import { heroArrowSmallLeftSolid, heroArrowSmallRightSolid, heroCheckSolid, heroDocumentTextSolid, heroHomeModernSolid, heroHomeSolid, heroMoonSolid, heroPencilSolid, heroSunSolid, heroUserCircleSolid, heroUserGroupSolid, heroUserPlusSolid, heroUserSolid, heroXMarkSolid } from '@ng-icons/heroicons/solid';
 import { Input } from '@angular/core';
 import { NgStyle } from '@angular/common';
-import { ionExit } from '@ng-icons/ionicons';
+import { ionExit, ionPrint } from '@ng-icons/ionicons';
 
 @Component({
     selector: 'mode-theme-icon',
@@ -34,6 +34,8 @@ import { ionExit } from '@ng-icons/ionicons';
             heroTrash,
             heroArrowPath,
             heroXCircle,
+            heroDocumentTextSolid,
+            ionPrint
         })]
 })
 export class AppComponent {
