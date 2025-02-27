@@ -9,6 +9,8 @@ import { ProprietarioComponent } from './pages/proprietario/proprietario.compone
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { DetalhesComponent } from './pages/locatario/detalhes/detalhes.component';
+import { DetalhesComponent as DetalhesProprietario } from './pages/proprietario/detalhes/detalhes.component';
+import { DetalhesPropriedadeComponent } from './pages/propriedade/detalhes/detalhes.component';
 
 export const routes: Routes = [
     {
@@ -45,8 +47,28 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
+        path: 'proprietario/detalhes/:id',
+        component: DetalhesProprietario,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'proprietario/detalhes',
+        component: DetalhesProprietario,
+        canActivate: [AuthGuard]
+    },
+    {
         path: 'propriedade',
         component: PropriedadeComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'propriedade/detalhes',
+        component: DetalhesPropriedadeComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'propriedade/detalhes/:id',
+        component: DetalhesPropriedadeComponent,
         canActivate: [AuthGuard]
     },
     {
