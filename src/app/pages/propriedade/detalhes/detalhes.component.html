@@ -1,0 +1,74 @@
+<app-main-contant>
+    <main class="w-full h-max flex justify-center items-center">
+        <form action="" [formGroup]="form" (ngSubmit)="salvar()"
+            class="w-2/4 mt-20 flex flex-col gap-5 border border-border p-5 rounded-xl">
+            <div class="flex gap-4 w-full">
+                <label class="w-full" hlmLabel>Rua
+                    <input class="w-full" hlmInput type="text" name="rua" formControlName="rua"
+                        placeholder="Digite o nome da rua" />
+                </label>
+                <label class="w-full" hlmLabel>Numero
+                    <input hlmInput class="w-full" type="number" formControlName="numero" 
+                        placeholder="Digite o número" />
+                </label>
+                <label class="w-full" hlmLabel>Aluguel
+                    <input hlmInput class="w-full" appCurrencyMask type="text" formControlName="aluguel" 
+                        placeholder="Digite o número" />
+                </label>
+            </div>
+            <div class="flex gap-4 w-full">
+                <label class="w-full" hlmLabel>Bairro
+                    <input class="w-full" hlmInput type="text" name="bairro" formControlName="bairro"
+                        placeholder="Digite o nome do bairro" />
+                </label>
+                <label class="w-full" appCepMask hlmLabel>Cep
+                    <input hlmInput class="w-full" type="text" name="cep" appRgMask formControlName="cep"
+                        placeholder="Digite o CEP" />
+                </label>
+                <label class="w-full" appCepMask hlmLabel>localizacão
+                    <input hlmInput class="w-full" type="text" name="localizacao" formControlName="localizacao"
+                        placeholder="Digite a localização" />
+                </label>
+            </div>
+            <div class="flex gap-4 w-full">
+                <label class="w-full" appCepMask hlmLabel>Data Pagamento
+                    <input hlmInput class="w-full" type="date" name="dataPagamento" formControlName="dataPagamento"
+                        placeholder="Digite a localização" />
+                </label>
+                <label class="w-full" hlmLabel>Proprietario
+                    <brn-select class="w-full" placeholder="Select an option" formControlName="proprietarioID">
+                        <hlm-select-trigger class="w-full mt-1">
+                            <hlm-select-value />
+                        </hlm-select-trigger>
+                        <hlm-select-content class="w-full">
+                            <hlm-option *ngFor="let item of proprietarios" [value]="item.id"
+                                class="flex flex-col w-full justify-center text-center pl-3  cursor-pointer">
+                                <p>{{ item.nome }}</p>
+                            </hlm-option>
+                        </hlm-select-content>
+                    </brn-select>
+                </label>
+                <label class="w-full" hlmLabel>Status
+                    <brn-select class="w-full" placeholder="Select an option" formControlName="status">
+                        <hlm-select-trigger class="w-full mt-1">
+                            <hlm-select-value />
+                        </hlm-select-trigger>
+                        <hlm-select-content class="w-full">
+                            <hlm-option value="true"
+                                class="flex flex-col w-full justify-center text-center pl-3  cursor-pointer">
+                                <p>Ativo</p>
+                            </hlm-option>
+                            <hlm-option value="false"
+                                class="flex flex-col w-full justify-center text-center pl-3  cursor-pointer">
+                                <p>Inativo</p>
+                            </hlm-option>
+                        </hlm-select-content>
+                    </brn-select>
+                </label>
+            </div>
+            <div class="flex justify-end">
+                <app-button text="Salvar" type="submit" class="rounded" />
+            </div>
+        </form>
+    </main>
+</app-main-contant>
