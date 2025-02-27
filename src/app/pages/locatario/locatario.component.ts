@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { MainContantComponent } from "../../components/main-contant/main-contant.component";
 import { LocatarioService } from '../../services/locatario.service';
-import { Content, ILocatarioPaginado } from '../../Types/LocatarioResponse';
+import { ILocatarioContent, ILocatarioPaginado } from '../../Types/LocatarioResponse';
 import { NgClass, NgFor } from '@angular/common';
 import { FormatarDataPipe } from '../../pipes/data.pipe';
 import { AppComponent } from "../../components/icons/moon/moon.component";
@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { PropriedadeService } from '../../services/propriedade.service';
-import { IContent } from '../../Types/propriedade';
+import { IPropriedadeContent } from '../../Types/propriedade';
 import { ToastrService } from 'ngx-toastr';
 import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
@@ -61,10 +61,10 @@ import {
 })
 export class LocatarioComponent implements OnInit, OnDestroy, OnChanges {
 
-  conteudo: Content[] = [];
+  conteudo: ILocatarioContent[] = [];
   pagina!: number;
   total!: number;
-  propriedades: IContent[] = [];
+  propriedades: IPropriedadeContent[] = [];
   status: boolean = true;
   nome: string = '';
 
@@ -103,7 +103,7 @@ export class LocatarioComponent implements OnInit, OnDestroy, OnChanges {
     ).subscribe(() => {
       this.carregarDados();
     });
-    this.servicePropriedade.getPropriedades().subscribe({
+    this.servicePropriedade.buscarPropriedades().subscribe({
       next: (response) => {
         this.propriedades = response.content;
       },
@@ -164,7 +164,7 @@ export class LocatarioComponent implements OnInit, OnDestroy, OnChanges {
 
   desativar(id: string) {
     this.service.desativarLocatario(id).subscribe({
-      next: (res: Content) => {
+      next: (res: ILocatarioContent) => {
           if(res.status === false){
             this.carregarDados();
             this.toastr.warning('Locatário desativado com sucesso', 'Desativado!');
