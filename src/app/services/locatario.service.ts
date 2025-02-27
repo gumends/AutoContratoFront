@@ -34,7 +34,6 @@ export class LocatarioService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
     });
-    console.log(locatario);
     return this.http.post(`${this.baseUrl}`, locatario, { headers });
   }
 
