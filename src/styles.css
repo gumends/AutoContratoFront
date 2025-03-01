@@ -26,7 +26,7 @@
     --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
+    --border: 240 5.9% 80%;
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
     --radius: 0.5rem;
@@ -304,3 +304,27 @@ button.toast-close-button {
         width: 25em;
     }
 }
+
+/* Estiliza a largura da barra de rolagem */
+::-webkit-scrollbar {
+    width: 8px; /* Barra vertical */
+    height: 8px; /* Barra horizontal */
+  }
+  
+  /* Fundo da barra de rolagem transparente */
+  ::-webkit-scrollbar-track {
+
+    background: transparent;
+  }
+  
+  /* Cor da barra de rolagem branca */
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground));
+    border-radius: 10px;
+  }
+  
+  /* Efeito ao passar o mouse */
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+  
