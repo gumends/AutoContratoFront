@@ -92,7 +92,7 @@ export class DropdownPreviewComponent implements OnInit{
     this.decodedToken = jwtDecode(this.token)
 
     this.id = this.decodedToken.id
-    this.email = this.decodedToken.email
+    this.email = this.decodedToken.sub
     this.role = this.modelRole[this.decodedToken.role]
     this.nome = this.decodedToken.nome
     
