@@ -6,23 +6,33 @@ import { Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { routes } from '../../app.routes';
 import { Router } from '@angular/router';
-
+import { CpfMaskDirective } from '../../directives/cpf-mask.directive';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 
 @Component({
   selector: 'app-register',
-  imports: [MainLoginComponent, FormsModule, LabelInputComponent, ButtonPreviewComponent, ReactiveFormsModule],
+  imports: [
+    MainLoginComponent,
+    FormsModule,
+    ButtonPreviewComponent,
+    ReactiveFormsModule,
+    CpfMaskDirective,
+    HlmInputDirective,
+    HlmLabelDirective
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
 
-  @Input() nome!: string;
-  @Input() idade!: string;
-  @Input() email!: string;
+  @Input() nome: string = "";
+  @Input() cpf: string = "";
+  @Input() email: string = "";
   @Input() loginValue: string = "";
-  @Input() passwordValue: string = "";
+  @Input() senha: string = "";
+  @Input() confSenha: string = "";
 
   @Input() showSonner: boolean = false;
   @Input() message: string = '';
@@ -38,21 +48,31 @@ export class RegisterComponent {
     private router: Router
   ) {
     this.registerForm = this.fb.group({
-      senha: ["", [Validators.required, Validators.minLength(6)]],
-      email: ["", [Validators.required, Validators.email]],
-      idade: ["", [Validators.required, Validators.min(1)]],
-      nome: ["", [Validators.required]],
+      senha: [this.senha, [Validators.required, Validators.minLength(6)]],
+      email: [this.email, [Validators.required, Validators.email]],
+      cpf: [this.cpf, [Validators.required, Validators.min(1)]],
+      nome: [this.nome, [Validators.required]],
+      confSenha: [this.confSenha, [Validators.required, Validators.minLength(6)]],
       role: "USER"
     });
   }
 
   register() {
-
     if (this.registerForm.invalid) {
-      this.toastr.success('Confira os dados informados', 'Erro!');
+      this.toastr.error('Confira os dados informados', 'Erro!');
+      return;
     }
 
-    this.service.register(this.registerForm.value)
+    if (this.registerForm.value.senha !== this.registerForm.value.confSenha) {
+      this.registerForm.controls['confSenha'].setErrors({ mismatch: true });
+      return;
+    }
+
+    // Criando um objeto sem a propriedade confSenha
+    const formData = { ...this.registerForm.value };
+    delete formData.confSenha;
+
+    this.service.register(formData)
       .subscribe({
         next: (res: any) => {
           this.router.navigate(['/home']);
@@ -60,8 +80,8 @@ export class RegisterComponent {
         },
         error: (error) => {
           console.log(error);
-          this.toastr.success('Dados já cadastrados', 'Erro!');
+          this.toastr.error('Dados já cadastrados', 'Erro!');
         }
-      })
+      });
   }
 }

@@ -4,18 +4,36 @@
     <form [formGroup]="registerForm" (ngSubmit)="register()" >
         <div class="flex flex-wrap -mx-2 mb-4">
             <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
-                <label-input class="w-full" name="nome" formControlName="nome" [label]="'Nome'" [placeholder]="'Nome completo'" ></label-input>
+                <label class="w-full" hlmLabel>Nome Completo
+                    <input hlmInput class="w-full" type="text" name="nome" formControlName="nome"
+                        placeholder="Digite o nome" />
+                </label>
             </div>
-            <div class="w-full md:w-1/2 px-2">
-                <label-input class="w-full" name="idade" formControlName="idade" type="number" [label]="'Idade'" [placeholder]="'Idade'" ></label-input>
+            <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+                <label class="w-full" hlmLabel>CPF
+                    <input hlmInput class="w-full" type="text" name="rg" appCpfMask formControlName="cpf"
+                        placeholder="Digite o CPF" />
+                </label>
             </div>
         </div>
         <div class="mb-4">
-            <label-input class="w-full" name="email" formControlName="email" [label]="'E-mail'" [placeholder]="'Seu E-mail'" [type]="'email'"></label-input>
+            <label class="w-full" hlmLabel>E-mail
+                <input hlmInput class="w-full" type="text" name="email" formControlName="email"
+                    placeholder="Digite o E-mail" />
+            </label>
         </div>
         <div class="flex flex-wrap -mx-2 mb-4">
             <div class="w-full md:w-1/2 px-2">
-                <label-input class="w-full" name="senha" formControlName="senha" type="password" [label]="'Senha'" [placeholder]="'Senha'" ></label-input>
+                <label class="w-full" hlmLabel>Senha
+                    <input hlmInput class="w-full" type="password" name="senha" formControlName="senha"
+                        placeholder="Digite a Senha" />
+                </label>
+            </div>
+            <div class="w-full md:w-1/2 px-2">
+                <label class="w-full" hlmLabel>Confirmar Senha
+                    <input hlmInput class="w-full" type="password" name="conf-senha" formControlName="confSenha"
+                        placeholder="Confirme a Senha" />
+                </label>
             </div>
         </div>
         <div class="flex justify-end">
