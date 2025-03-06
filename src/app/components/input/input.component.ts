@@ -19,6 +19,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       [placeholder]="placeholder"
       [value]="value"
       (input)="onInput($event)"
+      [name]="name"
     />
   </div>
 `,
@@ -36,6 +37,7 @@ export class LabelInputComponent implements ControlValueAccessor {
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() type: string = 'text';
+  @Input() name: string = '';
   value: string = '';
 
   onChange: any = () => {};
