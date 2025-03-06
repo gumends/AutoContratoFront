@@ -1,1 +1,93 @@
-<app-main-contant />
+<app-main-contant>
+    <div class="bg-card rounded-lg p-6">
+
+        <div class="overflow-x-auto">
+            <div class="p-4 flex gap-5 border border-solid border-border rounded-t-lg">
+                <div class="flex items-center gap-2">
+                    <mode-theme-icon (click)="recarregar()" size="20px" icon="heroArrowPath"
+                        class="text-foreground cursor-pointer hover:text-primary transition-colors duration-200" />
+                </div>
+                <div class="flex items-center gap-2">
+                    <input hlmInput type="text" [(ngModel)]="nome"
+                        class="w-64 px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Pesquisar por nome..." />
+                    <mode-theme-icon (click)="buscar()" size="23px" icon="heroMagnifyingGlass"
+                        class="text-foreground cursor-pointer hover:text-primary transition-colors duration-200" />
+                </div>
+            </div>
+            <table class="w-full text-left border border-solid border-border">
+                <thead>
+                    <tr class="border-b border-border bg-muted">
+                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Nome</th>
+                        <th class="px-6 py-4 text-sm font-semibold text-foreground">CPF</th>
+                        <th class="px-6 py-4 text-sm font-semibold text-foreground">E-mail</th>
+                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Usuario</th>
+                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Criado em</th>
+                        <th class="px-2 py-4 text-sm font-semibold text-foreground"></th>
+                        <th class="px-2 py-4 text-sm font-semibold text-foreground"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let item of conteudo" class="transition-colors duration-200 hover:bg-muted/50">
+                        <td class="px-6 py-4 text-sm text-foreground">{{item.nome}}</td>
+                        <td class="px-6 py-4 text-sm text-foreground">{{item.cpf}}</td>
+                        <td class="px-6 py-4 text-sm text-foreground">{{item.email}}</td>
+                        <td class="px-6 py-4 text-sm text-foreground">
+                            <div hlmBadge variant="secondary">
+                                {{item.role === "0" ? 'Ativo' : 'Inativo'}}
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-foreground">{{item.createdAt | formatarData}}</td>
+                        <td class="px-2 py-4 text-sm text-foreground">
+                            <a [routerLink]="['/proprietario/detalhes', item.id]">
+                                <mode-theme-icon size="20px" icon="heroPencilSolid"
+                                    class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-primary hover:text-primary-foreground" />
+                            </a>
+                        </td>
+                        <td class="px-2 py-4 text-sm text-foreground">
+                            <hlm-alert-dialog>
+                                <button id='edit-profile' class="bg-red-600 hover:bg-red-700" brnAlertDialogTrigger hlmBtn>
+                                    <mode-theme-icon
+                                    class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 text-white"
+                                    size="23px"
+                                    icon="heroTrashSolid"
+                                    >
+                                </mode-theme-icon>
+                                </button>
+                                <hlm-alert-dialog-content *brnAlertDialogContent='let ctx'>
+                                    <hlm-alert-dialog-header>
+                                        <h3 hlmAlertDialogTitle>Você tem certeza?</h3>
+                                        <p hlmAlertDialogDescription>
+                                            Caso confirme, essa ação não poderá ser desfeita.
+                                        </p>
+                                    </hlm-alert-dialog-header>
+                                    <hlm-alert-dialog-footer class="gap-2">
+                                        <button hlmAlertDialogCancel (click)='ctx.close()'>Cancelar</button>
+                                        <button hlmAlertDialogAction
+                                            (click)='deletar(item.id); ctx.close()'>Confirmar</button>
+                                    </hlm-alert-dialog-footer>
+                                </hlm-alert-dialog-content>
+                            </hlm-alert-dialog>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="flex justify-end mt-6">
+            <nav class="inline-flex rounded-md shadow-sm">
+                <a
+                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md hover:bg-muted/50 transition-colors duration-200">
+                    <mode-theme-icon size="20px" icon="heroArrowSmallLeftSolid" />
+                </a>
+                <p
+                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border">
+                    {{pagina + 1}} de {{total}}</p>
+                <a
+                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md hover:bg-muted/50 transition-colors duration-200">
+                    <mode-theme-icon size="20px" icon="heroArrowSmallRightSolid" />
+                </a>
+            </nav>
+        </div>
+    </div>
+</app-main-contant>
