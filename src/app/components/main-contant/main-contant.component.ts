@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeModeComponent } from "../theme-mode/theme-mode.component";
-import { NgFor, NgIf, TitleCasePipe } from '@angular/common';
+import { NgClass, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { AppComponent } from "../icons/moon/moon.component";
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
@@ -19,7 +19,7 @@ import {
 
 @Component({
   selector: 'app-main-contant',
-  imports: [ThemeModeComponent, TitleCasePipe, NgFor, NgIf, AppComponent, RouterModule, DropdownPreviewComponent, HlmBreadcrumbDirective, HlmBreadcrumbItemDirective, HlmBreadcrumbListDirective, HlmBreadcrumbPageDirective, HlmBreadcrumbSeparatorComponent],
+  imports: [ThemeModeComponent, NgClass, TitleCasePipe, NgFor, NgIf, AppComponent, RouterModule, DropdownPreviewComponent, HlmBreadcrumbDirective, HlmBreadcrumbItemDirective, HlmBreadcrumbListDirective, HlmBreadcrumbPageDirective, HlmBreadcrumbSeparatorComponent],
   templateUrl: './main-contant.component.html',
   styleUrl: './main-contant.component.css'
 })
@@ -76,7 +76,7 @@ export class MainContantComponent implements OnInit {
   rotas: any[] = []
 
   ngOnInit() {
-
+    
     this.rotas = this.router.url
     .split("/")
     .filter(rotas => rotas !== "")
@@ -86,8 +86,11 @@ export class MainContantComponent implements OnInit {
     }));
 
     if (this.tokenDecoded) {
-      this.pagesRender = this.pages.filter((p) => p.role === this.role[this.tokenDecoded.role]);
-      this.pagesRender.push(...this.pages.filter((p) => p.role === "USER"));
+      if (this.tokenDecoded.role === 0) {
+        this.pagesRender = this.pages;
+      } else if (this.tokenDecoded.role === 1) {
+        this.pagesRender = this.pages.filter(page => page.role === "USER");
+      }
     } else {
       console.error('Token inválido ou não encontrado.');
     }
