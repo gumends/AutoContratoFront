@@ -58,7 +58,7 @@
                         <td class="px-6 py-4 text-sm text-foreground">{{item.aluguel}}</td>
                         <td class="px-6 py-4 text-sm text-foreground">{{item.dataPagamento | formatarData}}</td>
                         <td class="px-6 py-4 text-sm text-foreground">{{item.locatario ? item.locatario.nome : '-'}}</td>
-                        <td class="px-6 py-4 text-sm text-foreground">{{item.proprietario.nome ? item.proprietario.nome : '-'}}</td> 
+                        <td class="px-6 py-4 text-sm text-foreground">{{item.proprietario ? item.proprietario.nome : '-'}}</td> 
                         <td class="px-6 py-4 text-sm text-foreground">
                             <div hlmBadge variant="secondary">
                                 {{item.status ? 'Ativo' : 'Inativo'}}

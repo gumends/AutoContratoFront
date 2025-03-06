@@ -56,7 +56,7 @@ export class LoginComponent {
         }
         if (error.status === 401) {
           this.loading = false;
-          this.toastr.error('Login ou senha inválidos', 'Erro!');
+          this.toastr.error('Login ou senhsa inválidos', 'Erro!');
         }
       }
     });
