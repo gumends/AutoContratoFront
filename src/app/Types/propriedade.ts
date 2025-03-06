@@ -27,6 +27,7 @@ export type IPropriedadeContent = {
   aluguel: string
   dataPagamento: string
   status: boolean
+  alugada: boolean
   proprietario: IContentProprietario
   propriedade: IPropriedadeContent
 }

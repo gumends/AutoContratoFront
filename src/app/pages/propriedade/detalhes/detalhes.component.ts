@@ -71,7 +71,7 @@ export class DetalhesPropriedadeComponent implements OnInit {
       localizacao: [this.localizacao, [Validators.required]],
       aluguel: [this.aluguel, [Validators.required]],
       dataPagamento: [this.dataPagamento, [Validators.required]],
-      proprietarioID: [this.proprietarioId, [Validators.required]],
+      proprietarioID: [null],
       status: [this.status, [Validators.required]],
     });
 
