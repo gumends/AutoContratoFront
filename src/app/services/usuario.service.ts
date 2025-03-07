@@ -38,10 +38,10 @@ export class UsuarioService {
     return this.http.patch<IUsuarioContent>(`${this.baseUrl}/${id}`, usuario, { headers });
   }
 
-  deletarUsuario(id: string): Observable<any> {
+  deletarUsuario(id: string): Observable<string> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.delete(`${this.baseUrl}/${id}`, { headers });
+    return this.http.delete<string>(`${this.baseUrl}/${id}`, { headers });
   }
 }

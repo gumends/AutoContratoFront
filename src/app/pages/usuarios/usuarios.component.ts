@@ -67,7 +67,7 @@ import { IUsuarioContent, IUsuarioResponse } from '../../Types/Usuario';
 export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
 
   conteudo: IUsuarioContent[] = []
-  pagina: number = 0; 
+  pagina: number = 0;
   tamanho: number = 10;
   total!: number;
   status: boolean = true;
@@ -111,18 +111,13 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
 
   deletar(id: string) {
     this.service.deletarUsuario(id).subscribe({
-      next: (res: any) => {
-          if(res.status === false){
-            this.carregarDados();
-            this.toastr.warning('Usuario deletado com sucesso', 'Desativado!');
-          } else {
-            this.carregarDados();
-            this.toastr.success('Locatário ativado com sucesso', 'Ativado!');
-          }
+      next: (res: string) => {
+        this.carregarDados();
+        this.toastr.error('Usuario deletado com sucesso', 'Deletado!');
       },
       error: (error) => {
         console.log(error);
-        this.toastr.error('Erro ao desativar locatário', 'Erro!');
+        this.toastr.error('Erro ao deletar o usuario', 'Erro!');
       }
     });
   }
@@ -131,7 +126,7 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
     this.service.buscarUsuarios(this.pagina, this.tamanho, this.nome).subscribe({
       next: (res: IUsuarioResponse) => {
         console.log(res.content);
-        
+
         this.conteudo = res.content;
         this.pagina = res.number;
         this.total = res.totalPages;
@@ -142,7 +137,7 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
     });
   }
 
-  onStatus(){
+  onStatus() {
     this.carregarDados();
   }
 
