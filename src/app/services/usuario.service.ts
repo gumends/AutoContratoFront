@@ -44,4 +44,18 @@ export class UsuarioService {
     });
     return this.http.delete<string>(`${this.baseUrl}/${id}`, { headers });
   }
+
+  atualizarSenha(id: string, senha: any): Observable<any> { 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.patch(`${this.baseUrl}/${id}/senha`, senha, { headers });
+  }
+
+  alterarPermissao(id: string, permissao: any): Observable<IUsuarioContent> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.patch<IUsuarioContent>(`${this.baseUrl}/${id}/permissao`, permissao, { headers });
+  }
 }

@@ -72,6 +72,7 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
   total!: number;
   status: boolean = true;
   nome: string = '';
+  permissao: string = '';
 
   private destroy$ = new Subject<void>();
 
@@ -85,11 +86,7 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
     private toastr: ToastrService
   ) {
     this.form = this.fb.group({
-      nome: ["", [Validators.required, Validators.minLength(6)]],
-      cpf: ["", [Validators.required]],
-      nascimento: ["", [Validators.required]],
-      rg: ["", [Validators.required]],
-      propriedadeId: [null] // Adicione isso ao formulário
+      role: [this.permissao, [Validators.required]]
     });
   }
   ngOnChanges(changes: any): void {
@@ -125,14 +122,25 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
   carregarDados() {
     this.service.buscarUsuarios(this.pagina, this.tamanho, this.nome).subscribe({
       next: (res: IUsuarioResponse) => {
-        console.log(res.content);
-
         this.conteudo = res.content;
         this.pagina = res.number;
         this.total = res.totalPages;
       },
       error: (error) => {
         console.error('Erro ao carregar locatários:', error);
+      }
+    });
+  }
+
+  alterarPermissao(id: string) {
+    this.service.alterarPermissao(id, this.form.value).subscribe({
+      next: (res: IUsuarioContent) => {
+        this.carregarDados();
+        this.toastr.success('Permissao alterada com sucesso', 'Alterado!');
+      },
+      error: (error) => {
+        console.log(error);
+        this.toastr.error('Erro ao alterar a permissao', 'Erro!');
       }
     });
   }
