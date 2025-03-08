@@ -31,7 +31,8 @@ import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Jwt } from '../../Types/jwt';
 import { jwtDecode } from 'jwt-decode';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'spartan-dropdown-preview',
@@ -66,11 +67,13 @@ import { RouterLink } from '@angular/router';
   ],
   templateUrl: './dropdown.component.html',
 })
-export class DropdownPreviewComponent implements OnInit{
+export class DropdownPreviewComponent implements OnInit {
 
   constructor(
     private service: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private serviceUsuario: UsuarioService,
+    private router: Router
   ) { }
 
   token!: string;
@@ -85,27 +88,33 @@ export class DropdownPreviewComponent implements OnInit{
     "ADMIN",
     "USER"
   ]
-  
+
   ngOnInit(): void {
     this.token = localStorage.getItem('auth-token') as string;
 
     this.decodedToken = jwtDecode(this.token)
 
-    console.log(this.decodedToken.id);
-    
     this.id = this.decodedToken.id
-    this.email = this.decodedToken.sub
-    this.role = this.modelRole[this.decodedToken.role]
-    this.nome = this.decodedToken.nome
-    
-    console.log(this.id);
-    
+
+    this.serviceUsuario.buscarUsuario(this.id).subscribe({
+      next: (response) => {
+        this.nome = response.nome
+        this.email = response.email
+        this.role = response.role
+      },
+      error: (error) => {
+        if (error) {
+          this.router.navigate(['/home']);
+        }
+      }
+    })
+
     if (this.token) {
       this.exp = JSON.parse(atob(this.token.split('.')[1])).exp
       if (parseInt(this.exp) < Date.now() / 1000) {
         this.logout()
       }
-    }    
+    }
   }
 
   logout() {
