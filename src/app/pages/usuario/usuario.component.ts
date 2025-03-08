@@ -35,8 +35,7 @@ import { Router } from '@angular/router';
     ButtonPreviewComponent,
     FormsModule,
     ReactiveFormsModule,
-    CpfMaskDirective,
-    RgMaskDirective
+    CpfMaskDirective
   ],
   templateUrl: './usuario.component.html',
   styleUrl: './usuario.component.css'
@@ -44,6 +43,7 @@ import { Router } from '@angular/router';
 export class UsuarioComponent implements OnInit {
 
   form: FormGroup;
+  formSenha: FormGroup;
   id: string = "";
 
   constructor(
@@ -56,6 +56,10 @@ export class UsuarioComponent implements OnInit {
       nome: ["", [Validators.required, Validators.minLength(6)]],
       cpf: ["", [Validators.required]],
       email: ["", [Validators.required]]
+    });
+    this.formSenha = this.fb.group({
+      senha: ["", [Validators.required, Validators.minLength(6)]],
+      confSenha: ["", [Validators.required, Validators.minLength(6)]],
     });
   }
   ngOnInit(): void {
@@ -81,6 +85,27 @@ export class UsuarioComponent implements OnInit {
         this.form.patchValue(response);
       },
       error: (error) => {
+        if (error) {
+          this.router.navigate(['/home']);
+          console.error(error);
+        }
+      }
+    });
+  }
+
+  atualizarSenha() {
+
+    if (this.formSenha.value.senha != this.formSenha.value.confSenha) {
+      this.toastr.error('Senhas diferentes', 'Erro!');
+      return;
+    }
+    
+    this.serviceUsuario.atualizarSenha(this.id, this.formSenha.value.senha).subscribe({
+      next: (response) => {
+        this.toastr.success('Senha atualizada com sucesso', 'Sucesso');
+      },
+      error: (error) => {
+        this.toastr.error('Não foi possivel atualizar a senha', 'Erro!');
         console.error(error);
       }
     });

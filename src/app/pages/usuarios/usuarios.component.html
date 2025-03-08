@@ -25,6 +25,7 @@
                         <th class="px-6 py-4 text-sm font-semibold text-foreground">Criado em</th>
                         <th class="px-2 py-4 text-sm font-semibold text-foreground"></th>
                         <th class="px-2 py-4 text-sm font-semibold text-foreground"></th>
+                        <th class="py-4 text-sm font-semibold text-foreground"></th>
                     </tr>
                 </thead>
 
@@ -45,15 +46,14 @@
                                     class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-primary hover:text-primary-foreground" />
                             </a>
                         </td>
-                        <td class="px-2 py-4 text-sm text-foreground">
+                        <td class="px-2 text-sm text-foreground">
                             <hlm-alert-dialog>
-                                <button id='edit-profile' class="bg-red-600 hover:bg-red-700" brnAlertDialogTrigger hlmBtn>
+                                <button id='edit-profile' class="bg-red-600 hover:bg-red-700" brnAlertDialogTrigger
+                                    hlmBtn>
                                     <mode-theme-icon
-                                    class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 text-white"
-                                    size="23px"
-                                    icon="heroTrashSolid"
-                                    >
-                                </mode-theme-icon>
+                                        class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 text-white"
+                                        size="23px" icon="heroTrashSolid">
+                                    </mode-theme-icon>
                                 </button>
                                 <hlm-alert-dialog-content *brnAlertDialogContent='let ctx'>
                                     <hlm-alert-dialog-header>
@@ -66,6 +66,44 @@
                                         <button hlmAlertDialogCancel (click)='ctx.close()'>Cancelar</button>
                                         <button hlmAlertDialogAction
                                             (click)='deletar(item.id); ctx.close()'>Confirmar</button>
+                                    </hlm-alert-dialog-footer>
+                                </hlm-alert-dialog-content>
+                            </hlm-alert-dialog>
+                        </td>
+                        <td class="py-4 text-sm text-foreground">
+                            <hlm-alert-dialog>
+                                <button id='edit-profile' class="bg-orange-500 hover:bg-orange-600" brnAlertDialogTrigger
+                                    hlmBtn>
+                                    <mode-theme-icon
+                                        class="cursor-pointer flex items-center justify-center rounded-full transition-colors duration-200 text-white"
+                                        size="23px" icon="heroExclamationTriangle">
+                                    </mode-theme-icon>
+                                </button>
+                                <hlm-alert-dialog-content *brnAlertDialogContent='let ctx'>
+                                    <hlm-alert-dialog-header>
+                                        <h3 hlmAlertDialogTitle>Alteração de permissão</h3>
+                                        <p hlmAlertDialogDescription>
+                                            Escolha a permissao desejada
+                                        </p>
+                                    </hlm-alert-dialog-header>
+                                    <hlm-alert-dialog-footer class="gap-2">
+                                        <form [formGroup]="form" (ngSubmit)="alterarPermissao(item.id)">
+                                            <brn-select class="inline-block" placeholder="Select an option"
+                                                formControlName="role">
+                                                <hlm-select-trigger class="w-56">
+                                                    <hlm-select-value />
+                                                </hlm-select-trigger>
+                                                <hlm-select-content>
+                                                    <hlm-option value="ADMIN">Admin</hlm-option>
+                                                    <hlm-option value="USER">User</hlm-option>
+                                                </hlm-select-content>
+                                            </brn-select>
+                                            <div class="flex justify-end gap-2 mt-4">
+                                                <button hlmAlertDialogCancel (click)='ctx.close()'>Cancelar</button>
+                                                <button hlmAlertDialogAction type="submit" (click)='ctx.close()'>Confirmar</button>
+                                            </div>
+                                        </form>
+
                                     </hlm-alert-dialog-footer>
                                 </hlm-alert-dialog-content>
                             </hlm-alert-dialog>
