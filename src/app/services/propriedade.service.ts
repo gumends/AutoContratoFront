@@ -53,4 +53,11 @@ export class PropriedadeService {
     });
     return this.http.patch(`${this.baseUrl}/${id}`, propriedade, { headers });
   }
+  
+  buscaAluguel(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.get(`${this.baseUrl}/aluguel`, { headers });
+  } 
 }
