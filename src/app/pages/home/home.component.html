@@ -2,9 +2,9 @@
     <div class="flex w-full gap-5 mt-5">
         <app-card class="w-full" titulo="Casas Disponiveis" valor="{{casaDisponiveis}}" subtitulo="+8.4%" icone="heroHomeModern" />
         <app-card class="w-full" titulo="Casas Ocupadas" valor="{{casaOcupadas}}" subtitulo="+8.4%" icone="heroHomeModernSolid" />
-        <app-card class="w-full" titulo="Valor em Aluguel Total" valor="$6.300,34" subtitulo="+8.4%"
+        <app-card class="w-full" titulo="Valor em Aluguel Total" valor="{{aluguelTotal | real}}" subtitulo="+8.4%"
             icone="heroCurrencyDollar" />
-        <app-card class="w-full" titulo="Valor a Receber" valor="$12.300,34" subtitulo="+8.4%"
+        <app-card class="w-full" titulo="Valor a Receber" valor="{{aluguelReceber | real}}" subtitulo="+8.4%"
             icone="heroCurrencyDollarSolid" />
     </div>
     <div class="flex gap-5 w-full mt-10">

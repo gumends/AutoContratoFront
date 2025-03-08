@@ -11,10 +11,11 @@ import { ILocatarioContent } from '../../Types/LocatarioResponse';
 import { IContentProprietario } from '../../Types/Proprietario';
 import { IPropriedadeContent } from '../../Types/propriedade';
 import { NgFor, NgIf } from '@angular/common';
+import { RealPipe } from '../../pipes/real.pipe';
 
 @Component({
   
-  imports: [MainContantComponent, HlmTableModule, CardComponent, CardItemComponent, NgFor, NgIf],
+  imports: [MainContantComponent, HlmTableModule, CardComponent, CardItemComponent, NgFor, NgIf, RealPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -31,12 +32,15 @@ export class HomeComponent implements OnInit {
   propriedades: IPropriedadeContent[] = []
   casaDisponiveis: number = 0;
   casaOcupadas: number = 0;
+  aluguelReceber: number = 0;
+  aluguelTotal: number = 0;
 
 
   ngOnInit(): void {
     this.buscarLocatarios()
     this.buscarProprietarios()
     this.buscarPropriedades()
+    this.buscaAluguel()
   }
 
   buscarLocatarios(){
@@ -67,6 +71,18 @@ export class HomeComponent implements OnInit {
         this.propriedades = response.content;
         this.casaDisponiveis = this.propriedades.filter(propriedade => propriedade.alugada === false).length;
         this.casaOcupadas = this.propriedades.filter(propriedade => propriedade.alugada === true).length;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+
+  buscaAluguel(){
+    this.propriedadeService.buscaAluguel().subscribe({
+      next: (response) => {
+        this.aluguelReceber = response.receber
+        this.aluguelTotal = response.total
       },
       error: (error) => {
         console.log(error);
