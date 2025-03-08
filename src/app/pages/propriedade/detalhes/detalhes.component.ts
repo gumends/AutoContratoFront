@@ -43,7 +43,7 @@ export class DetalhesPropriedadeComponent implements OnInit {
   bairro: string = '';
   cep: string = '';
   localizacao: string = '';
-  aluguel: string = 'R$ 0,00';
+  aluguel: number = 0;
   dataPagamento: Date = new Date();
   proprietarioId: string = '';
   locatarioId: string = '';

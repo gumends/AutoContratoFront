@@ -68,7 +68,7 @@ export class DetalhesComponent implements OnInit {
   ngOnInit() {
     this.servicePropriedade.buscarPropriedades().subscribe({
       next: (response) => {
-        this.propriedades = response.content;
+        this.propriedades = response.content.filter(propriedade => propriedade.alugada === false);
       },
       error: (error) => {
         console.log(error);
