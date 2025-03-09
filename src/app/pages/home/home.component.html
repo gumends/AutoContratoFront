@@ -1,10 +1,10 @@
 <app-main-contant>
     <div class="flex w-full gap-5 mt-5">
-        <app-card class="w-full" titulo="Casas Disponiveis" valor="{{casaDisponiveis}}" subtitulo="+8.4%" icone="heroHomeModern" />
-        <app-card class="w-full" titulo="Casas Ocupadas" valor="{{casaOcupadas}}" subtitulo="+8.4%" icone="heroHomeModernSolid" />
-        <app-card class="w-full" titulo="Valor em Aluguel Total" valor="{{aluguelTotal | real}}" subtitulo="+8.4%"
+        <app-card class="w-full" titulo="Casas Disponiveis" valor="{{casaDisponiveis}}" subtitulo="Casas disponives para locação" icone="heroHomeModern" />
+        <app-card class="w-full" titulo="Casas Ocupadas" valor="{{casaOcupadas}}" subtitulo="Casas alugadas e locação" icone="heroHomeModernSolid" />
+        <app-card class="w-full" titulo="Valor em Aluguel Total" valor="{{aluguelTotal | real}}" subtitulo="Valor somado de todas as casas"
             icone="heroCurrencyDollar" />
-        <app-card class="w-full" titulo="Valor a Receber" valor="{{aluguelReceber | real}}" subtitulo="+8.4%"
+        <app-card class="w-full" titulo="Valor a Receber" valor="{{aluguelReceber | real}}" subtitulo="Valor somado de casas alugadas"
             icone="heroCurrencyDollarSolid" />
     </div>
     <div class="flex gap-5 w-full mt-10">
@@ -24,7 +24,7 @@
             </div>
             <div class="border rounded-md w-full p-2 max-h-[268px] flex flex-col gap-1">
                 <h2 class="text-center font-bold text-2xl mb-2">Proprietarios</h2>
-                <div class="overflow-auto flex flex-col gap-1">
+                <div class="overflow-y-auto flex flex-col gap-1">
                     <span class="text-center" *ngIf="proprietarios.length == 0">Nenhum Proprietario Cadastrado</span>
                     <app-card-item *ngFor="let p of proprietarios" text_main="{{p.nome}}" text_sub="{{p.cpf}}" icone="heroUserCircleSolid"
                         value="{{p.status}}" />

@@ -27,14 +27,13 @@ export class HomeComponent implements OnInit {
     private proprietarioService: ProprietarioService
   ) {}
 
-  locararios: ILocatarioContent[] = []
-  proprietarios: IContentProprietario[] = []
-  propriedades: IPropriedadeContent[] = []
+  locararios: ILocatarioContent[] = [];
+  proprietarios: IContentProprietario[] = [];
+  propriedades: IPropriedadeContent[] = [];
   casaDisponiveis: number = 0;
   casaOcupadas: number = 0;
   aluguelReceber: number = 0;
   aluguelTotal: number = 0;
-
 
   ngOnInit(): void {
     this.buscarLocatarios()
