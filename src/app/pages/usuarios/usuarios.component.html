@@ -36,7 +36,7 @@
                         <td class="px-6 py-4 text-sm text-foreground">{{item.email}}</td>
                         <td class="px-6 py-4 text-sm text-foreground">
                             <div hlmBadge variant="secondary">
-                                {{item.role}}
+                                {{item.permissao}}
                             </div>
                         </td>
                         <td class="px-6 py-4 text-sm text-foreground">{{item.createdAt | formatarData}}</td>
@@ -89,7 +89,7 @@
                                     <hlm-alert-dialog-footer class="gap-2">
                                         <form [formGroup]="form" (ngSubmit)="alterarPermissao(item.id)">
                                             <brn-select class="inline-block" placeholder="Select an option"
-                                                formControlName="role">
+                                                formControlName="permissao">
                                                 <hlm-select-trigger class="w-56">
                                                     <hlm-select-value />
                                                 </hlm-select-trigger>

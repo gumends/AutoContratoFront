@@ -86,7 +86,7 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
     private toastr: ToastrService
   ) {
     this.form = this.fb.group({
-      role: [this.permissao, [Validators.required]]
+      permissao: [this.permissao, [Validators.required]]
     });
   }
   ngOnChanges(changes: any): void {

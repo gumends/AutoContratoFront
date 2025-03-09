@@ -53,7 +53,7 @@ export class RegisterComponent {
       cpf: [this.cpf, [Validators.required, Validators.min(1)]],
       nome: [this.nome, [Validators.required]],
       confSenha: [this.confSenha, [Validators.required, Validators.minLength(6)]],
-      role: "USER"
+      permissao: "USER"
     });
   }
 

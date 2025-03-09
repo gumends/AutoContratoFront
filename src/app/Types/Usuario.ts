@@ -17,7 +17,7 @@ export interface IUsuarioResponse {
     nome: string
     cpf: string
     email: string
-    role: string
+    permissao: string
     createdAt: string
     updatedAt: string
     enabled: boolean

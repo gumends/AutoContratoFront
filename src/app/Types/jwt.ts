@@ -4,6 +4,6 @@ export interface Jwt {
     id: string,
     nome: string,
     email: string,
-    role: number,
+    permissao: number,
     exp: number
 }
