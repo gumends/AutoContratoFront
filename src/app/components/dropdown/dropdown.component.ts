@@ -82,7 +82,7 @@ export class DropdownPreviewComponent implements OnInit {
   nome!: string;
   email!: string;
   id!: string;
-  role!: string;
+  permissao!: string;
 
   modelRole = [
     "ADMIN",
@@ -100,7 +100,7 @@ export class DropdownPreviewComponent implements OnInit {
       next: (response) => {
         this.nome = response.nome
         this.email = response.email
-        this.role = response.role
+        this.permissao = response.permissao
       },
       error: (error) => {
         if (error) {
