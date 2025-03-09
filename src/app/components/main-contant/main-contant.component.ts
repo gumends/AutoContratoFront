@@ -35,31 +35,31 @@ export class MainContantComponent implements OnInit {
       title: "Home",
       url: "/home",
       icon: "heroHomeSolid",
-      role: "USER"
+      permissao: "USER"
     },
     {
       title: "Locatarios",
       url: "/locatario",
       icon: "heroUserSolid",
-      role: "USER"
+      permissao: "USER"
     },
     {
       title: "Propriedades",
       url: "/propriedade",
       icon: "heroHomeModernSolid",
-      role: "USER"
+      permissao: "USER"
     },
     {
       title: "Proprietarios",
       url: "/proprietario",
       icon: "heroUserGroupSolid",
-      role: "USER"
+      permissao: "USER"
     },
     {
       title: "Usuarios",
       url: "/usuarios",
       icon: "heroUserSolid",
-      role: "ADMIN"
+      permissao: "ADMIN"
     }
   ];
 
@@ -68,7 +68,7 @@ export class MainContantComponent implements OnInit {
   token: string | null = localStorage.getItem("auth-token");
   tokenDecoded: any = this.token ? jwtDecode(this.token) : null;
 
-  role = [
+  permissao = [
     "ADMIN",
     "USER"
   ]
@@ -86,10 +86,10 @@ export class MainContantComponent implements OnInit {
     }));
 
     if (this.tokenDecoded) {
-      if (this.tokenDecoded.role === 0) {
+      if (this.tokenDecoded.permissao === 0) {
         this.pagesRender = this.pages;
-      } else if (this.tokenDecoded.role === 1) {
-        this.pagesRender = this.pages.filter(page => page.role === "USER");
+      } else if (this.tokenDecoded.permissao === 1) {
+        this.pagesRender = this.pages.filter(page => page.permissao === "USER");
       }
     } else {
       console.error('Token inválido ou não encontrado.');
