@@ -60,9 +60,8 @@ export class DetalhesComponent implements OnInit {
       nascimento: [this.nascimento, [Validators.required, Validators.minLength(1)]],
       rg: [this.rg, [Validators.required, Validators.minLength(11)]],
       status: [this.status, [Validators.required]],
-      propriedadeId: [this.propriedadeId, [Validators.required]]
+      propriedadeId: [null]
     });
-
   }
 
   ngOnInit() {
@@ -124,7 +123,14 @@ export class DetalhesComponent implements OnInit {
     if (this.id) {
       this.serviceLocatario.buscarLocatario(this.id).subscribe({
         next: (response) => {
-          this.form.patchValue(response);
+          console.log('Dados recebidos:', response);
+          const adjustedResponse = {
+            ...response,
+            status: response.status === 'true' || response.status === true,
+            nascimento: new Date(response.nascimento).toISOString().split('T')[0]
+          };
+          console.log('Dados ajustados:', adjustedResponse);
+          this.form.patchValue(adjustedResponse);
         },
         error: (error) => {
           this.toastr.error('Não foi possivel realizar o cadastro', 'Erro!');

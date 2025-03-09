@@ -39,6 +39,7 @@
                             <hlm-select-value />
                         </hlm-select-trigger>
                         <hlm-select-content class="w-full">
+                            <hlm-option ></hlm-option>
                             <hlm-option *ngFor="let item of propriedades" [value]="item.id"
                                 class="flex flex-col w-full justify-center text-center pl-3  cursor-pointer">
                                 <p>{{ item.rua }}</p>

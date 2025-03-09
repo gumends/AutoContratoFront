@@ -69,7 +69,7 @@ export class DetalhesPropriedadeComponent implements OnInit {
       bairro: [this.bairro, [Validators.required, Validators.minLength(1)]],
       cep: [this.cep, [Validators.required, Validators.minLength(11)]],
       localizacao: [this.localizacao, [Validators.required]],
-      aluguel: [this.aluguel, [Validators.required]],
+      aluguel: ['', [Validators.required]],
       dataPagamento: [this.dataPagamento, [Validators.required]],
       proprietarioID: [null],
       status: [this.status, [Validators.required]],
@@ -83,6 +83,7 @@ export class DetalhesPropriedadeComponent implements OnInit {
         this.proprietarios = response.content;
       },
       error: (error) => {
+
         console.log(error);
       }
     });
@@ -121,22 +122,28 @@ export class DetalhesPropriedadeComponent implements OnInit {
         }
       })
     } else {
-      console.log(this.form.value);
-      this.servicePropriedade.criarPropriedade(this.form.value).subscribe({
-        next: (response) => {
-          if (this.form.valid) {
-            this.toastr.success('Propriedade cadastrada com sucesso', 'Cadastro!');
-            this.form.reset();
-            this.router.navigate(['/propriedade']);
-          } else {
-            this.toastr.success('Formulário inválido', 'Erro!');
-          }
-        },
-        error: (error) => {
-          this.toastr.error('Não foi possivel realizar o cadastro', 'Erro!');
-          console.log(error);
-        }
-      })
+      
+      let form = { ...this.form.value };
+
+      form.aluguel = parseFloat(form.aluguel);
+      
+      console.log(form);
+      
+      // this.servicePropriedade.criarPropriedade(this.form.value).subscribe({
+      //   next: (response) => {
+      //     if (this.form.valid) {
+      //       this.toastr.success('Propriedade cadastrada com sucesso', 'Cadastro!');
+      //       this.form.reset();
+      //       this.router.navigate(['/propriedade']);
+      //     } else {
+      //       this.toastr.success('Formulário inválido', 'Erro!');
+      //     }
+      //   },
+      //   error: (error) => {
+      //     this.toastr.error('Não foi possivel realizar o cadastro', 'Erro!');
+      //     console.log(error);
+      //   }
+      // })
     }
   }
 
