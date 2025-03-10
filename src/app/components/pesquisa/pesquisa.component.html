@@ -1,0 +1,39 @@
+<div class="flex justify-end items-center gap-2 w-[500px] relative">
+    <div class="flex w-full justify-end items-center relative">
+        <input
+            hlmInput
+            class="w-full pl-4 pr-10 py-2 border border-border rounded-sm"
+            type="text"
+            placeholder="Pesquisar por Propriedades, Proprietarios e Locatarios..."
+            [(ngModel)]="pesquisa"
+        />
+        <mode-theme-icon
+            size="25px"
+            icon="heroMagnifyingGlass"
+            class="text-foreground cursor-pointer absolute right-2 top-[24px] transform -translate-y-1/2"
+            (click)="buscaDados()"
+        />
+    </div>
+    <div *ngIf="abrir" class="absolute top-12 left-0 w-full bg-card border border-border rounded-sm max-h-[150px] overflow-y-auto">
+        <div class="flex flex-col gap-2 p-2">
+            <div class="flex justify-between items-center bg-card border border-border rounded-sm py-2 px-4">
+                <div>
+                    <p class="text-lg text-muted-foreground">Rua Torres</p>
+                    <p class="text-xs text-muted-foreground">descrição</p>
+                </div>
+                <div>
+                    <p class="text-lg text-muted-foreground">data</p>
+                </div>
+            </div>
+            <div class="flex justify-between items-center bg-card border border-border rounded-sm py-2 px-4">
+                <div>
+                    <p class="text-lg text-muted-foreground">Rua Torres</p>
+                    <p class="text-xs text-muted-foreground">descrição</p>
+                </div>
+                <div>
+                    <p class="text-lg text-muted-foreground">data</p>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
