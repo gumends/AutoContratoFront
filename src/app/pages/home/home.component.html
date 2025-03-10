@@ -11,7 +11,7 @@
         <div class="border border-border w-full py-5 px-5 flex flex-col gap-5 rounded-xl">
             <h2 class="text-center font-bold text-2xl mb-3">Propriedades</h2>
             <span class="text-center" *ngIf="propriedades.length == 0">Nenhuma Propriedade Cadastrada</span>
-            <app-card-item *ngFor="let pdes of propriedades" text_main="{{pdes.rua}}, {{pdes.numero}}" text_sub="{{pdes.cep}}" icone="heroHomeModernSolid" value="{{pdes.aluguel}}" />
+            <app-card-item *ngFor="let pdes of propriedades" text_main="{{pdes.rua}}, {{pdes.numero}}" text_sub="{{pdes.cep}}" icone="heroHomeModernSolid" value="{{pdes.aluguel  | real}}" />
         </div>
         <div class="border border-border w-1/2 p-5 flex flex-col gap-5 rounded-xl">
             <div class="border rounded-md w-full p-2 max-h-[268px] flex flex-col gap-1">
