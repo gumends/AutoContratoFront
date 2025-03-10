@@ -7,7 +7,8 @@
                 <li *ngFor="let p of pagesRender">
                     <a [routerLink]="p.url" [ngClass]="{ 'text-primary border-primary': p.url === rotas[0].url }"
                         class="flex items-center border-l-4 border-transparent hover:border-foreground pl-3 cursor-pointer">
-                        <mode-theme-icon [ngClass]="{ 'text-primary border-primary color-primary': p.url === rotas[0].url }"
+                        <mode-theme-icon
+                            [ngClass]="{ 'text-primary border-primary color-primary': p.url === rotas[0].url }"
                             size="25px" icon="{{p.icon}}" />
                         <p [ngClass]="{ 'text-primary font-bold': p.url === rotas[0].url }" class="ml-5">{{p.title}}</p>
                     </a>
@@ -21,10 +22,7 @@
             <div class="flex items-center">
                 <app-theme-mode />
             </div>
-            <div class="flex items-center gap-2">
-                <input type="text" placeholder="Pesquisar" class="border border-border rounded-lg py-1 px-3 w-96">
-                <mode-theme-icon size="25px" icon="heroMagnifyingGlass" class="text-foreground cursor-pointer" />
-            </div>
+            <app-pesquisa />
             <div class="flex items-center gap-7">
                 <spartan-dropdown-preview class="text-foreground cursor-pointer" />
             </div>
