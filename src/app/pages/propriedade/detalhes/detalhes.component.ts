@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MainContantComponent } from "../../../components/main-contant/main-contant.component";
-import { AppComponent } from "../../../components/icons/moon/moon.component";
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
@@ -8,7 +7,6 @@ import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { ButtonPreviewComponent } from "../../../components/button/button.component";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PropriedadeService } from '../../../services/propriedade.service';
-import { IPropriedadeContent } from '../../../Types/propriedade';
 import { NgFor } from '@angular/common';
 import { RgMaskDirective } from '../../../directives/rg-mask.directive';
 import { ToastrService } from 'ngx-toastr';
@@ -71,10 +69,8 @@ export class DetalhesPropriedadeComponent implements OnInit {
       localizacao: [this.localizacao, [Validators.required]],
       aluguel: ['', [Validators.required]],
       dataPagamento: [this.dataPagamento, [Validators.required]],
-      proprietarioID: [null],
       status: [this.status, [Validators.required]],
     });
-
   }
 
   ngOnInit() {
@@ -127,23 +123,21 @@ export class DetalhesPropriedadeComponent implements OnInit {
 
       form.aluguel = parseFloat(form.aluguel);
       
-      console.log(form);
-      
-      // this.servicePropriedade.criarPropriedade(this.form.value).subscribe({
-      //   next: (response) => {
-      //     if (this.form.valid) {
-      //       this.toastr.success('Propriedade cadastrada com sucesso', 'Cadastro!');
-      //       this.form.reset();
-      //       this.router.navigate(['/propriedade']);
-      //     } else {
-      //       this.toastr.success('Formulário inválido', 'Erro!');
-      //     }
-      //   },
-      //   error: (error) => {
-      //     this.toastr.error('Não foi possivel realizar o cadastro', 'Erro!');
-      //     console.log(error);
-      //   }
-      // })
+      this.servicePropriedade.criarPropriedade(form).subscribe({
+        next: (response) => {
+          if (this.form.valid) {
+            this.toastr.success('Propriedade cadastrada com sucesso', 'Cadastro!');
+            this.form.reset();
+            this.router.navigate(['/propriedade']);
+          } else {
+            this.toastr.success('Formulário inválido', 'Erro!');
+          }
+        },
+        error: (error) => {
+          this.toastr.error('Não foi possivel realizar o cadastro', 'Erro!');
+          console.log(error);
+        }
+      })
     }
   }
 
