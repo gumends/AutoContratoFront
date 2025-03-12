@@ -9,16 +9,12 @@ import { AuthService } from '../../services/auth.service';
 import { DropdownPreviewComponent } from "../dropdown/dropdown.component";
 import {
   HlmBreadcrumbDirective,
-  HlmBreadcrumbEllipsisComponent,
   HlmBreadcrumbItemDirective,
-  HlmBreadcrumbLinkDirective,
   HlmBreadcrumbListDirective,
   HlmBreadcrumbPageDirective,
   HlmBreadcrumbSeparatorComponent,
 
 } from '@spartan-ng/ui-breadcrumb-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { PesquisaComponent } from "../pesquisa/pesquisa.component";
 
 @Component({
@@ -37,7 +33,6 @@ import { PesquisaComponent } from "../pesquisa/pesquisa.component";
     HlmBreadcrumbListDirective,
     HlmBreadcrumbPageDirective,
     HlmBreadcrumbSeparatorComponent,
-    HlmInputDirective,
     PesquisaComponent
 ],
   templateUrl: './main-contant.component.html',
