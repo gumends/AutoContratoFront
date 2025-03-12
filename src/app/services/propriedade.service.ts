@@ -15,11 +15,11 @@ export class PropriedadeService {
   token = localStorage.getItem('auth-token');
 
 
-  buscarPropriedades(status: boolean = true, rua: string = ''): Observable<IPropriedadePaginado> {
+  buscarPropriedades(pagina: number = 0, tamanho: number = 10, status: boolean = true, rua: string = ''): Observable<IPropriedadePaginado> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.get(`${this.baseUrl}?status=${status}&rua=${rua}`, { headers }).pipe(
+    return this.http.get(`${this.baseUrl}?pagina=${pagina}&tamanho=${tamanho}&status=${status}&rua=${rua}`, { headers }).pipe(
       map((response: any) => response as IPropriedadePaginado)
     );
   }
@@ -28,7 +28,7 @@ export class PropriedadeService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.patch(`${this.baseUrl}${id}/status`, null, { headers });
+    return this.http.patch(`${this.baseUrl}/${id}/status`, null, { headers });
   }
 
   criarPropriedade(propriedade: any): Observable<any> {
