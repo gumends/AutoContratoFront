@@ -13,11 +13,11 @@ export class ProprietarioService {
   baseUrl = 'http://localhost:8080/proprietarios'
   token = localStorage.getItem('auth-token');
 
-  buscarProprietarios(pagina: number, status: boolean, nome: string): Observable<IProprietarioResponse> {
+  buscarProprietarios(pagina: number, tamanho: number, status: boolean, nome: string): Observable<IProprietarioResponse> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.get(`${this.baseUrl}?status=${status}&nome=${nome}`, { headers }).pipe(
+    return this.http.get(`${this.baseUrl}?status=${status}&nome=${nome}&pagina=${pagina}&tamanho=${tamanho}`, { headers }).pipe(
       map((response: any) => response as IProprietarioResponse)
     );
   }
