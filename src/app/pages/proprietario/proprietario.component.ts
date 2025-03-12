@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { takeUntil } from 'rxjs/operators';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { PropriedadeService } from '../../services/propriedade.service';
@@ -61,32 +61,26 @@ import { ProprietarioService } from '../../services/proprietario.service';
   templateUrl: './proprietario.component.html',
   styleUrl: './proprietario.component.css'
 })
-export class ProprietarioComponent implements OnInit, OnDestroy, OnChanges {
+export class ProprietarioComponent implements OnInit, OnChanges {
 
   conteudo: IContentProprietario[] = [];
-  pagina!: number;
-  total!: number;
+  pagina: number = 0;
+  total: number = 10;
   propriedades: IPropriedadeContent[] = [];
   status: boolean = true;
   nome: string = '';
-
-  private destroy$ = new Subject<void>();
-
-  form: FormGroup;
+  tamanho: number = 10;
+  selectControl = new FormControl('');
 
   constructor(
     private service: ProprietarioService,
-    private authService: AuthService,
-    private fb: FormBuilder,
     private servicePropriedade: PropriedadeService,
     private toastr: ToastrService
   ) {
-    this.form = this.fb.group({
-      nome: ["", [Validators.required, Validators.minLength(6)]],
-      cpf: ["", [Validators.required]],
-      nascimento: ["", [Validators.required]],
-      rg: ["", [Validators.required]],
-      propriedadeId: [null] // Adicione isso ao formulário
+    this.selectControl.valueChanges.subscribe(value => {
+      if (value !== null) {
+        this.carregarDados(0, parseInt(value as string));
+      }
     });
   }
   ngOnChanges(changes: any): void {
@@ -94,17 +88,8 @@ export class ProprietarioComponent implements OnInit, OnDestroy, OnChanges {
     throw new Error('Method not implemented.');
   }
 
-  get selectedValue() {
-    return this.form.get('propriedadeId')?.value;
-  }
-
   ngOnInit() {
     this.carregarDados();
-    this.authService.accountChanged$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(() => {
-      this.carregarDados();
-    });
     this.servicePropriedade.buscarPropriedades().subscribe({
       next: (response) => {
         this.propriedades = response.content;
@@ -117,6 +102,10 @@ export class ProprietarioComponent implements OnInit, OnDestroy, OnChanges {
 
   buscar() {
     this.carregarDados();
+  }
+
+  onSelectChange(event: any) {
+    console.log("Valor selecionado:", event);
   }
 
   desativar(id: string) {
@@ -137,8 +126,8 @@ export class ProprietarioComponent implements OnInit, OnDestroy, OnChanges {
     });
   }
 
-  carregarDados() {
-    this.service.buscarProprietarios(this.pagina, this.status, this.nome).subscribe({
+  carregarDados(pagina: number = 0, tamanho: number = 10) {
+    this.service.buscarProprietarios(pagina, tamanho, this.status, this.nome).subscribe({
       next: (res: IProprietarioResponse) => {
         this.conteudo = res.content;
         this.pagina = res.number;
@@ -150,6 +139,16 @@ export class ProprietarioComponent implements OnInit, OnDestroy, OnChanges {
     });
   }
 
+  mudarPagina(tipo: string) {
+    if (tipo === 'anterior') {
+      const pagina = this.pagina - 1;
+      this.carregarDados(pagina);
+      return;
+    }
+    const pagina = this.pagina + 1;
+    this.carregarDados(pagina);
+  }
+
   onStatus(){
     this.carregarDados();
   }
@@ -158,8 +157,4 @@ export class ProprietarioComponent implements OnInit, OnDestroy, OnChanges {
     this.carregarDados();
   }
 
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
 }

@@ -30,54 +30,72 @@
             <table class="w-full text-left border border-solid border-border">
                 <thead>
                     <tr class="border-b border-border bg-muted">
-                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Rua</th>
-                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Numero</th>
-                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Casa</th>
-                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Bairro</th>
-                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Cep</th>
-                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Localização</th>
-                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Aluguel</th>
-                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Data Pagamento</th>
-                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Locatario</th>
-                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Proprietario</th>
-                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Status</th>
-                        <th class="px-2 py-4 text-sm font-semibold text-foreground"></th>
-                        <th class="px-2 py-4 text-sm font-semibold text-foreground"></th>
-                        <th class="px-2 py-4 text-sm font-semibold text-foreground"></th>
+                        <th *ngIf="colunasVisiveis.rua" class="px-6 py-3 text-sm font-semibold text-foreground">Rua</th>
+                        <th *ngIf="colunasVisiveis.numero" class="px-6 py-3 text-sm font-semibold text-foreground">
+                            Numero</th>
+                        <th *ngIf="colunasVisiveis.casa" class="px-6 py-3 text-sm font-semibold text-foreground">Casa
+                        </th>
+                        <th *ngIf="colunasVisiveis.bairro" class="px-6 py-3 text-sm font-semibold text-foreground">
+                            Bairro</th>
+                        <th *ngIf="colunasVisiveis.cep" class="px-6 py-3 text-sm font-semibold text-foreground">Cep</th>
+                        <th *ngIf="colunasVisiveis.localizacao" class="px-6 py-3 text-sm font-semibold text-foreground">
+                            Localização</th>
+                        <th *ngIf="colunasVisiveis.aluguel" class="px-6 py-3 text-sm font-semibold text-foreground">
+                            Aluguel</th>
+                        <th *ngIf="colunasVisiveis.dataPagamento"
+                            class="px-6 py-3 text-sm font-semibold text-foreground">Data Pagamento</th>
+                        <th *ngIf="colunasVisiveis.locatario" class="px-6 py-3 text-sm font-semibold text-foreground">
+                            Locatário</th>
+                        <th *ngIf="colunasVisiveis.proprietario"
+                            class="px-6 py-3 text-sm font-semibold text-foreground">Proprietário</th>
+                        <th *ngIf="colunasVisiveis.status" class="px-6 py-3 text-sm font-semibold text-foreground">
+                            Status</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground"></th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground"></th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground"></th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <tr *ngFor="let item of conteudo" class="transition-colors duration-200 hover:bg-muted/50">
-                        <td class="px-6 py-4 text-sm text-foreground">{{item.rua}}</td>
-                        <td class="px-6 py-4 text-sm text-foreground">{{item.numero}}</td>
-                        <td class="px-6 py-4 text-sm text-foreground">{{item.numCasa === 0 ? '-' : item.numCasa}}</td>
-                        <td class="px-6 py-4 text-sm text-foreground">{{item.bairro}}</td>
-                        <td class="px-6 py-4 text-sm text-foreground">{{item.cep}}</td>
-                        <td class="px-6 py-4 text-sm text-foreground">{{item.localizacao}}</td>
-                        <td class="px-6 py-4 text-sm text-foreground">{{item.aluguel}}</td>
-                        <td class="px-6 py-4 text-sm text-foreground">{{item.dataPagamento | formatarData}}</td>
-                        <td class="px-6 py-4 text-sm text-foreground">{{item.locatario ? item.locatario.nome : '-'}}</td>
-                        <td class="px-6 py-4 text-sm text-foreground">{{item.proprietario ? item.proprietario.nome : '-'}}</td> 
-                        <td class="px-6 py-4 text-sm text-foreground">
+                        <td *ngIf="colunasVisiveis.rua" class="px-6 py-2 text-sm text-foreground">{{item.rua}}</td>
+                        <td *ngIf="colunasVisiveis.numero" class="px-6 py-2 text-sm text-foreground">{{item.numero}}
+                        </td>
+                        <td *ngIf="colunasVisiveis.casa" class="px-6 py-2 text-sm text-foreground">{{item.numCasa === 0
+                            ? '-' : item.numCasa}}</td>
+                        <td *ngIf="colunasVisiveis.bairro" class="px-6 py-2 text-sm text-foreground">{{item.bairro}}
+                        </td>
+                        <td *ngIf="colunasVisiveis.cep" class="px-6 py-2 text-sm text-foreground">{{item.cep}}</td>
+                        <td *ngIf="colunasVisiveis.localizacao" class="px-6 py-2 text-sm text-foreground">
+                            {{item.localizacao}}</td>
+                        <td *ngIf="colunasVisiveis.aluguel" class="px-6 py-2 text-sm text-foreground">{{item.aluguel}}
+                        </td>
+                        <td *ngIf="colunasVisiveis.dataPagamento" class="px-6 py-2 text-sm text-foreground">
+                            {{item.dataPagamento | formatarData}}</td>
+                        <td *ngIf="colunasVisiveis.locatario" class="px-6 py-2 text-sm text-foreground">{{item.locatario
+                            ? item.locatario.nome : '-'}}</td>
+                        <td *ngIf="colunasVisiveis.proprietario" class="px-6 py-2 text-sm text-foreground">
+                            {{item.proprietario ? item.proprietario.nome : '-'}}</td>
+                        <td *ngIf="colunasVisiveis.status" class="px-6 py-2 text-sm text-foreground">
                             <div hlmBadge variant="secondary">
                                 {{item.status ? 'Ativo' : 'Inativo'}}
                             </div>
                         </td>
-                        <td class="px-6 py-4 text-sm text-foreground"><dialog-contrato id="{{item.id}}" /></td>
-                        <td class="px-2 py-4 text-sm text-foreground">
+                        <td class="px-6 py-2 text-sm text-foreground"><dialog-contrato id="{{item.id}}" /></td>
+                        <td class="px-2 py-2 text-sm text-foreground">
                             <a [routerLink]="['/propriedade/detalhes', item.id]">
                                 <mode-theme-icon size="20px" icon="heroPencilSolid"
                                     class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-primary hover:text-primary-foreground" />
                             </a>
                         </td>
-                        <td class="px-2 py-4 text-sm text-foreground">
+                        <td class="px-2 py-2 text-sm text-foreground">
                             <hlm-alert-dialog>
-                                <button id='edit-profile'  [ngClass]="{ 'bg-red-600': item.status, 'bg-green-600': !item.status, 'hover:bg-red-600': item.status, 'hover:bg-green-600': !item.status,}" brnAlertDialogTrigger hlmBtn>
+                                <button id='edit-profile'
+                                    [ngClass]="{ 'bg-red-600': item.status, 'bg-green-600': !item.status, 'hover:bg-red-600': item.status, 'hover:bg-green-600': !item.status,}"
+                                    brnAlertDialogTrigger hlmBtn>
                                     <mode-theme-icon
-                                    class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 text-white"
-                                    size="25px" icon="{{ item.status ? 'heroXCircle' : 'heroCheckSolid' }}">
-                                </mode-theme-icon>
+                                        class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 text-white"
+                                        size="25px" icon="{{ item.status ? 'heroXCircle' : 'heroCheckSolid' }}">
+                                    </mode-theme-icon>
                                 </button>
                                 <hlm-alert-dialog-content *brnAlertDialogContent='let ctx'>
                                     <hlm-alert-dialog-header>
@@ -98,21 +116,40 @@
                 </tbody>
             </table>
         </div>
-        <div class="flex justify-end mt-6">
-            <nav class="inline-flex rounded-md shadow-sm">
-                <a
-                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md hover:bg-muted/50 transition-colors duration-200">
-                    <mode-theme-icon size="20px" icon="heroArrowSmallLeftSolid" />
-                </a>
-                <p
-                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border">
-                    {{pagina + 1}} de {{total}}</p>
-                <a
-                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md hover:bg-muted/50 transition-colors duration-200">
-                    <mode-theme-icon size="20px" icon="heroArrowSmallRightSolid" />
-                </a>
+        <div class="flex justify-between py-2 px-4 border border-t-0 rounded-b-md">
+            <button hlmBtn variant="outline" [routerLink]="['/propriedade/detalhes']">
+                Nova Propriedade
+            </button>
+            <nav class="flex items-center gap-5 rounded-md shadow-sm">
+                <brn-select class="inline-block relative" [formControl]="selectControl"
+                    placeholder="Quantidade de proprietarios">
+                    <hlm-select-trigger class="w-56">
+                        <hlm-select-value />
+                    </hlm-select-trigger>
+                    <hlm-select-content>
+                        <hlm-option value="10">10</hlm-option>
+                        <hlm-option value="20">20</hlm-option>
+                        <hlm-option value="50">50</hlm-option>
+                        <hlm-option value="100">100</hlm-option>
+                    </hlm-select-content>
+                </brn-select>
+                <div class="flex items-center">
+                    <span
+                        class="flex items-center pt-1 justify-center h-10 w-8 text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md hover:bg-muted/50 transition-colors duration-200"
+                        (click)="mudarPagina('anterior')">
+                        <mode-theme-icon size="20px" icon="heroArrowSmallLeftSolid" />
+                    </span>
+                    <p
+                        class="flex items-center justify-center h-10 px-4 text-sm font-medium text-muted-foreground border border-border cursor-default">
+                        {{ pagina + 1 }} de {{ total }}
+                    </p>
+                    <span
+                        class="flex items-center pt-1 justify-center h-10 w-8 text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md hover:bg-muted/50 transition-colors duration-200"
+                        (click)="mudarPagina('proximo')">
+                        <mode-theme-icon size="20px" icon="heroArrowSmallRightSolid" />
+                    </span>
+                </div>
             </nav>
         </div>
     </div>
-    <button hlmBtn variant="outline" [routerLink]="['/propriedade/detalhes']" class="fixed bottom-10 right-10">Nova Propriedade</button>
 </app-main-contant>

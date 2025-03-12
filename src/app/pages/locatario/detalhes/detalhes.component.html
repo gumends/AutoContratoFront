@@ -22,24 +22,13 @@
                 </label>
             </div>
             <div class="flex gap-4 w-full">
-                <label class="w-full" hlmLabel>status
-                    <brn-select class="w-full" placeholder="Select an option" formControlName="status">
-                        <hlm-select-trigger class="w-full mt-1">
-                            <hlm-select-value />
-                        </hlm-select-trigger>
-                        <hlm-select-content class="w-full">
-                            <hlm-option value="true">Ativo</hlm-option>
-                            <hlm-option value="false">Inativo</hlm-option>
-                        </hlm-select-content>
-                    </brn-select>
-                </label>
                 <label class="w-full" hlmLabel>Propriedade
                     <brn-select class="w-full" placeholder="Select an option" formControlName="propriedadeId">
                         <hlm-select-trigger class="w-full mt-1">
                             <hlm-select-value />
                         </hlm-select-trigger>
                         <hlm-select-content class="w-full">
-                            <hlm-option ></hlm-option>
+                            <hlm-option *ngIf="propriedades.length == 0" [value]="null">Nenhuma propriedade disponível</hlm-option>
                             <hlm-option *ngFor="let item of propriedades" [value]="item.id"
                                 class="flex flex-col w-full justify-center text-center pl-3  cursor-pointer">
                                 <p>{{ item.rua }}</p>

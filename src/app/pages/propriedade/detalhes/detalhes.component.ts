@@ -69,12 +69,13 @@ export class DetalhesPropriedadeComponent implements OnInit {
       localizacao: [this.localizacao, [Validators.required]],
       aluguel: ['', [Validators.required]],
       dataPagamento: [this.dataPagamento, [Validators.required]],
-      status: [this.status, [Validators.required]],
+      proprietarioID: [null],
+      numCasa: [''],
     });
   }
 
   ngOnInit() {
-    this.serviceProprietario.buscarProprietarios(0, true, '').subscribe({
+    this.serviceProprietario.buscarProprietarios(0, 1000, true, '').subscribe({
       next: (response) => {
         this.proprietarios = response.content;
       },

@@ -7,8 +7,20 @@
                     <input class="w-full" hlmInput type="text" name="nome" formControlName="nome"
                         placeholder="Digite o nome" />
                 </label>
+            </div>
+            <div class="flex gap-4 w-full">
                 <label class="w-full" hlmLabel>Nascimento
                     <input hlmInput class="w-full" type="date" formControlName="nascimento" />
+                </label>
+                <label class="w-full" hlmLabel>Nacionalidade
+                    <brn-select class="w-full" placeholder="Select an option" formControlName="nacionalidade">
+                        <hlm-select-trigger class="w-full mt-1">
+                            <hlm-select-value />
+                        </hlm-select-trigger>
+                        <hlm-select-content class="w-full">
+                            <hlm-option value="Brasileiro">Brasileiro</hlm-option>
+                        </hlm-select-content>
+                    </brn-select>
                 </label>
             </div>
             <div class="flex gap-4 w-full">
@@ -19,30 +31,6 @@
                 <label class="w-full" hlmLabel>RG
                     <input hlmInput class="w-full" type="text" name="rg" appRgMask formControlName="rg"
                         placeholder="Digite o RG" />
-                </label>
-            </div>
-            <div class="flex gap-4 w-full">
-                <label class="w-full" hlmLabel>status
-                    <brn-select class="w-full" placeholder="Select an option" formControlName="status">
-                        <hlm-select-trigger class="w-full mt-1">
-                            <hlm-select-value />
-                        </hlm-select-trigger>
-                        <hlm-select-content class="w-full">
-                            <hlm-option value="true">Ativo</hlm-option>
-                            <hlm-option value="false">Inativo</hlm-option>
-                        </hlm-select-content>
-                    </brn-select>
-                </label>
-                <label class="w-full" hlmLabel>Nacionalidade
-                    <brn-select class="w-full" placeholder="Select an option" formControlName="nacionalidade">
-                        <hlm-select-trigger class="w-full mt-1">
-                            <hlm-select-value />
-                        </hlm-select-trigger>
-                        <hlm-select-content class="w-full">
-                            <hlm-option value="Brasileiro">Brasileiro</hlm-option>
-                            <hlm-option value="Argentino">Argentino</hlm-option>
-                        </hlm-select-content>
-                    </brn-select>
                 </label>
             </div>
             <div class="flex justify-end">

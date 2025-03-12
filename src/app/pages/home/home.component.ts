@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   }
 
   buscarProprietarios(){
-    this.proprietarioService.buscarProprietarios(0, true, '').subscribe({
+    this.proprietarioService.buscarProprietarios(0, 1000, true, '').subscribe({
       next: (response) => {
         this.proprietarios = response.content;
       },

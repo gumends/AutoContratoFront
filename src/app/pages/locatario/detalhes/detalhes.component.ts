@@ -9,7 +9,7 @@ import { ButtonPreviewComponent } from "../../../components/button/button.compon
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PropriedadeService } from '../../../services/propriedade.service';
 import { IPropriedadeContent } from '../../../Types/propriedade';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { CpfMaskDirective } from '../../../directives/cpf-mask.directive';
 import { RgMaskDirective } from '../../../directives/rg-mask.directive';
 import { ToastrService } from 'ngx-toastr';
@@ -31,6 +31,7 @@ import { RouterLink } from '@angular/router';
     NgFor,
     CpfMaskDirective,
     RgMaskDirective,
+    NgIf
   ],
   templateUrl: './detalhes.component.html',
   styleUrl: './detalhes.component.css'
@@ -59,7 +60,6 @@ export class DetalhesComponent implements OnInit {
       cpf: [this.cpf, [Validators.required, Validators.minLength(11)]],
       nascimento: [this.nascimento, [Validators.required, Validators.minLength(1)]],
       rg: [this.rg, [Validators.required, Validators.minLength(11)]],
-      status: [this.status, [Validators.required]],
       propriedadeId: [null]
     });
   }

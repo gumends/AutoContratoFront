@@ -41,6 +41,7 @@
                             <hlm-select-value />
                         </hlm-select-trigger>
                         <hlm-select-content class="w-full">
+                            <hlm-option *ngIf="proprietarios.length == 0" [value]="null">Nenhum proprietario disponível</hlm-option>
                             <hlm-option *ngFor="let item of proprietarios" [value]="item.id"
                                 class="flex flex-col w-full justify-center text-center pl-3  cursor-pointer">
                                 <p>{{ item.nome }}</p>
@@ -48,22 +49,9 @@
                         </hlm-select-content>
                     </brn-select>
                 </label>
-                <label class="w-full" hlmLabel>Status
-                    <brn-select class="w-full" placeholder="Select an option" formControlName="status">
-                        <hlm-select-trigger class="w-full mt-1">
-                            <hlm-select-value />
-                        </hlm-select-trigger>
-                        <hlm-select-content class="w-full">
-                            <hlm-option value="true"
-                                class="flex flex-col w-full justify-center text-center pl-3  cursor-pointer">
-                                <p>Ativo</p>
-                            </hlm-option>
-                            <hlm-option value="false"
-                                class="flex flex-col w-full justify-center text-center pl-3  cursor-pointer">
-                                <p>Inativo</p>
-                            </hlm-option>
-                        </hlm-select-content>
-                    </brn-select>
+                <label class="w-full" appCepMask hlmLabel>Numero da casa
+                    <input hlmInput class="w-full" type="number" name="numCasa" formControlName="numCasa"
+                        placeholder="Digite a casa" />
                 </label>
             </div>
             <div class="flex justify-end">

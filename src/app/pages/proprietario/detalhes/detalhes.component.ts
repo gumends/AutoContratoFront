@@ -26,7 +26,6 @@ import { ProprietarioService } from '../../../services/proprietario.service';
     ButtonPreviewComponent,
     FormsModule,
     ReactiveFormsModule,
-    NgFor,
     CpfMaskDirective,
     RgMaskDirective
   ],
@@ -57,7 +56,6 @@ export class DetalhesComponent implements OnInit {
       cpf: [this.cpf, [Validators.required, Validators.minLength(11)]],
       nascimento: [this.nascimento, [Validators.required, Validators.minLength(1)]],
       rg: [this.rg, [Validators.required, Validators.minLength(11)]],
-      status: [this.status, [Validators.required]],
       nacionalidade: [this.nacionalidade, [Validators.required]],
       propriedadeId: [this.propriedadeId]
     });
@@ -83,7 +81,7 @@ export class DetalhesComponent implements OnInit {
   }
 
   salvar() {
-    if (this.id) {
+    if (this.id ) {
       this.serviceProprietario.alterarProprietario(this.id, this.form.value).subscribe({
         next: (response) => {
           if (this.form.valid) {
@@ -107,7 +105,7 @@ export class DetalhesComponent implements OnInit {
             this.form.reset();
             this.router.navigate(['/proprietario']);
           } else {
-            this.toastr.success('Formulário inválido', 'Erro!');
+            this.toastr.error('Formulário inválido', 'Erro!');
           }
         },
         error: (error) => {
