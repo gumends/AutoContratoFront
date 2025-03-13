@@ -17,10 +17,10 @@ import { RouterLink } from '@angular/router';
 @Component({
   
   imports: [MainContantComponent, HlmTableModule, CardComponent, CardItemComponent, NgFor, NgIf, RealPipe, RouterLink],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css'
 })
-export class HomeComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
   constructor(
     private locatarioService: LocatarioService,
