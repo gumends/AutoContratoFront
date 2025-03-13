@@ -39,7 +39,7 @@ export class PesquisaComponent {
   
     this.dados = [];
   
-    this.serviceLocatario.buscarLocatarios(0, true, this.pesquisa).subscribe({
+    this.serviceLocatario.buscarLocatarios(0, 1000, true, this.pesquisa).subscribe({
       next: (response: ILocatarioPaginado) => {
         const locatariosComLink = response.content.map(locatario => ({
           ...locatario,

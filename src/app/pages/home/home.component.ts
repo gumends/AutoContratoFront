@@ -12,10 +12,11 @@ import { IContentProprietario } from '../../Types/Proprietario';
 import { IPropriedadeContent } from '../../Types/propriedade';
 import { NgFor, NgIf } from '@angular/common';
 import { RealPipe } from '../../pipes/real.pipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   
-  imports: [MainContantComponent, HlmTableModule, CardComponent, CardItemComponent, NgFor, NgIf, RealPipe],
+  imports: [MainContantComponent, HlmTableModule, CardComponent, CardItemComponent, NgFor, NgIf, RealPipe, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
   }
 
   buscarLocatarios(){
-    this.locatarioService.buscarLocatarios(0, true, '').subscribe({
+    this.locatarioService.buscarLocatarios(0, 1000, true, '').subscribe({
       next: (response) => {
         this.locararios = response.content;
       },
