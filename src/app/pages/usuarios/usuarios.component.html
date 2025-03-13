@@ -21,7 +21,7 @@
                         <th class="px-6 py-4 text-sm font-semibold text-foreground">Nome</th>
                         <th class="px-6 py-4 text-sm font-semibold text-foreground">CPF</th>
                         <th class="px-6 py-4 text-sm font-semibold text-foreground">E-mail</th>
-                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Usuario</th>
+                        <th class="px-6 py-4 text-sm font-semibold text-foreground">Usuário</th>
                         <th class="px-6 py-4 text-sm font-semibold text-foreground">Criado em</th>
                         <th class="px-2 py-4 text-sm font-semibold text-foreground"></th>
                         <th class="px-2 py-4 text-sm font-semibold text-foreground"></th>
@@ -83,13 +83,13 @@
                                     <hlm-alert-dialog-header>
                                         <h3 hlmAlertDialogTitle>Alteração de permissão</h3>
                                         <p hlmAlertDialogDescription>
-                                            Escolha a permissao desejada
+                                            Escolha a permissão desejada
                                         </p>
                                     </hlm-alert-dialog-header>
                                     <hlm-alert-dialog-footer class="gap-2">
                                         <form [formGroup]="form" (ngSubmit)="alterarPermissao(item.id)">
                                             <brn-select class="inline-block" placeholder="Select an option"
-                                                formControlName="permissao">
+                                                formControlName="permissão">
                                                 <hlm-select-trigger class="w-56">
                                                     <hlm-select-value />
                                                 </hlm-select-trigger>

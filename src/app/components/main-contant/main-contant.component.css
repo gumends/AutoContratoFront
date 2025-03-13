@@ -5,12 +5,22 @@
 
 .menu-item:hover{
     background-color: hsl(var(--background-menu));
-}   
+}
+   
 .logo {
-    width: 100px; /* Defina o tamanho desejado */
-    height: 50px; /* Defina o tamanho desejado */
-    background-image: url('../../assets/logo.png'); /* Caminho da imagem */
-    background-size: contain; /* Ajusta a imagem ao tamanho do elemento */
-    background-repeat: no-repeat; /* Evita repetição */
-    background-position: center; /* Centraliza a imagem */
+    width: 100px;
+    height: 50px;
+    background-image: url('../../assets/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.tooltip-right {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    margin-left: 10px;
+    white-space: nowrap;
 }

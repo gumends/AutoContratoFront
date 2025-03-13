@@ -125,7 +125,7 @@ export class LocatarioComponent implements OnInit, OnChanges {
           this.form.reset();
         },
         error: (error) => {
-          this.toastr.error('Não foi possivel realizar o cadastro', 'Erro!');
+          this.toastr.error('Não foi possível realizar o cadastro', 'Erro!');
           console.log(error);
         }
       })

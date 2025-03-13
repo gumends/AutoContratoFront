@@ -15,8 +15,6 @@ import { RgMaskDirective } from '../../../directives/rg-mask.directive';
 import { ToastrService } from 'ngx-toastr';
 import { LocatarioService } from '../../../services/locatario.service';
 import { Router } from '@angular/router';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-detalhes',
   imports: [
@@ -95,7 +93,7 @@ export class DetalhesComponent implements OnInit {
           }
         },
         error: (error) => {
-          this.toastr.error('Não fsoi possivel realizar o cadastro', 'Erro!');
+          this.toastr.error('Não foi possível realizar o cadastro', 'Erro!');
           console.log(error);
         }
       })
@@ -111,7 +109,7 @@ export class DetalhesComponent implements OnInit {
           }
         },
         error: (error) => {
-          this.toastr.error('Não foi possivel realizar o cadastro', 'Erro!');
+          this.toastr.error('Não foi possível realizar o cadastro', 'Erro!');
           console.log(error);
         }
       })
@@ -133,7 +131,7 @@ export class DetalhesComponent implements OnInit {
           this.form.patchValue(adjustedResponse);
         },
         error: (error) => {
-          this.toastr.error('Não foi possivel realizar o cadastro', 'Erro!');
+          this.toastr.error('Não foi possível realizar o cadastro', 'Erro!');
           console.log(error);
         }
       })

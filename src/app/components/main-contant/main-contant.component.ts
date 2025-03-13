@@ -16,6 +16,7 @@ import {
 
 } from '@spartan-ng/ui-breadcrumb-helm';
 import { PesquisaComponent } from "../pesquisa/pesquisa.component";
+import { TooltipComponent } from "../tooltip/tooltip.component";
 
 @Component({
   selector: 'app-main-contant',
@@ -34,7 +35,8 @@ import { PesquisaComponent } from "../pesquisa/pesquisa.component";
     HlmBreadcrumbListDirective,
     HlmBreadcrumbPageDirective,
     HlmBreadcrumbSeparatorComponent,
-    PesquisaComponent
+    PesquisaComponent,
+    TooltipComponent
 ],
   templateUrl: './main-contant.component.html',
   styleUrl: './main-contant.component.css'
@@ -91,6 +93,14 @@ export class MainContantComponent implements OnInit {
   ]
 
   rotas: any[] = []
+
+  showTooltip(page: any) {
+    page.showTooltip = true;
+  }
+
+  hideTooltip(page: any) {
+    page.showTooltip = false;
+  }
 
   ngOnInit() {
     this.rotas = this.router.url

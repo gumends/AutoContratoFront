@@ -8,11 +8,10 @@ export class RgMaskDirective {
 
   @HostListener('input', ['$event'])
   onInputChange(event: any) {
-    let value = event.target.value.replace(/\D/g, ''); // Remove tudo que não é número
+    let value = event.target.value.replace(/\D/g, '');
 
     if (value.length > 9) value = value.substring(0, 9);
 
-    // Aplica a máscara XX.XXX.XXX-X
     if (value.length > 7) {
       value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, '$1.$2.$3-$4');
     } else if (value.length > 4) {

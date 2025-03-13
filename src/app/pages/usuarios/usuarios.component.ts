@@ -2,24 +2,20 @@
 
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { MainContantComponent } from "../../components/main-contant/main-contant.component";
-import { LocatarioService } from '../../services/locatario.service';
-import { ILocatarioContent, ILocatarioPaginado } from '../../Types/LocatarioResponse';
-import { NgClass, NgFor } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { FormatarDataPipe } from '../../pipes/data.pipe';
 import { AppComponent } from "../../components/icons/moon/moon.component";
 import { Subject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
-import { takeUntil } from 'rxjs/operators';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { PropriedadeService } from '../../services/propriedade.service';
-import { IPropriedadeContent } from '../../Types/propriedade';
 import { ToastrService } from 'ngx-toastr';
 import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { BrnAlertDialogContentDirective, BrnAlertDialogTriggerDirective } from '@spartan-ng/brain/alert-dialog';
 import {
   HlmAlertDialogActionButtonDirective,
@@ -30,8 +26,6 @@ import {
   HlmAlertDialogHeaderComponent,
   HlmAlertDialogTitleDirective,
 } from '@spartan-ng/ui-alertdialog-helm';
-import { IContentProprietario, IProprietarioResponse } from '../../Types/Proprietario';
-import { ProprietarioService } from '../../services/proprietario.service';
 import { UsuarioService } from '../../services/usuario.service';
 import { IUsuarioContent, IUsuarioResponse } from '../../Types/Usuario';
 @Component({
@@ -110,11 +104,11 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
     this.service.deletarUsuario(id).subscribe({
       next: (res: string) => {
         this.carregarDados();
-        this.toastr.error('Usuario deletado com sucesso', 'Deletado!');
+        this.toastr.error('Usuário deletado com sucesso', 'Deletado!');
       },
       error: (error) => {
         console.log(error);
-        this.toastr.error('Erro ao deletar o usuario', 'Erro!');
+        this.toastr.error('Erro ao deletar o usuário', 'Erro!');
       }
     });
   }
@@ -136,10 +130,10 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
     this.service.alterarPermissao(id, this.form.value).subscribe({
       next: (res: IUsuarioContent) => {
         this.carregarDados();
-        this.toastr.success('Permissao alterada com sucesso', 'Alterado!');
+        this.toastr.success('Permissão alterada com sucesso', 'Alterado!');
       },
       error: (error) => {
-        this.toastr.error('Erro ao alterar a permissao', 'Erro!');
+        this.toastr.error('Erro ao alterar a permissão', 'Erro!');
       }
     });
   }

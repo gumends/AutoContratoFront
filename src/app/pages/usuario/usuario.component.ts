@@ -105,7 +105,7 @@ export class UsuarioComponent implements OnInit {
         this.toastr.success('Senha atualizada com sucesso', 'Sucesso');
       },
       error: (error) => {
-        this.toastr.error('Não foi possivel atualizar a senha', 'Erro!');
+        this.toastr.error('Não foi possível atualizar a senha', 'Erro!');
         console.error(error);
       }
     });

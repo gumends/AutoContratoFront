@@ -85,7 +85,7 @@ export class DetalhesComponent implements OnInit {
       this.serviceProprietario.alterarProprietario(this.id, this.form.value).subscribe({
         next: (response) => {
           if (this.form.valid) {
-            this.toastr.success('Proprietario atualizado com sucesso', 'Atualizado!');
+            this.toastr.success('Proprietário atualizado com sucesso', 'Atualizado!');
             this.form.reset();
             this.router.navigate(['/proprietario']);
           } else {
@@ -93,7 +93,7 @@ export class DetalhesComponent implements OnInit {
           }
         },
         error: (error) => {
-          this.toastr.error('Não foi possivel realizar o cadastro', 'Erro!');
+          this.toastr.error('Não foi possível realizar o cadastro', 'Erro!');
           console.log(error);
         }
       })
@@ -101,7 +101,7 @@ export class DetalhesComponent implements OnInit {
       this.serviceProprietario.criarProprietario(this.form.value).subscribe({
         next: (response) => {
           if (this.form.valid) {
-            this.toastr.success('Proprietario cadastrado realizado com sucesso', 'Cadastro!');
+            this.toastr.success('Proprietário cadastrado realizado com sucesso', 'Cadastro!');
             this.form.reset();
             this.router.navigate(['/proprietario']);
           } else {
@@ -109,7 +109,7 @@ export class DetalhesComponent implements OnInit {
           }
         },
         error: (error) => {
-          this.toastr.error('Não foi possivel realizar o cadastro', 'Erro!');
+          this.toastr.error('Não foi possível realizar o cadastro', 'Erro!');
           console.log(error);
         }
       })
@@ -124,7 +124,7 @@ export class DetalhesComponent implements OnInit {
           this.form.patchValue(response);
         },
         error: (error) => {
-          this.toastr.error('Não foi possivel realizar o cadastro', 'Erro!');
+          this.toastr.error('Não foi possível realizar o cadastro', 'Erro!');
           console.log(error);
         }
       })

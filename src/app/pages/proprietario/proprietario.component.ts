@@ -60,7 +60,7 @@ import { ProprietarioService } from '../../services/proprietario.service';
   templateUrl: './proprietario.component.html',
   styleUrl: './proprietario.component.css'
 })
-export class ProprietarioComponent implements OnInit, OnChanges {
+export class ProprietarioComponent implements OnInit {
 
   conteudo: IContentProprietario[] = [];
   pagina: number = 0;
@@ -81,10 +81,6 @@ export class ProprietarioComponent implements OnInit, OnChanges {
         this.carregarDados(0, parseInt(value as string));
       }
     });
-  }
-  ngOnChanges(changes: any): void {
-    console.log(changes);
-    throw new Error('Method not implemented.');
   }
 
   ngOnInit() {
