@@ -99,8 +99,11 @@ export class UsuarioComponent implements OnInit {
       this.toastr.error('Senhas diferentes', 'Erro!');
       return;
     }
+
+    const form = { ...this.formSenha.value };
+    delete form.confSenha;
     
-    this.serviceUsuario.atualizarSenha(this.id, this.formSenha.value.senha).subscribe({
+    this.serviceUsuario.atualizarSenha(this.id, form).subscribe({
       next: (response) => {
         this.toastr.success('Senha atualizada com sucesso', 'Sucesso');
       },
