@@ -59,9 +59,9 @@
                         </td>
                         <td class="px-2 py-4 text-sm text-foreground">
                             <hlm-alert-dialog>
-                                <button id='edit-profile'  [ngClass]="{ 'bg-red-600': item.status, 'bg-green-600': !item.status, 'hover:bg-red-600': item.status, 'hover:bg-green-600': !item.status,}" brnAlertDialogTrigger hlmBtn>
+                                <button id='edit-profile' brnAlertDialogTrigger hlmBtn>
                                     <mode-theme-icon
-                                    class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 text-white"
+                                    class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200"
                                     size="25px" icon="{{ item.status ? 'heroXCircle' : 'heroCheckSolid' }}">
                                 </mode-theme-icon>
                                 </button>
@@ -84,21 +84,40 @@
                 </tbody>
             </table>
         </div>
-        <div class="flex justify-end mt-6">
-            <nav class="inline-flex rounded-md shadow-sm">
-                <a (click)="mudarPagina(pagina - 1)"
-                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md hover:bg-muted/50 transition-colors duration-200">
-                    <mode-theme-icon size="20px" icon="heroArrowSmallLeftSolid" />
-                </a>
-                <p
-                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border">
-                    {{pagina + 1}} de {{total}}</p>
-                <a (click)="mudarPagina(pagina + 1)"
-                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md hover:bg-muted/50 transition-colors duration-200">
-                    <mode-theme-icon size="20px" icon="heroArrowSmallRightSolid" />
-                </a>
+        <div class="flex justify-between py-2 px-4 border border-t-0 rounded-b-md">
+            <button hlmBtn variant="outline" [routerLink]="['/locatario/detalhes']">
+                Novo Proprietário
+            </button>
+            <nav class="flex items-center gap-5 rounded-md shadow-sm">
+                <brn-select class="inline-block relative" [formControl]="selectControl" placeholder="Quantidade de proprietarios">
+                    <hlm-select-trigger class="w-56">
+                        <hlm-select-value />
+                    </hlm-select-trigger>
+                    <hlm-select-content>
+                        <hlm-option value="10">10</hlm-option>
+                        <hlm-option value="20">20</hlm-option>
+                        <hlm-option value="50">50</hlm-option>
+                        <hlm-option value="100">100</hlm-option>
+                    </hlm-select-content> 
+                </brn-select>
+                
+                <div class="flex items-center">
+                    <span
+                        class="flex items-center pt-1 justify-center h-10 w-8 text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md hover:bg-muted/50 transition-colors duration-200"
+                        (click)="mudarPagina('anterior')">
+                        <mode-theme-icon size="20px" icon="heroArrowSmallLeftSolid" />
+                    </span>
+                    <p
+                        class="flex items-center justify-center h-10 px-4 text-sm font-medium text-muted-foreground border border-border cursor-default">
+                        {{ pagina + 1 }} de {{ total }}
+                    </p>
+                    <span
+                        class="flex items-center pt-1 justify-center h-10 w-8 text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md hover:bg-muted/50 transition-colors duration-200"
+                        (click)="mudarPagina('proximo')">
+                        <mode-theme-icon size="20px" icon="heroArrowSmallRightSolid" />
+                    </span>
+                </div>
             </nav>
         </div>
     </div>
-    <button hlmBtn variant="outline" [routerLink]="['/locatario/detalhes']" class="fixed bottom-10 right-10">Novo Locatário</button>
 </app-main-contant>

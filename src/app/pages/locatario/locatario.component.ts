@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { takeUntil } from 'rxjs/operators';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { PropriedadeService } from '../../services/propriedade.service';
@@ -53,13 +53,12 @@ import {
     HlmAlertDialogDescriptionDirective,
     HlmAlertDialogFooterComponent,
     HlmAlertDialogActionButtonDirective,
-    RouterLink,
-    NgClass
+    RouterLink
   ],
   templateUrl: './locatario.component.html',
   styleUrl: './locatario.component.css'
 })
-export class LocatarioComponent implements OnInit, OnDestroy, OnChanges {
+export class LocatarioComponent implements OnInit, OnChanges {
 
   conteudo: ILocatarioContent[] = [];
   pagina!: number;
@@ -67,6 +66,7 @@ export class LocatarioComponent implements OnInit, OnDestroy, OnChanges {
   propriedades: IPropriedadeContent[] = [];
   status: boolean = true;
   nome: string = '';
+  selectControl = new FormControl('');
 
   private destroy$ = new Subject<void>();
 
@@ -180,21 +180,15 @@ export class LocatarioComponent implements OnInit, OnDestroy, OnChanges {
     });
   }
 
-  carregarDados() {
-    // this.route.queryParamMap.subscribe(params => {
-    //   if (params.get('status')) {
-    //     console.log(params.get('status'));
-    //     this.status = params.get('status') === 'true' ? true : false;
-    //   }
-    // });
-    this.service.buscarLocatarios(this.pagina, this.status, this.nome).subscribe({
+  carregarDados(pagina: number = 0, tamanho: number = 10) {
+    this.service.buscarLocatarios(pagina, tamanho, this.status, this.nome).subscribe({
       next: (res: ILocatarioPaginado) => {
         this.conteudo = res.content;
         this.pagina = res.number;
         this.total = res.totalPages;
       },
       error: (error) => {
-        console.error('Erro ao carregar locatários:', error);
+        console.error('Erro ao carregar locatários:', "Error");
       }
     });
   }
@@ -206,22 +200,14 @@ export class LocatarioComponent implements OnInit, OnDestroy, OnChanges {
   recarregar() {
     this.carregarDados();
   }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
-  mudarPagina(pagina: number) {
-    this.service.buscarLocatarios(pagina).subscribe(
-      (res: ILocatarioPaginado) => {
-        this.conteudo = res.content;
-        this.pagina = res.number;
-        this.total = res.totalPages;
-      },
-      (error) => {
-        console.error('Erro ao carregar locatários:', error);
-      }
-    );
+  
+  mudarPagina(tipo: string) {
+    if (tipo === 'anterior') {
+      const pagina = this.pagina - 1;
+      this.carregarDados(pagina);
+      return;
+    }
+    const pagina = this.pagina + 1;
+    this.carregarDados(pagina);
   }
 }
