@@ -18,6 +18,40 @@ import {
 import { PesquisaComponent } from "../pesquisa/pesquisa.component";
 import { TooltipComponent } from "../tooltip/tooltip.component";
 
+export const IPages = [
+  {
+    title: "Dashboard",
+    url: "/dashboard",
+    icon: "featherTrendingUp",
+    permissao: "USER"
+  },
+  {
+    title: "Locatarios",
+    url: "/locatario",
+    icon: "heroUserSolid",
+    permissao: "USER"
+  },
+  {
+    title: "Propriedades",
+    url: "/propriedade",
+    icon: "heroHomeModernSolid",
+    permissao: "USER"
+  },
+  {
+    title: "Proprietarios",
+    url: "/proprietario",
+    icon: "heroUserGroupSolid",
+    permissao: "USER"
+  },
+  {
+    title: "Usuarios",
+    url: "/usuarios",
+    icon: "heroIdentificationSolid",
+    permissao: "ADMIN"
+  }
+];
+
+
 @Component({
   selector: 'app-main-contant',
   imports: [
@@ -47,39 +81,8 @@ export class MainContantComponent implements OnInit {
   page: string = "";
   pagesRender: any[] = [];
   menu: boolean = true
+  pages = IPages
 
-  pages = [
-    {
-      title: "Home",
-      url: "/home",
-      icon: "heroHomeSolid",
-      permissao: "USER"
-    },
-    {
-      title: "Locatarios",
-      url: "/locatario",
-      icon: "heroUserSolid",
-      permissao: "USER"
-    },
-    {
-      title: "Propriedades",
-      url: "/propriedade",
-      icon: "heroHomeModernSolid",
-      permissao: "USER"
-    },
-    {
-      title: "Proprietarios",
-      url: "/proprietario",
-      icon: "heroUserGroupSolid",
-      permissao: "USER"
-    },
-    {
-      title: "Usuarios",
-      url: "/usuarios",
-      icon: "heroUserSolid",
-      permissao: "ADMIN"
-    }
-  ];
 
   title: string = ""
   token: string | null = localStorage.getItem("auth-token");
