@@ -11,6 +11,7 @@
 :root {
     --background: 0 0% 100%;
     --background-grey: 0 0% 97%;
+    --background-menu: 0 0% 93%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -37,6 +38,7 @@
 .dark {
     --background: 240 10% 3.9%;
     --background-grey: 240 10% 6%;
+    --background-menu: 240 10% 10%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
