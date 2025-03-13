@@ -2,11 +2,11 @@
     titulo="Dashboard"
 >
     <div class="flex w-full gap-5 mt-5">
-        <app-card style="background-color: hsl(var(--background-grey));" class="w-full" titulo="Casas Disponíveis" valor="{{casaDisponiveis}}" subtitulo="Casas disponível para locação" icone="heroHomeModern" />
-        <app-card style="background-color: hsl(var(--background-grey));" class="w-full" titulo="Casas Ocupadas" valor="{{casaOcupadas}}" subtitulo="Casas alugadas e locação" icone="heroHomeModernSolid" />
-        <app-card style="background-color: hsl(var(--background-grey));" class="w-full" titulo="Valor em Aluguel Total" valor="{{aluguelTotal | real}}" subtitulo="Valor somado de todas as casas"
+        <app-card class="w-full" titulo="Casas Disponíveis" valor="{{casaDisponiveis}}" subtitulo="Casas disponível para locação" icone="heroHomeModern" />
+        <app-card class="w-full" titulo="Casas Ocupadas" valor="{{casaOcupadas}}" subtitulo="Casas alugadas e locação" icone="heroHomeModernSolid" />
+        <app-card class="w-full" titulo="Valor em Aluguel Total" valor="{{aluguelTotal | real}}" subtitulo="Valor somado de todas as casas"
             icone="heroCurrencyDollar" />
-        <app-card style="background-color: hsl(var(--background-grey));" class="w-full" titulo="Valor a Receber" valor="{{aluguelReceber | real}}" subtitulo="Valor somado de casas alugadas"
+        <app-card class="w-full" titulo="Valor a Receber" valor="{{aluguelReceber | real}}" subtitulo="Valor somado de casas alugadas"
             icone="heroCurrencyDollarSolid" />
     </div>
     <div class="flex gap-5 w-full mt-10">
