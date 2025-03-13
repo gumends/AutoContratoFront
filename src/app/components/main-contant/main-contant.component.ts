@@ -25,6 +25,7 @@ import { PesquisaComponent } from "../pesquisa/pesquisa.component";
     TitleCasePipe,
     NgFor,
     NgIf,
+    NgClass,
     AppComponent,
     RouterModule,
     DropdownPreviewComponent,
@@ -44,6 +45,7 @@ export class MainContantComponent implements OnInit {
 
   page: string = "";
   pagesRender: any[] = [];
+  menu: boolean = true
 
   pages = [
     {
@@ -91,7 +93,6 @@ export class MainContantComponent implements OnInit {
   rotas: any[] = []
 
   ngOnInit() {
-
     this.rotas = this.router.url
       .split("/")
       .filter(rotas => rotas !== "")
@@ -110,6 +111,12 @@ export class MainContantComponent implements OnInit {
       console.error('Token inválido ou não encontrado.');
     }
     this.page = this.router.url;
+    this.menu = localStorage.getItem("menu") === "false" ? true : false
+  }
+
+  menuToggle() {
+    localStorage.setItem("menu", this.menu.toString())
+    this.menu = !this.menu
   }
 
   sair() {

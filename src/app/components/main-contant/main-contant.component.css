@@ -1,0 +1,16 @@
+.menu-item{
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.menu-item:hover{
+    background-color: hsl(var(--background-menu));
+}   
+.logo {
+    width: 100px; /* Defina o tamanho desejado */
+    height: 50px; /* Defina o tamanho desejado */
+    background-image: url('../../assets/logo.png'); /* Caminho da imagem */
+    background-size: contain; /* Ajusta a imagem ao tamanho do elemento */
+    background-repeat: no-repeat; /* Evita repetição */
+    background-position: center; /* Centraliza a imagem */
+}

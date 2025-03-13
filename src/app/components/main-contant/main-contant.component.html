@@ -1,29 +1,55 @@
 <main class="w-full h-screen flex bg-background">
-    <!-- Sidebar -->
-    <aside class="w-60 h-screen bg-card shadow-lg border-r border-border">
+    <aside *ngIf="menu === false" class="min-w-[250px] h-screen bg-card shadow-lg border-r border-border">
         <nav>
-            <h1 class="text-xl font-bold text-foreground m-6">Auto Contrato</h1>
-            <ul class="space-y-5 mt-10">
-                <li *ngFor="let p of pagesRender">
-                    <a [routerLink]="p.url" [ngClass]="{ 'text-primary border-primary': p.url === rotas[0].url }"
-                        class="flex items-center border-l-4 border-transparent hover:border-foreground pl-3 cursor-pointer">
-                        <mode-theme-icon
-                            [ngClass]="{ 'text-primary border-primary color-primary': p.url === rotas[0].url }"
-                            size="25px" icon="{{p.icon}}" />
-                        <p [ngClass]="{ 'text-primary font-bold': p.url === rotas[0].url }" class="ml-5">{{p.title}}</p>
+            <div class="flex items-center ml-[-10px] mt-4">
+                <div class="logo" ></div>
+                <h1 class="text-[18px] font-bold text-foreground">
+                    Auto Contrato
+                </h1>
+            </div>
+            <ul class="space-y-3 mt-10">
+                <li *ngFor="let p of pagesRender" [routerLink]="p.url"  class="menu-item">
+                    <a [ngClass]="{
+                           'border-foreground': p.url === rotas[0].url,
+                           'border-transparent': p.url !== rotas[0].url
+                       }" class="flex items-center border-l-4 py-1 hover:border-foreground pl-3 cursor-pointer">
+                        <mode-theme-icon [ngClass]="{
+                                'text-primary border-primary color-primary': p.url === rotas[0].url
+                            }" size="25px" [icon]="p.icon">
+                        </mode-theme-icon>
+
+                        <p [ngClass]="{
+                            'text-foreground font-bold': p.url === rotas[0].url
+                        }" class="ml-5">
+                            {{p.title}}
+                        </p>
                     </a>
                 </li>
             </ul>
         </nav>
     </aside>
+    <aside *ngIf="menu === true" class="min-w-[70px] h-screen bg-card shadow-lg border-r border-border">
+        <div class="flex items-center mt-4">
+            <div class="logo"></div>
+        </div>
+        <ul class="space-y-3 mt-10 w-full flex flex-col items-center gap-5">
+            <li *ngFor="let p of pagesRender" [routerLink]="p.url" class="border px-3 pt-3 pb-1 rounded-lg cursor-pointer" [ngClass]="{'bg-border': p.url === rotas[0].url}">
+                <a class="">
+                    <mode-theme-icon size="25px" [icon]="p.icon" />
+                </a>
+            </li>
+        </ul>
+    </aside>
 
-    <div class="flex-1 flex flex-col">
+    <div class="flex-1 flex flex-col" style="background-color: hsl(var(--background-grey));">
         <header class="bg-card shadow-sm p-4 border-b border-border flex items-center justify-between w-full">
-            <div class="flex items-center">
-                <app-theme-mode />
+            <div (click)="menuToggle()" class="flex items-center border px-3 py-1 rounded-lg cursor-pointer text-foreground transition duration-300 hover:bg-border">
+                <mode-theme-icon size="25px" *ngIf="menu === false" icon="heroArrowLeft" class="mt-1 transition duration-300"/>
+                <mode-theme-icon size="25px" *ngIf="menu === true" icon="heroArrowRight" class="mt-1 transition duration-300"/>
             </div>
             <app-pesquisa />
-            <div class="flex items-center gap-7">
+            <div class="flex items-center gap-5">
+                <app-theme-mode />
                 <spartan-dropdown-preview class="text-foreground cursor-pointer" />
             </div>
         </header>
