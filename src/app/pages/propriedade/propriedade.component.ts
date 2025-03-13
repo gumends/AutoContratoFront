@@ -79,8 +79,7 @@ interface IPropriedadeContents {
     HlmAlertDialogDescriptionDirective,
     HlmAlertDialogFooterComponent,
     HlmAlertDialogActionButtonDirective,
-    ContratoComponent,
-    NgClass
+    ContratoComponent
 ],
   templateUrl: './propriedade.component.html',
   styleUrl: './propriedade.component.css'

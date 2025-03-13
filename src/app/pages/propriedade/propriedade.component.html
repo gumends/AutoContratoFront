@@ -42,7 +42,7 @@
                             Localização</th>
                         <th *ngIf="colunasVisiveis.aluguel" class="px-6 py-3 text-sm font-semibold text-foreground">
                             Aluguel</th>
-                        <th *ngIf="colunasVisiveis.dataPagamento"
+                        <th *ngIf="colunasVisiveis.dataPagamento" 
                             class="px-6 py-3 text-sm font-semibold text-foreground">Data Pagamento</th>
                         <th *ngIf="colunasVisiveis.locatario" class="px-6 py-3 text-sm font-semibold text-foreground">
                             Locatário</th>
@@ -90,10 +90,9 @@
                         <td class="px-2 py-2 text-sm text-foreground">
                             <hlm-alert-dialog>
                                 <button id='edit-profile'
-                                    [ngClass]="{ 'bg-red-600': item.status, 'bg-green-600': !item.status, 'hover:bg-red-600': item.status, 'hover:bg-green-600': !item.status,}"
                                     brnAlertDialogTrigger hlmBtn>
                                     <mode-theme-icon
-                                        class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 text-white"
+                                        class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200"
                                         size="25px" icon="{{ item.status ? 'heroXCircle' : 'heroCheckSolid' }}">
                                     </mode-theme-icon>
                                 </button>

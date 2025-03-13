@@ -84,7 +84,7 @@ export class DetalhesPropriedadeComponent implements OnInit {
         console.log(error);
       }
     });
-    this.serviceLocatario.buscarLocatarios(0, true, '').subscribe({
+    this.serviceLocatario.buscarLocatarios(0, 1000, true, '').subscribe({
       next: (response) => {
         this.locatarios = response.content;
       },
