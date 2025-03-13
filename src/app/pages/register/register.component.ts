@@ -76,8 +76,10 @@ export class RegisterComponent {
     this.service.register(formData)
       .subscribe({
         next: (res: any) => {
-          this.router.navigate(['/home']);
           this.toastr.success('Registro realizado com sucesso', 'Bem vindo!');
+          setTimeout(() => {
+            this.router.navigate(['/dashboard']);
+          }, 3000);
         },
         error: (error) => {
           if (error.status === 400) {

@@ -11,8 +11,8 @@ export class AuthService {
 
   baseUrl = "http://localhost:8080/auth";
 
-  login(login: string, senha: string){
-    return this.http.post(`http://localhost:8080/auth/login`, { "login": login, "senha": senha }).pipe(
+  login(dados: any){
+    return this.http.post(`http://localhost:8080/auth/login`, dados).pipe(
      tap((res: any) => {
        localStorage.setItem("auth-token", res.token)
      })

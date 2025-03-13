@@ -3,19 +3,19 @@
   <p class="text-secondary">Ainda não tem uma conta? <a href="/register" class="text-accent">Clique aqui</a></p>
   <form [formGroup]="loginForm" (ngSubmit)="login()" class="flex flex-col gap-2">
     <label-input
-      [name]="'login'"
+      [name]="'email'"
       [label]="'E-mail'"
       [placeholder]="'Seu E-mail'"
-      formControlName="login"
+      formControlName="email"
       class="w-full"
     ></label-input>
 
     <label-input
-      [name]="'password'"
+      [name]="'senha'"
       [label]="'Senha'"
       [placeholder]="'Sua Senha'"
       [type]="'password'"
-      formControlName="password"
+      formControlName="senha"
       class="w-full"
     ></label-input>
 

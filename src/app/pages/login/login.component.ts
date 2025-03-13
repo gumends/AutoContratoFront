@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder) {
 
     this.loginForm = this.fb.group({
-      login: ["", [Validators.required, Validators.minLength(1)]],
-      password: ["", [Validators.required, Validators.minLength(6)]]
+      email: ["", [Validators.required, Validators.minLength(1)]],
+      senha: ["", [Validators.required, Validators.minLength(6)]]
     });
 
   }
@@ -50,9 +50,8 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    const { login, password } = this.loginForm.value;
 
-    this.service.login(login, password).subscribe({
+    this.service.login(this.loginForm.value).subscribe({
       next: (res: any) => {
           this.toastr.success('Login realizado com sucesso', 'Bem vindo!');
           setTimeout(() => {
