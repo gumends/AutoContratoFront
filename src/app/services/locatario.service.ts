@@ -14,11 +14,11 @@ export class LocatarioService {
 
   constructor(private http: HttpClient) { }
 
-  buscarLocatarios(pagina: number, status?: boolean, nome: string = ''): Observable<ILocatarioPaginado> {
+  buscarLocatarios(pagina: number, tamanho: number, status?: boolean, nome: string = ''): Observable<ILocatarioPaginado> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.get(`${this.baseUrl}?status=${status}&nome=${nome}`, { headers })
+    return this.http.get(`${this.baseUrl}?pagina=${pagina}&tamanho=${tamanho}&status=${status}&nome=${nome}`, { headers })
       .pipe(
         map((response: any) => response as ILocatarioPaginado)
       );

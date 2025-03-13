@@ -139,7 +139,6 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
         this.toastr.success('Permissao alterada com sucesso', 'Alterado!');
       },
       error: (error) => {
-        console.log(error);
         this.toastr.error('Erro ao alterar a permissao', 'Erro!');
       }
     });

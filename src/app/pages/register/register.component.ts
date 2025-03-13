@@ -65,6 +65,7 @@ export class RegisterComponent {
 
     if (this.registerForm.value.senha !== this.registerForm.value.confSenha) {
       this.registerForm.controls['confSenha'].setErrors({ mismatch: true });
+      this.registerForm.controls['senha'].setErrors({ mismatch: true });
       return;
     }
 
@@ -79,8 +80,9 @@ export class RegisterComponent {
           this.toastr.success('Registro realizado com sucesso', 'Bem vindo!');
         },
         error: (error) => {
-          console.log(error);
-          this.toastr.error('Dados já cadastrados', 'Erro!');
+          if (error.status === 400) {
+            this.toastr.error(error.error.message, 'Erro!')
+          }
         }
       });
   }
