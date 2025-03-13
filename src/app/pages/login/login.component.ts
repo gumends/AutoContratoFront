@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LabelInputComponent } from "../../components/input/input.component";
 import { ButtonPreviewComponent } from "../../components/button/button.component";
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
@@ -14,12 +14,14 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   loginValue: string = '';
   passwordValue: string = '';
   loading: boolean = false
   loginForm: FormGroup;
+  token = localStorage.getItem('auth-token')
+
   constructor(
     private service: AuthService,
     private toastr: ToastrService,
@@ -30,6 +32,15 @@ export class LoginComponent {
       password: ["", [Validators.required, Validators.minLength(6)]]
     });
 
+  }
+  ngOnInit(): void {
+    if (this.token) {
+      this.toastr.success('Login realizado com sucesso', 'Bem vindo!');
+      setTimeout(() => {
+        this.loading = false;
+        window.location.href = '/dashboard';
+      }, 3000);
+    }
   }
 
   login() {
@@ -46,7 +57,7 @@ export class LoginComponent {
           this.toastr.success('Login realizado com sucesso', 'Bem vindo!');
           setTimeout(() => {
             this.loading = false;
-            window.location.href = '/home';
+            window.location.href = '/dashboard';
           }, 3000);
       },
       error: (error) => {
