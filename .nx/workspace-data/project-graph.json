@@ -182,9 +182,9 @@
       "type": "npm",
       "name": "npm:@angular/animations",
       "data": {
-        "version": "19.1.7",
+        "version": "19.1.6",
         "packageName": "@angular/animations",
-        "hash": "sha512-EnyQTCNc1nWnjc5V3HPlClpJIS2R2XAfIEUCyI3lE4FLQxcXyhIsM9NmacAZT3Ai8RL+8JVCttPmBZXMpjP6Ug=="
+        "hash": "sha512-iacosz3fygp0AyT57+suVpLChl10xS5RBje09TfQIKHTUY0LWkMspgaK9gwtlflpIhjedPV0UmgRIKhhFcQM1A=="
       }
     },
     "npm:@angular/build": {
@@ -2707,6 +2707,15 @@
         "hash": "sha512-9zESzOO5aDByvhIAsOy9TbpZ0Ur2AJbUI7UT73kcUTS2mxAMHOBaa1st/jAymNoCtvrit99kkzT1FZuXVcgfIQ=="
       }
     },
+    "npm:@ng-icons/bootstrap-icons": {
+      "type": "npm",
+      "name": "npm:@ng-icons/bootstrap-icons",
+      "data": {
+        "version": "31.1.0",
+        "packageName": "@ng-icons/bootstrap-icons",
+        "hash": "sha512-pARA+pDLb1wZR74lbLuzqQDgooXK1hGd+18VjLZiNIaF42mB0m/cRyHM3fQr9jcqTROftaQwxRMs5YKSIzDKqg=="
+      }
+    },
     "npm:@ng-icons/core": {
       "type": "npm",
       "name": "npm:@ng-icons/core",
@@ -2750,6 +2759,15 @@
         "version": "30.3.0",
         "packageName": "@ng-icons/lucide",
         "hash": "sha512-Cjo9/8SNrwsca8IC/GXmxi8hNukD99JhcdTrLBrtwuRYdnUHNBky2uk6uvD4KFcdtn1GVs4f250UiDTXKhAe6A=="
+      }
+    },
+    "npm:@ng-icons/mynaui": {
+      "type": "npm",
+      "name": "npm:@ng-icons/mynaui",
+      "data": {
+        "version": "31.1.0",
+        "packageName": "@ng-icons/mynaui",
+        "hash": "sha512-magEDwiULYeugqJeqacASBjduqdr074kc4QRDvMNhAHMVpPRtyHRf7gJfwi2NQodl2+LwfFlJDgNc2gxBUufBw=="
       }
     },
     "npm:@ngtools/webpack": {
@@ -9349,24 +9367,6 @@
         "hash": "sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw=="
       }
     },
-    "npm:ngx-mask": {
-      "type": "npm",
-      "name": "npm:ngx-mask",
-      "data": {
-        "version": "19.0.6",
-        "packageName": "ngx-mask",
-        "hash": "sha512-lJa3+gIg0XMwjRv71pqW7uYrzFPZXl7VUbdbafJ9uo7QydfHIhUe8ByPgWt5VxvSC2mp5ndE3O7jWMOtv7Kthw=="
-      }
-    },
-    "npm:ngx-sonner": {
-      "type": "npm",
-      "name": "npm:ngx-sonner",
-      "data": {
-        "version": "2.0.2",
-        "packageName": "ngx-sonner",
-        "hash": "sha512-7dcNMfNO1hmtoQzrtgh507AeTmgTyR3y//gWZlhhG/dlGxUUNnszeOiHXBcm7F89b6HKkqpBq9/RCL18Zrsc6A=="
-      }
-    },
     "npm:ngx-toastr": {
       "type": "npm",
       "name": "npm:ngx-toastr",
@@ -11895,11 +11895,6 @@
       },
       {
         "source": "AutoContratoFront",
-        "target": "npm:@angular/animations",
-        "type": "static"
-      },
-      {
-        "source": "AutoContratoFront",
         "target": "npm:@angular/cdk",
         "type": "static"
       },
@@ -11940,6 +11935,11 @@
       },
       {
         "source": "AutoContratoFront",
+        "target": "npm:@ng-icons/bootstrap-icons",
+        "type": "static"
+      },
+      {
+        "source": "AutoContratoFront",
         "target": "npm:@ng-icons/core",
         "type": "static"
       },
@@ -11965,6 +11965,11 @@
       },
       {
         "source": "AutoContratoFront",
+        "target": "npm:@ng-icons/mynaui",
+        "type": "static"
+      },
+      {
+        "source": "AutoContratoFront",
         "target": "npm:@spartan-ng/brain",
         "type": "static"
       },
@@ -11986,16 +11991,6 @@
       {
         "source": "AutoContratoFront",
         "target": "npm:jwt-decode",
-        "type": "static"
-      },
-      {
-        "source": "AutoContratoFront",
-        "target": "npm:ngx-mask",
-        "type": "static"
-      },
-      {
-        "source": "AutoContratoFront",
-        "target": "npm:ngx-sonner",
         "type": "static"
       },
       {
@@ -12432,6 +12427,11 @@
       }
     ],
     "npm:@angular/animations": [
+      {
+        "source": "npm:@angular/animations",
+        "target": "npm:@angular/core",
+        "type": "static"
+      },
       {
         "source": "npm:@angular/animations",
         "target": "npm:tslib",
@@ -12902,6 +12902,11 @@
       }
     ],
     "npm:@angular/platform-browser": [
+      {
+        "source": "npm:@angular/platform-browser",
+        "target": "npm:@angular/animations",
+        "type": "static"
+      },
       {
         "source": "npm:@angular/platform-browser",
         "target": "npm:@angular/common",
@@ -16263,6 +16268,13 @@
         "type": "static"
       }
     ],
+    "npm:@ng-icons/bootstrap-icons": [
+      {
+        "source": "npm:@ng-icons/bootstrap-icons",
+        "target": "npm:tslib",
+        "type": "static"
+      }
+    ],
     "npm:@ng-icons/core": [
       {
         "source": "npm:@ng-icons/core",
@@ -16309,6 +16321,13 @@
     "npm:@ng-icons/lucide": [
       {
         "source": "npm:@ng-icons/lucide",
+        "target": "npm:tslib",
+        "type": "static"
+      }
+    ],
+    "npm:@ng-icons/mynaui": [
+      {
+        "source": "npm:@ng-icons/mynaui",
         "target": "npm:tslib",
         "type": "static"
       }
@@ -23432,45 +23451,6 @@
         "type": "static"
       }
     ],
-    "npm:ngx-mask": [
-      {
-        "source": "npm:ngx-mask",
-        "target": "npm:@angular/common",
-        "type": "static"
-      },
-      {
-        "source": "npm:ngx-mask",
-        "target": "npm:@angular/core",
-        "type": "static"
-      },
-      {
-        "source": "npm:ngx-mask",
-        "target": "npm:@angular/forms",
-        "type": "static"
-      },
-      {
-        "source": "npm:ngx-mask",
-        "target": "npm:tslib",
-        "type": "static"
-      }
-    ],
-    "npm:ngx-sonner": [
-      {
-        "source": "npm:ngx-sonner",
-        "target": "npm:@angular/common",
-        "type": "static"
-      },
-      {
-        "source": "npm:ngx-sonner",
-        "target": "npm:@angular/core",
-        "type": "static"
-      },
-      {
-        "source": "npm:ngx-sonner",
-        "target": "npm:tslib",
-        "type": "static"
-      }
-    ],
     "npm:ngx-toastr": [
       {
         "source": "npm:ngx-toastr",
@@ -27258,5 +27238,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1740500872998
+  "computedAt": 1741834159111
 }

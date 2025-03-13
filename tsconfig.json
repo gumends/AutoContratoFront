@@ -66,6 +66,9 @@
       ],
       "@spartan-ng/ui-breadcrumb-helm": [
         "./libs/ui/ui-breadcrumb-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-tooltip-helm": [
+        "./libs/ui/ui-tooltip-helm/src/index.ts"
       ]
     }
   },
