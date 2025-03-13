@@ -62,10 +62,10 @@
                         <td class="px-2 py-2 text-sm text-foreground">
                             <hlm-alert-dialog>
                                 <button id='edit-profile'
-                                    [ngClass]="{ 'bg-red-600': item.status, 'bg-green-600': !item.status, 'hover:bg-red-600': item.status, 'hover:bg-green-600': !item.status,}"
+                                    class=""
                                     brnAlertDialogTrigger hlmBtn>
                                     <mode-theme-icon
-                                        class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 text-white"
+                                        class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200"
                                         size="25px" icon="{{ item.status ? 'heroXCircle' : 'heroCheckSolid' }}">
                                     </mode-theme-icon>
                                 </button>
@@ -92,7 +92,8 @@
                     Novo Proprietário
                 </button>
                 <nav class="flex items-center gap-5 rounded-md shadow-sm">
-                    <brn-select class="inline-block relative" [formControl]="selectControl" placeholder="Quantidade de proprietarios">
+                    <brn-select class="inline-block relative" [formControl]="selectControl"
+                        placeholder="Quantidade de proprietarios">
                         <hlm-select-trigger class="w-56">
                             <hlm-select-value />
                         </hlm-select-trigger>
@@ -103,7 +104,7 @@
                             <hlm-option value="100">100</hlm-option>
                         </hlm-select-content>
                     </brn-select>
-                    
+
                     <div class="flex items-center">
                         <span
                             class="flex items-center pt-1 justify-center h-10 w-8 text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md hover:bg-muted/50 transition-colors duration-200"

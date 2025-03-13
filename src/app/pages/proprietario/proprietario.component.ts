@@ -56,7 +56,6 @@ import { ProprietarioService } from '../../services/proprietario.service';
     HlmAlertDialogFooterComponent,
     HlmAlertDialogActionButtonDirective,
     RouterLink,
-    NgClass
   ],
   templateUrl: './proprietario.component.html',
   styleUrl: './proprietario.component.css'
