@@ -109,7 +109,7 @@ export class DetalhesComponent implements OnInit {
           }
         },
         error: (error) => {
-          this.toastr.error('Não foi possível realizar o cadastro', 'Erro!');
+          this.toastr.error(error.error.message, 'Erro!');
           console.log(error);
         }
       })
