@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ThemeModeComponent } from "../theme-mode/theme-mode.component";
 import { NgClass, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { AppComponent } from "../icons/moon/moon.component";
@@ -23,7 +23,6 @@ import { TooltipComponent } from "../tooltip/tooltip.component";
   imports: [
     ThemeModeComponent,
     NgClass,
-    TitleCasePipe,
     NgFor,
     NgIf,
     NgClass,
@@ -83,9 +82,9 @@ export class MainContantComponent implements OnInit {
   ];
 
   title: string = ""
-
   token: string | null = localStorage.getItem("auth-token");
   tokenDecoded: any = this.token ? jwtDecode(this.token) : null;
+  @Input() titulo: string = ""
 
   permissao = [
     "ADMIN",

@@ -33,7 +33,7 @@
             <div class="logo"></div>
         </div>
         <ul class="space-y-3 mt-10 w-full flex flex-col items-center gap-5">
-            <li *ngFor="let p of pagesRender" class="relative border px-3 pt-3 pb-1 rounded-lg cursor-pointer" [ngClass]="{'bg-border': p.url === rotas[0].url}">
+            <li *ngFor="let p of pagesRender" [routerLink]="p.url" class="relative border px-3 pt-3 pb-1 rounded-lg cursor-pointer" [ngClass]="{'bg-border': p.url === rotas[0].url}">
               <a (mouseenter)="showTooltip(p)" (mouseleave)="hideTooltip(p)">
                 <mode-theme-icon size="25px" [icon]="p.icon" />
               </a>
@@ -58,7 +58,7 @@
             </div>
         </header>
         <div class="flex-1 p-6 overflow-y-auto bg-background border border-border rounded-lg m-4">
-            <h1 class="text-3xl font-bold text-foreground mb-4">{{rotas[0].label | titlecase}}</h1>
+            <h1 class="text-3xl font-bold text-foreground mb-4">{{titulo}}</h1>
             <nav hlmBreadcrumb>
                 <ol hlmBreadcrumbList>
                     <div hlmBreadcrumbItem *ngFor="let item of rotas; let i = index">
