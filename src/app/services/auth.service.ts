@@ -11,27 +11,27 @@ export class AuthService {
 
   baseUrl = "http://localhost:8080/auth";
 
-  login(dados: any){
+  login(dados: any) {
     return this.http.post(`http://localhost:8080/auth/login`, dados).pipe(
-     tap((res: any) => {
-       localStorage.setItem("auth-token", res.token)
-     })
-    )
-  }
-
-  private accountChangedSubject = new Subject<void>();
-  accountChanged$ = this.accountChangedSubject.asObservable();
-
-  register(registro: any){
-    return this.http.post(`http://localhost:8080/auth/registrar`, registro)
-    .pipe(
       tap((res: any) => {
         localStorage.setItem("auth-token", res.token)
       })
     )
   }
 
-  logout(){
+  private accountChangedSubject = new Subject<void>();
+  accountChanged$ = this.accountChangedSubject.asObservable();
+
+  register(registro: any) {
+    return this.http.post(`http://localhost:8080/auth/registrar`, registro)
+      .pipe(
+        tap((res: any) => {
+          this.router.navigate(['/login'])
+        })
+      )
+  }
+
+  logout() {
     localStorage.removeItem("auth-token")
     this.router.navigate(['/login'])
   }
