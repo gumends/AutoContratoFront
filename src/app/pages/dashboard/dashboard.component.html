@@ -1,35 +1,50 @@
-<app-main-contant
-    titulo="Dashboard"
->
-    <div class="flex w-full gap-5 mt-5">
-        <app-card class="w-full" titulo="Casas Disponíveis" valor="{{casaDisponiveis}}" subtitulo="Casas disponível para locação" icone="heroHomeModern" />
-        <app-card class="w-full" titulo="Casas Ocupadas" valor="{{casaOcupadas}}" subtitulo="Casas alugadas e locação" icone="heroHomeModernSolid" />
-        <app-card class="w-full" titulo="Valor em Aluguel Total" valor="{{aluguelTotal | real}}" subtitulo="Valor somado de todas as casas"
-            icone="heroCurrencyDollar" />
-        <app-card class="w-full" titulo="Valor a Receber" valor="{{aluguelReceber | real}}" subtitulo="Valor somado de casas alugadas"
-            icone="heroCurrencyDollarSolid" />
+<app-main-contant titulo="Dashboard">
+    <div class="flex w-full gap-5 mt-5 flex-col sm:flex-col md:flex-row">
+        <div class="flex gap-5 w-full 
+        flex-col md:flex-col lg:flex-col xl:flex-row sm:flex-col "
+        >
+            <app-card class="w-full" titulo="Casas Disponíveis" valor="{{casaDisponiveis}}"
+                subtitulo="Casas disponível para locação" icone="heroHomeModern" />
+            <app-card class="w-full" titulo="Casas Ocupadas" valor="{{casaOcupadas}}"
+                subtitulo="Casas alugadas e locação" icone="heroHomeModernSolid" />
+        </div>
+        <div class="flex gap-5 w-full
+        flex-col sm:flex-col md:flex-col lg:flex-col xl:flex-row"
+        >
+            <app-card class="w-full" titulo="Valor em Aluguel Total" valor="{{aluguelTotal | real}}"
+                subtitulo="Valor de todas as casas" icone="heroCurrencyDollar" />
+            <app-card class="w-full" titulo="Valor a Receber" valor="{{aluguelReceber | real}}"
+                subtitulo="Valor de casas alugadas" icone="heroCurrencyDollarSolid" />
+        </div>
     </div>
-    <div class="flex gap-5 w-full mt-10">
-        <div class="border border-border w-full py-5 px-5 flex flex-col gap-5 rounded-xl" style="background-color: hsl(var(--background-grey));">
+    <div class="flex gap-5 w-full mt-10 flex-col sm:flex-col md:flex-col lg:flex-col xl:flex-row">
+        <div class="border border-border w-full py-5 px-5 flex flex-col gap-5 rounded-xl"
+            style="background-color: hsl(var(--background-grey));">
             <h2 class="text-center font-bold text-2xl mb-3">Propriedades</h2>
             <span class="text-center" *ngIf="propriedades.length == 0">Nenhuma Propriedade Cadastrada</span>
-            <app-card-item *ngFor="let pdes of propriedades" [routerLink]="['/propriedade/detalhes', pdes.id]" text_main="{{pdes.rua}}, {{pdes.numero}}" text_sub="{{pdes.cep}}" class="cursor-pointer" icone="heroHomeModernSolid" value="{{pdes.aluguel  | real}}" />
+            <app-card-item *ngFor="let pdes of propriedades" [routerLink]="['/propriedade/detalhes', pdes.id]"
+                text_main="{{pdes.rua}}, {{pdes.numero}}" text_sub="{{pdes.cep}}" class="cursor-pointer"
+                icone="heroHomeModernSolid" value="{{pdes.aluguel  | real}}" />
         </div>
-        <div class="border border-border w-1/2 p-5 flex flex-col gap-5 rounded-xl">
-            <div style="background-color: hsl(var(--background-grey));" class="border rounded-md w-full p-2 max-h-[268px] flex flex-col gap-1">
+        <div class="border border-border w-ful md:w-full sm:w-full p-5 flex flex-col gap-5 rounded-xl">
+            <div style="background-color: hsl(var(--background-grey));"
+                class="border rounded-md w-full p-2 max-h-[268px] flex flex-col gap-1">
                 <h2 class="text-center font-bold text-2xl mb-2">Locatarios</h2>
                 <div class="overflow-auto flex flex-col gap-1">
                     <span class="text-center" *ngIf="locararios.length == 0">Nenhum Locatario Cadastrado</span>
-                    <app-card-item class="cursor-pointer" [routerLink]="['/locatario/detalhes', l.id]" *ngFor="let l of locararios" text_main="{{l.nome}}" text_sub="{{l.cpf}}" icone="heroUserCircleSolid"
-                    value="{{l.status == true ? 'Ativo' : 'Inativo'}}"/>
+                    <app-card-item class="cursor-pointer" [routerLink]="['/locatario/detalhes', l.id]"
+                        *ngFor="let l of locararios" text_main="{{l.nome}}" text_sub="{{l.cpf}}"
+                        icone="heroUserCircleSolid" value="{{l.status == true ? 'Ativo' : 'Inativo'}}" />
                 </div>
             </div>
-            <div style="background-color: hsl(var(--background-grey));" class="border rounded-md w-full p-2 max-h-[268px] flex flex-col gap-1">
+            <div style="background-color: hsl(var(--background-grey));"
+                class="border rounded-md w-full p-2 max-h-[268px] flex flex-col gap-1">
                 <h2 class="text-center font-bold text-2xl mb-2">Proprietarios</h2>
                 <div class="overflow-y-auto flex flex-col gap-1">
                     <span class="text-center" *ngIf="proprietarios.length == 0">Nenhum Proprietario Cadastrado</span>
-                    <app-card-item *ngFor="let p of proprietarios" [routerLink]="['/proprietarios/detalhes', p.id]" text_main="{{p.nome}}" text_sub="{{p.cpf}}" icone="heroUserCircleSolid"
-                        class="cursor-pointer" value="{{p.status == true ? 'Ativo' : 'Inativo'}}"/>
+                    <app-card-item *ngFor="let p of proprietarios" [routerLink]="['/proprietarios/detalhes', p.id]"
+                        text_main="{{p.nome}}" text_sub="{{p.cpf}}" icone="heroUserCircleSolid" class="cursor-pointer"
+                        value="{{p.status == true ? 'Ativo' : 'Inativo'}}" />
                 </div>
             </div>
         </div>
