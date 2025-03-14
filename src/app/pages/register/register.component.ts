@@ -78,7 +78,7 @@ export class RegisterComponent {
         next: (res: any) => {
           this.toastr.success('Registro realizado com sucesso', 'Bem vindo!');
           setTimeout(() => {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/login']);
           }, 3000);
         },
         error: (error) => {

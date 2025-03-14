@@ -26,7 +26,7 @@ export const IPages = [
     permissao: "USER"
   },
   {
-    title: "Locatarios",
+    title: "Locatários",
     url: "/locatario",
     icon: "heroUserSolid",
     permissao: "USER"
@@ -38,13 +38,13 @@ export const IPages = [
     permissao: "USER"
   },
   {
-    title: "Proprietarios",
+    title: "Proprietários",
     url: "/proprietario",
     icon: "heroUserGroupSolid",
     permissao: "USER"
   },
   {
-    title: "Usuarios",
+    title: "Usuários",
     url: "/usuarios",
     icon: "heroIdentificationSolid",
     permissao: "ADMIN"

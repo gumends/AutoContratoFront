@@ -1,0 +1,8 @@
+.card-item{
+    background-color: hsl(var(--background-menu));
+}
+
+.card-item:hover{
+    transition: all 0.1s ease-in-out;
+    background-color: hsl(var(--background));
+}

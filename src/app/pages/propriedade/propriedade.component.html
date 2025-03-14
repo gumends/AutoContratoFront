@@ -1,6 +1,4 @@
-<app-main-contant
-    titulo="Propriedades"
->
+<app-main-contant titulo="Propriedades">
     <div class="bg-card rounded-lg p-6">
 
         <div class="overflow-x-auto">
@@ -32,25 +30,21 @@
             <table class="w-full text-left border border-solid border-border">
                 <thead>
                     <tr class="border-b border-border bg-muted">
-                        <th *ngIf="colunasVisiveis.rua" class="px-6 py-3 text-sm font-semibold text-foreground">Rua</th>
-                        <th *ngIf="colunasVisiveis.numero" class="px-6 py-3 text-sm font-semibold text-foreground">
-                            Numero</th>
-                        <th *ngIf="colunasVisiveis.casa" class="px-6 py-3 text-sm font-semibold text-foreground">Casa
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">Rua</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">
+                            Número</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">Casa
                         </th>
-                        <th *ngIf="colunasVisiveis.bairro" class="px-6 py-3 text-sm font-semibold text-foreground">
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">
                             Bairro</th>
-                        <th *ngIf="colunasVisiveis.cep" class="px-6 py-3 text-sm font-semibold text-foreground">Cep</th>
-                        <th *ngIf="colunasVisiveis.localizacao" class="px-6 py-3 text-sm font-semibold text-foreground">
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">
                             Localização</th>
-                        <th *ngIf="colunasVisiveis.aluguel" class="px-6 py-3 text-sm font-semibold text-foreground">
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">
                             Aluguel</th>
-                        <th *ngIf="colunasVisiveis.dataPagamento" 
-                            class="px-6 py-3 text-sm font-semibold text-foreground">Data Pagamento</th>
-                        <th *ngIf="colunasVisiveis.locatario" class="px-6 py-3 text-sm font-semibold text-foreground">
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">
                             Locatário</th>
-                        <th *ngIf="colunasVisiveis.proprietario"
-                            class="px-6 py-3 text-sm font-semibold text-foreground">Proprietário</th>
-                        <th *ngIf="colunasVisiveis.status" class="px-6 py-3 text-sm font-semibold text-foreground">
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">Proprietário</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">
                             Status</th>
                         <th class="px-6 py-3 text-sm font-semibold text-foreground"></th>
                         <th class="px-6 py-3 text-sm font-semibold text-foreground"></th>
@@ -66,11 +60,8 @@
                             ? '-' : item.numCasa}}</td>
                         <td *ngIf="colunasVisiveis.bairro" class="px-6 py-2 text-sm text-foreground">{{item.bairro}}
                         </td>
-                        <td *ngIf="colunasVisiveis.cep" class="px-6 py-2 text-sm text-foreground">{{item.cep}}</td>
                         <td *ngIf="colunasVisiveis.localizacao" class="px-6 py-2 text-sm text-foreground">
                             {{item.localizacao}}</td>
-                        <td *ngIf="colunasVisiveis.aluguel" class="px-6 py-2 text-sm text-foreground">{{item.aluguel}}
-                        </td>
                         <td *ngIf="colunasVisiveis.dataPagamento" class="px-6 py-2 text-sm text-foreground">
                             {{item.dataPagamento | formatarData}}</td>
                         <td *ngIf="colunasVisiveis.locatario" class="px-6 py-2 text-sm text-foreground">{{item.locatario
@@ -91,8 +82,7 @@
                         </td>
                         <td class="px-2 py-2 text-sm text-foreground">
                             <hlm-alert-dialog>
-                                <button id='edit-profile'
-                                    brnAlertDialogTrigger hlmBtn>
+                                <button id='edit-profile' brnAlertDialogTrigger hlmBtn>
                                     <mode-theme-icon
                                         class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200"
                                         size="25px" icon="{{ item.status ? 'heroXCircle' : 'heroCheckSolid' }}">
@@ -123,7 +113,7 @@
             </button>
             <nav class="flex items-center gap-5 rounded-md shadow-sm">
                 <brn-select class="inline-block relative" [formControl]="selectControl"
-                    placeholder="Quantidade de proprietários">
+                    placeholder="Itens por página">
                     <hlm-select-trigger class="w-56">
                         <hlm-select-value />
                     </hlm-select-trigger>
