@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ThemeModeComponent } from "../theme-mode/theme-mode.component";
 import { NgClass, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { AppComponent } from "../icons/moon/moon.component";
@@ -17,6 +17,9 @@ import {
 } from '@spartan-ng/ui-breadcrumb-helm';
 import { PesquisaComponent } from "../pesquisa/pesquisa.component";
 import { TooltipComponent } from "../tooltip/tooltip.component";
+import { BrnAlertDialogContentDirective, BrnAlertDialogTriggerDirective } from '@spartan-ng/brain/alert-dialog';
+import { HlmAlertDialogActionButtonDirective, HlmAlertDialogCancelButtonDirective, HlmAlertDialogComponent, HlmAlertDialogContentComponent, HlmAlertDialogDescriptionDirective, HlmAlertDialogFooterComponent, HlmAlertDialogHeaderComponent, HlmAlertDialogOverlayDirective, HlmAlertDialogTitleDirective } from '@spartan-ng/ui-alertdialog-helm';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 export const IPages = [
   {
@@ -69,7 +72,22 @@ export const IPages = [
     HlmBreadcrumbPageDirective,
     HlmBreadcrumbSeparatorComponent,
     PesquisaComponent,
-    TooltipComponent
+    TooltipComponent,
+
+    BrnAlertDialogTriggerDirective,
+    BrnAlertDialogContentDirective,
+
+    HlmAlertDialogComponent,
+    HlmAlertDialogOverlayDirective,
+    HlmAlertDialogHeaderComponent,
+    HlmAlertDialogFooterComponent,
+    HlmAlertDialogTitleDirective,
+    HlmAlertDialogDescriptionDirective,
+    HlmAlertDialogCancelButtonDirective,
+    HlmAlertDialogActionButtonDirective,
+    HlmAlertDialogContentComponent,
+
+    HlmButtonDirective,
 ],
   templateUrl: './main-contant.component.html',
   styleUrl: './main-contant.component.css'
@@ -82,7 +100,7 @@ export class MainContantComponent implements OnInit {
   pagesRender: any[] = [];
   menu: boolean = true
   pages = IPages
-
+  isMobile: boolean = false;
 
   title: string = ""
   token: string | null = localStorage.getItem("auth-token");
@@ -112,7 +130,7 @@ export class MainContantComponent implements OnInit {
         label: rota,
         url: "/" + array.slice(0, index + 1).join("/")
       }));
-
+      this.isMobile = window.innerWidth <= 940;
     if (this.tokenDecoded) {
       if (this.tokenDecoded.permissao === 0) {
         this.pagesRender = this.pages;
@@ -129,6 +147,11 @@ export class MainContantComponent implements OnInit {
   menuToggle() {
     localStorage.setItem("menu", this.menu.toString())
     this.menu = !this.menu
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.isMobile = window.innerWidth <= 940;
   }
 
   sair() {

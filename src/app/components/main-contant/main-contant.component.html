@@ -1,5 +1,5 @@
 <main class="w-full h-screen flex bg-background">
-    <aside *ngIf="menu === false" class="min-w-[250px] h-screen bg-card shadow-lg border-r border-border">
+    <aside *ngIf="menu === false && !isMobile" class="min-w-[250px] h-screen bg-card shadow-lg border-r border-border">
         <nav>
             <div class="flex items-center ml-[-10px] mt-4">
                 <div class="logo"></div>
@@ -28,31 +28,75 @@
             </ul>
         </nav>
     </aside>
-    <aside *ngIf="menu === true" class="min-w-[70px] h-screen bg-card shadow-lg border-r border-border">
+    <aside *ngIf="menu === true || isMobile"
+        class="min-w-[70px] sm:max-w-[70px] sm:block hidden h-screen bg-card shadow-lg border-r border-border">
         <div class="flex items-center mt-4">
             <div class="logo"></div>
         </div>
         <ul class="space-y-3 mt-10 w-full flex flex-col items-center gap-5">
-            <li *ngFor="let p of pagesRender" [routerLink]="p.url" class="relative border px-3 pt-3 pb-1 rounded-lg cursor-pointer" [ngClass]="{'bg-border': p.url === rotas[0].url}">
-              <a (mouseenter)="showTooltip(p)" (mouseleave)="hideTooltip(p)">
-                <mode-theme-icon size="25px" [icon]="p.icon" />
-              </a>
-              <app-tooltip [text]="p.title" [isVisible]="p.showTooltip"></app-tooltip>
+            <li *ngFor="let p of pagesRender" [routerLink]="p.url"
+                class="relative border px-3 pt-3 pb-1 rounded-lg cursor-pointer"
+                [ngClass]="{'bg-border': p.url === rotas[0].url}">
+                <a (mouseenter)="showTooltip(p)" (mouseleave)="hideTooltip(p)">
+                    <mode-theme-icon size="25px" [icon]="p.icon" />
+                </a>
+                <app-tooltip [text]="p.title" [isVisible]="p.showTooltip"></app-tooltip>
             </li>
-          </ul>
+        </ul>
     </aside>
-
     <div class="flex-1 flex flex-col" style="background-color: hsl(var(--background-grey));">
-        <header class="bg-card shadow-sm p-4 border-b border-border flex items-center justify-between w-full">
+        <header class="bg-card shadow-sm p-4 border-b border-border flex items-center justify-between w-full gap-5">
             <div (click)="menuToggle()"
-                class="flex items-center border px-3 py-1 rounded-lg cursor-pointer text-foreground transition duration-300 hover:bg-border">
-                <mode-theme-icon size="25px" *ngIf="menu === false" icon="heroArrowLeft"
+                class="hidden sm:flex items-center border px-3 py-1 rounded-lg cursor-pointer text-foreground transition duration-300 hover:bg-border">
+                <mode-theme-icon size="25px" *ngIf="menu === false" icon="featherSidebar"
                     class="mt-1 transition duration-300" />
-                <mode-theme-icon size="25px" *ngIf="menu === true" icon="heroArrowRight"
-                    class="mt-1 transition duration-300" />
+                <mode-theme-icon size="25px" *ngIf="menu === true" icon="featherSidebar"
+                    class="mt-[-3px] h-11 w-6 flex justify-center items-center transition duration-300 rotate-180" />
             </div>
-            <app-pesquisa />
-            <div class="flex items-center gap-5">
+            <div class="flex sm:hidden items-center gap-5">
+                <hlm-alert-dialog>
+                    <button id='edit-profile' variant='outline' class="h-11 w-11" brnAlertDialogTrigger hlmBtn>
+                        <mode-theme-icon size="25px" *ngIf="menu === true" icon="featherSidebar"
+                        class="mt-[-3px] h-11 w-6 flex justify-center items-center transition duration-300 rotate-180" />
+                    </button>
+                    <hlm-alert-dialog-content class="fixed top-0 left-0 w-10/12 h-full" *brnAlertDialogContent='let ctx'>
+                        <hlm-alert-dialog-header class="flex justify-start w-full gap-10">
+                            <div class="flex items-center justify-between ml-[-10px] mt-4">
+                                <div class="flex items-center">
+                                    <div class="logo"></div>
+                                    <h1 class="text-[18px] font-bold text-foreground">
+                                        Auto Contrato
+                                    </h1>
+                                </div>
+                                <div (click)="ctx.close()" >
+                                    <mode-theme-icon size="25px" icon="featherX" class="mt-1 transition duration-300" />
+                                </div>
+                            </div>
+                            <ul class="space-y-3 mt-10">
+                                <li *ngFor="let p of pagesRender" [routerLink]="p.url" class="menu-item">
+                                    <a [ngClass]="{
+                                           'border-foreground': p.url === rotas[0].url,
+                                           'border-transparent': p.url !== rotas[0].url
+                                       }" class="flex items-center border-l-4 py-1 hover:border-foreground pl-3 cursor-pointer">
+                                        <mode-theme-icon [ngClass]="{
+                                                'text-primary border-primary color-primary': p.url === rotas[0].url
+                                            }" size="25px" [icon]="p.icon">
+                                        </mode-theme-icon>
+                
+                                        <p [ngClass]="{
+                                            'text-foreground font-bold': p.url === rotas[0].url
+                                        }" class="ml-5">
+                                            {{p.title}}
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </hlm-alert-dialog-header>
+                    </hlm-alert-dialog-content>
+                </hlm-alert-dialog>
+            </div>
+            <app-pesquisa class="w-full sm:w-[400px]" />
+            <div class="sm:flex items-center gap-5 hidden">
                 <app-theme-mode />
                 <spartan-dropdown-preview class="text-foreground cursor-pointer" />
             </div>
