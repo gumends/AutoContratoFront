@@ -1,16 +1,14 @@
-<app-main-contant
-    titulo="Proprietário"
->
-    <main class="w-full h-max flex justify-center items-center">
+<app-main-contant titulo="Proprietário">
+    <main class="w-full h-max inline sm:flex justify-center items-center m-0 p-0">
         <form action="" [formGroup]="form" (ngSubmit)="salvar()"
-            class="w-2/4 mt-20 flex flex-col gap-0 lg:gap-5 border border-border p-5 rounded-xl">
+            class="w-full lg:w-2/4 mt-20 flex flex-col gap-0 lg:gap-5 border border-border p-5 rounded-xl">
             <div class="flex gap-4 w-full">
                 <label class="w-full" hlmLabel>Nome
                     <input class="w-full" hlmInput type="text" name="nome" formControlName="nome"
                         placeholder="Digite o nome" />
                 </label>
             </div>
-            <div class="inline lg:flex gap-4 w-full">
+            <div class="inline sm:flex gap-4 w-full">
                 <label class="w-full" hlmLabel>Nascimento
                     <input hlmInput class="w-full" type="date" formControlName="nascimento" />
                 </label>
@@ -35,7 +33,7 @@
                         </hlm-select-content>
                     </brn-select>
                 </label>
-                
+
             </div>
             <div class="inline lg:flex gap-4 w-full">
                 <label class="w-full" hlmLabel>CPF

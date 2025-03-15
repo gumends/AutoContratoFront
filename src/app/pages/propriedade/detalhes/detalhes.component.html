@@ -1,7 +1,7 @@
 <app-main-contant titulo="Propriedade">
-    <main class="w-full h-max flex justify-center items-center">
+    <main class="w-full h-max inline sm:flex justify-center items-center">
         <form action="" [formGroup]="form" (ngSubmit)="salvar()"
-            class="w-2/4 mt-20 flex flex-col gap-0 lg:gap-5 border border-border p-5 rounded-xl">
+            class="w-full lg:w-2/4 mt-20 flex flex-col gap-0 lg:gap-5 border border-border p-5 rounded-xl">
             <div class="inline lg:flex gap-4 w-full">
                 <label class="w-full" hlmLabel>Rua
                     <input class="w-full" hlmInput type="text" name="rua" formControlName="rua"

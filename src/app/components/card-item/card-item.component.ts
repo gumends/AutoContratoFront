@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AppComponent } from "../icons/moon/moon.component";
+import { AppComponent } from "../icon/icon.component";
 
 @Component({
   selector: 'app-card-item',

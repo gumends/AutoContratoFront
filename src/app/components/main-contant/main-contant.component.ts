@@ -1,7 +1,7 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ThemeModeComponent } from "../theme-mode/theme-mode.component";
-import { NgClass, NgFor, NgIf, TitleCasePipe } from '@angular/common';
-import { AppComponent } from "../icons/moon/moon.component";
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { AppComponent } from "../icon/icon.component";
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
@@ -18,7 +18,7 @@ import {
 import { PesquisaComponent } from "../pesquisa/pesquisa.component";
 import { TooltipComponent } from "../tooltip/tooltip.component";
 import { BrnAlertDialogContentDirective, BrnAlertDialogTriggerDirective } from '@spartan-ng/brain/alert-dialog';
-import { HlmAlertDialogActionButtonDirective, HlmAlertDialogCancelButtonDirective, HlmAlertDialogComponent, HlmAlertDialogContentComponent, HlmAlertDialogDescriptionDirective, HlmAlertDialogFooterComponent, HlmAlertDialogHeaderComponent, HlmAlertDialogOverlayDirective, HlmAlertDialogTitleDirective } from '@spartan-ng/ui-alertdialog-helm';
+import { HlmAlertDialogComponent, HlmAlertDialogContentComponent, HlmAlertDialogHeaderComponent } from '@spartan-ng/ui-alertdialog-helm';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 export const IPages = [
@@ -78,13 +78,7 @@ export const IPages = [
     BrnAlertDialogContentDirective,
 
     HlmAlertDialogComponent,
-    HlmAlertDialogOverlayDirective,
     HlmAlertDialogHeaderComponent,
-    HlmAlertDialogFooterComponent,
-    HlmAlertDialogTitleDirective,
-    HlmAlertDialogDescriptionDirective,
-    HlmAlertDialogCancelButtonDirective,
-    HlmAlertDialogActionButtonDirective,
     HlmAlertDialogContentComponent,
 
     HlmButtonDirective,

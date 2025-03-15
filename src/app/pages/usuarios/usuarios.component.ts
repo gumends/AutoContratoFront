@@ -4,7 +4,7 @@ import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { MainContantComponent } from "../../components/main-contant/main-contant.component";
 import { NgFor } from '@angular/common';
 import { FormatarDataPipe } from '../../pipes/data.pipe';
-import { AppComponent } from "../../components/icons/moon/moon.component";
+import { AppComponent } from "../../components/icon/icon.component";
 import { Subject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { PropriedadeService } from '../../services/propriedade.service';
 import { ProprietarioService } from '../../services/proprietario.service';
 import { LocatarioService } from '../../services/locatario.service';
-import { AppComponent } from "../icons/moon/moon.component";
+import { AppComponent } from "../icon/icon.component";
 import { IPropriedadePaginado } from '../../Types/propriedade';
 import { ILocatarioPaginado } from '../../Types/LocatarioResponse';
 import { IProprietarioResponse } from '../../Types/Proprietario';

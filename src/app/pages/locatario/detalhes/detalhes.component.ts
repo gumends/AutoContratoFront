@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MainContantComponent } from "../../../components/main-contant/main-contant.component";
-import { AppComponent } from "../../../components/icons/moon/moon.component";
+import { AppComponent } from "../../../components/icon/icon.component";
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmSelectImports } from '@spartan-ng/ui-select-helm';

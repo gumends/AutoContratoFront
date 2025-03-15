@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
-import { AppComponent } from "../icons/moon/moon.component";
+import { AppComponent } from "../icon/icon.component";
 
 @Component({
   selector: 'app-theme-mode',

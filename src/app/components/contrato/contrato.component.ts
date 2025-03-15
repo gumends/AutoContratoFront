@@ -5,7 +5,7 @@ import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-n
 import {
   HlmDialogComponent,
 } from '@spartan-ng/ui-dialog-helm';
-import { AppComponent } from "../icons/moon/moon.component";
+import { AppComponent } from "../icon/icon.component";
 import { PropriedadeService } from '../../services/propriedade.service';
 import { IPropriedadeContent } from '../../Types/propriedade';
 

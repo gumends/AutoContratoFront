@@ -26,7 +26,7 @@ import {
   HlmMenuLabelComponent,
   HlmMenuSeparatorComponent,
 } from '@spartan-ng/ui-menu-helm';
-import { AppComponent } from "../icons/moon/moon.component";
+import { AppComponent } from "../icon/icon.component";
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Jwt } from '../../Types/jwt';

@@ -4,7 +4,7 @@ import { LocatarioService } from '../../services/locatario.service';
 import { ILocatarioContent, ILocatarioPaginado } from '../../Types/LocatarioResponse';
 import { NgClass, NgFor } from '@angular/common';
 import { FormatarDataPipe } from '../../pipes/data.pipe';
-import { AppComponent } from "../../components/icons/moon/moon.component";
+import { AppComponent } from "../../components/icon/icon.component";
 import { Subject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { takeUntil } from 'rxjs/operators';
