@@ -1,16 +1,15 @@
 <app-main-contant titulo="Propriedades">
     <div class="bg-card rounded-lg p-6">
-
         <div class="overflow-x-auto">
-            <div class="p-4 flex gap-5 border border-solid border-border rounded-t-lg">
+            <div class="px-4 py-2 mb-4 lg:mb-0 flex sm:flex-row gap-5 flex-col-reverse border border-solid border-border rounded-lg lg:rounded-b-none">
                 <div class="flex items-center gap-2">
-                    <mode-theme-icon (click)="recarregar()" size="20px" icon="heroArrowPath"
-                        class="text-foreground cursor-pointer hover:text-primary transition-colors duration-200" />
-                </div>
-                <div class="flex items-center gap-2">
-                    <brn-select class="inline-block" placeholder="Filtro" [(ngModel)]="status"
+                    <div class="flex items-center gap-2">
+                        <mode-theme-icon (click)="recarregar()" size="20px" icon="heroArrowPath"
+                            class="text-foreground cursor-pointer mt-1 hover:text-primary transition-colors duration-200" />
+                    </div>
+                    <brn-select class="inline-block w-full sm:w-30 lg:w-56" placeholder="Filtro" [(ngModel)]="status"
                         (ngModelChange)="onStatus()">
-                        <hlm-select-trigger class="w-56">
+                        <hlm-select-trigger class="w-full sm:w-30 lg:w-56">
                             <hlm-select-value />
                         </hlm-select-trigger>
                         <hlm-select-content>
@@ -19,61 +18,121 @@
                         </hlm-select-content>
                     </brn-select>
                 </div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 relative">
                     <input hlmInput type="text" [(ngModel)]="rua"
-                        class="w-64 px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        class="w-full lg:w-96 px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="Pesquisar por rua..." />
                     <mode-theme-icon (click)="buscar()" size="23px" icon="heroMagnifyingGlass"
-                        class="text-foreground cursor-pointer hover:text-primary transition-colors duration-200" />
+                        class="text-foreground cursor-pointer absolute right-2 top-[24px] transform -translate-y-1/2" />
                 </div>
             </div>
-            <table class="w-full text-left border border-solid border-border">
+            <div class="overflow-x-auto xl:hidden">
+                <div *ngFor="let item of conteudo" class="mb-4 p-4 border border-border rounded-lg">
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Rua</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">{{item.rua}}</div>
+                    </div>
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Número</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">{{item.numero}}</div>
+                    </div>
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Casa</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">{{item.numCasa === 0 ? '-' : item.numCasa}}</div>
+                    </div>
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Bairro</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">{{item.bairro}}</div>
+                    </div>
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Localização</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">{{item.localizacao}}</div>
+                    </div>
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Aluguel</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">{{item.dataPagamento | formatarData}}</div>
+                    </div>
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Locatário</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">{{item.locatario ? item.locatario.nome : '-'}}</div>
+                    </div>
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Proprietário</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">{{item.proprietario ? item.proprietario.nome : '-'}}</div>
+                    </div>
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Status</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">
+                            <div hlmBadge variant="secondary">
+                                {{item.status ? 'Ativo' : 'Inativo'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center my-5">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Ações</div>
+                        <div class="w-2/3 text-sm text-foreground justify-end sm:justify-start flex space-x-2">
+                            <a [routerLink]="['/propriedade/detalhes', item.id]">
+                                <mode-theme-icon size="20px" icon="heroPencilSolid"
+                                    class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-primary hover:text-primary-foreground" />
+                            </a>
+                            <hlm-alert-dialog>
+                                <button id='edit-profile' brnAlertDialogTrigger hlmBtn>
+                                    <mode-theme-icon
+                                        class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200"
+                                        size="25px" icon="{{ item.status ? 'heroXCircle' : 'heroCheckSolid' }}">
+                                    </mode-theme-icon>
+                                </button>
+                                <hlm-alert-dialog-content *brnAlertDialogContent='let ctx'>
+                                    <hlm-alert-dialog-header>
+                                        <h3 hlmAlertDialogTitle>Você tem certeza?</h3>
+                                        <p hlmAlertDialogDescription>
+                                            Caso confirme, essa ação esta propriedade será desativada.
+                                        </p>
+                                    </hlm-alert-dialog-header>
+                                    <hlm-alert-dialog-footer class="gap-2">
+                                        <button hlmAlertDialogCancel (click)='ctx.close()'>Cancelar</button>
+                                        <button hlmAlertDialogAction
+                                            (click)='desativar(item.id); ctx.close()'>Confirmar</button>
+                                    </hlm-alert-dialog-footer>
+                                </hlm-alert-dialog-content>
+                            </hlm-alert-dialog>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabela para telas maiores -->
+            <table class="hidden xl:table w-full text-left border border-solid border-border">
                 <thead>
                     <tr class="border-b border-border bg-muted">
                         <th class="px-6 py-3 text-sm font-semibold text-foreground">Rua</th>
-                        <th class="px-6 py-3 text-sm font-semibold text-foreground">
-                            Número</th>
-                        <th class="px-6 py-3 text-sm font-semibold text-foreground">Casa
-                        </th>
-                        <th class="px-6 py-3 text-sm font-semibold text-foreground">
-                            Bairro</th>
-                        <th class="px-6 py-3 text-sm font-semibold text-foreground">
-                            Localização</th>
-                        <th class="px-6 py-3 text-sm font-semibold text-foreground">
-                            Aluguel</th>
-                        <th class="px-6 py-3 text-sm font-semibold text-foreground">
-                            Locatário</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">Número</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">Casa</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">Bairro</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">Localização</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">Aluguel</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">Locatário</th>
                         <th class="px-6 py-3 text-sm font-semibold text-foreground">Proprietário</th>
-                        <th class="px-6 py-3 text-sm font-semibold text-foreground">
-                            Status</th>
-                        <th class="px-6 py-3 text-sm font-semibold text-foreground"></th>
-                        <th class="px-6 py-3 text-sm font-semibold text-foreground"></th>
-                        <th class="px-6 py-3 text-sm font-semibold text-foreground"></th>
+                        <th class="px-6 py-3 text-sm font-semibold text-foreground">Status</th>
+                        <th class="px-2 py-3 text-sm font-semibold text-foreground"></th>
+                        <th class="px-2 py-3 text-sm font-semibold text-foreground"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of conteudo" class="transition-colors duration-200 hover:bg-muted/50">
-                        <td *ngIf="colunasVisiveis.rua" class="px-6 py-2 text-sm text-foreground">{{item.rua}}</td>
-                        <td *ngIf="colunasVisiveis.numero" class="px-6 py-2 text-sm text-foreground">{{item.numero}}
-                        </td>
-                        <td *ngIf="colunasVisiveis.casa" class="px-6 py-2 text-sm text-foreground">{{item.numCasa === 0
-                            ? '-' : item.numCasa}}</td>
-                        <td *ngIf="colunasVisiveis.bairro" class="px-6 py-2 text-sm text-foreground">{{item.bairro}}
-                        </td>
-                        <td *ngIf="colunasVisiveis.localizacao" class="px-6 py-2 text-sm text-foreground">
-                            {{item.localizacao}}</td>
-                        <td *ngIf="colunasVisiveis.dataPagamento" class="px-6 py-2 text-sm text-foreground">
-                            {{item.dataPagamento | formatarData}}</td>
-                        <td *ngIf="colunasVisiveis.locatario" class="px-6 py-2 text-sm text-foreground">{{item.locatario
-                            ? item.locatario.nome : '-'}}</td>
-                        <td *ngIf="colunasVisiveis.proprietario" class="px-6 py-2 text-sm text-foreground">
-                            {{item.proprietario ? item.proprietario.nome : '-'}}</td>
-                        <td *ngIf="colunasVisiveis.status" class="px-6 py-2 text-sm text-foreground">
+                        <td class="px-6 py-2 text-sm text-foreground">{{item.rua}}</td>
+                        <td class="px-6 py-2 text-sm text-foreground">{{item.numero}}</td>
+                        <td class="px-6 py-2 text-sm text-foreground">{{item.numCasa === 0 ? '-' : item.numCasa}}</td>
+                        <td class="px-6 py-2 text-sm text-foreground">{{item.bairro}}</td>
+                        <td class="px-6 py-2 text-sm text-foreground">{{item.localizacao}}</td>
+                        <td class="px-6 py-2 text-sm text-foreground">{{item.dataPagamento | formatarData}}</td>
+                        <td class="px-6 py-2 text-sm text-foreground">{{item.locatario ? item.locatario.nome : '-'}}</td>
+                        <td class="px-6 py-2 text-sm text-foreground">{{item.proprietario ? item.proprietario.nome : '-'}}</td>
+                        <td class="px-6 py-2 text-sm text-foreground">
                             <div hlmBadge variant="secondary">
                                 {{item.status ? 'Ativo' : 'Inativo'}}
                             </div>
                         </td>
-                        <td class="px-6 py-2 text-sm text-foreground"><dialog-contrato id="{{item.id}}" /></td>
                         <td class="px-2 py-2 text-sm text-foreground">
                             <a [routerLink]="['/propriedade/detalhes', item.id]">
                                 <mode-theme-icon size="20px" icon="heroPencilSolid"
@@ -92,7 +151,7 @@
                                     <hlm-alert-dialog-header>
                                         <h3 hlmAlertDialogTitle>Você tem certeza?</h3>
                                         <p hlmAlertDialogDescription>
-                                            Caso confirme, essa ação este locatário será desativado.
+                                            Caso confirme, essa ação esta propriedade será desativada.
                                         </p>
                                     </hlm-alert-dialog-header>
                                     <hlm-alert-dialog-footer class="gap-2">
@@ -106,41 +165,53 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="flex justify-between py-2 px-4 border border-t-0 rounded-b-md">
-            <button hlmBtn variant="outline" [routerLink]="['/propriedade/detalhes']">
-                Nova Propriedade
-            </button>
-            <nav class="flex items-center gap-5 rounded-md shadow-sm">
-                <brn-select class="inline-block relative" [formControl]="selectControl"
-                    placeholder="Itens por página">
-                    <hlm-select-trigger class="w-56">
-                        <hlm-select-value />
-                    </hlm-select-trigger>
-                    <hlm-select-content>
-                        <hlm-option value="10">10</hlm-option>
-                        <hlm-option value="20">20</hlm-option>
-                        <hlm-option value="50">50</hlm-option>
-                        <hlm-option value="100">100</hlm-option>
-                    </hlm-select-content>
-                </brn-select>
-                <div class="flex items-center">
-                    <span
-                        class="flex items-center pt-1 justify-center h-10 w-8 text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md hover:bg-muted/50 transition-colors duration-200"
-                        (click)="mudarPagina('anterior')">
-                        <mode-theme-icon size="20px" icon="heroArrowSmallLeftSolid" />
-                    </span>
-                    <p
-                        class="flex items-center justify-center h-10 px-4 text-sm font-medium text-muted-foreground border border-border cursor-default">
-                        {{ pagina + 1 }} de {{ total }}
-                    </p>
-                    <span
-                        class="flex items-center pt-1 justify-center h-10 w-8 text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md hover:bg-muted/50 transition-colors duration-200"
-                        (click)="mudarPagina('proximo')">
-                        <mode-theme-icon size="20px" icon="heroArrowSmallRightSolid" />
-                    </span>
-                </div>
-            </nav>
+            <div class="flex justify-between flex-col gap-3 md:gap-0 md:flex-row py-2 px-4 border lg:border-t-0 rounded-lg rounded-t-lg md:rounded-t-none">
+                <button hlmBtn variant="outline" class="text-sm" [routerLink]="['/propriedade/detalhes']">
+                    Nova Propriedade
+                </button>
+                <nav class="flex flex-col md:flex-row items-center gap-3 sm:gap-5 rounded-md shadow-sm">
+                    <brn-select class="lg:inline-block relative w-full sm:w-30 hidden" [formControl]="selectControl"
+                        placeholder="Itens por página">
+                        <hlm-select-trigger class="w-full sm:w-30">
+                            <hlm-select-value />
+                        </hlm-select-trigger>
+                        <hlm-select-content>
+                            <hlm-option value="10">10</hlm-option>
+                            <hlm-option value="20">20</hlm-option>
+                            <hlm-option value="50">50</hlm-option>
+                            <hlm-option value="100">100</hlm-option>
+                        </hlm-select-content>
+                    </brn-select>
+                    <brn-select class="inline-block relative w-full sm:w-30 lg:hidden" [formControl]="selectControl"
+                        placeholder="Itens por página">
+                        <hlm-select-trigger class="w-full sm:w-30">
+                            <hlm-select-value />
+                        </hlm-select-trigger>
+                        <hlm-select-content>
+                            <hlm-option value="10">3</hlm-option>
+                            <hlm-option value="20">6</hlm-option>
+                            <hlm-option value="50">10</hlm-option>
+                            <hlm-option value="100">20</hlm-option>
+                        </hlm-select-content>
+                    </brn-select>
+                    <div class="flex items-center">
+                        <span
+                            class="flex items-center pt-1 justify-center h-10 w-8 text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md hover:bg-muted/50 transition-colors duration-200"
+                            (click)="mudarPagina('anterior')">
+                            <mode-theme-icon size="20px" icon="heroArrowSmallLeftSolid" />
+                        </span>
+                        <p
+                            class="flex items-center justify-center h-10 px-4 w-20 text-sm font-medium text-muted-foreground border border-border cursor-default">
+                            {{ pagina + 1 }} de {{ total }}
+                        </p>
+                        <span
+                            class="flex items-center pt-1 justify-center h-10 w-8 text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md hover:bg-muted/50 transition-colors duration-200"
+                            (click)="mudarPagina('proximo')">
+                            <mode-theme-icon size="20px" icon="heroArrowSmallRightSolid" />
+                        </span>
+                    </div>
+                </nav>
+            </div>
         </div>
     </div>
 </app-main-contant>

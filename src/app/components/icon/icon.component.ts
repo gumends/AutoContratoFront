@@ -47,7 +47,7 @@ import { ionExit, ionPrint } from '@ng-icons/ionicons';
             featherTrendingUp,
             heroBars3,
             featherSidebar,
-            featherX
+            featherX,
         })]
 })
 export class AppComponent {

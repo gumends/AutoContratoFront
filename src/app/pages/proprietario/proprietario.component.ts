@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, HostListener } from '@angular/core';
 import { MainContantComponent } from "../../components/main-contant/main-contant.component";
 import { LocatarioService } from '../../services/locatario.service';
 import { ILocatarioContent, ILocatarioPaginado } from '../../Types/LocatarioResponse';
@@ -93,6 +93,9 @@ export class ProprietarioComponent implements OnInit {
         console.log(error);
       }
     });
+    if (window.innerWidth < 1022) {
+      this.carregarDados(0, 3);
+    }
   }
 
   buscar() {
@@ -106,13 +109,13 @@ export class ProprietarioComponent implements OnInit {
   desativar(id: string) {
     this.service.desativarProprietario(id).subscribe({
       next: (res: ILocatarioContent) => {
-          if(res.status === false){
-            this.carregarDados();
-            this.toastr.warning('Locatário desativado com sucesso', 'Desativado!');
-          } else {
-            this.carregarDados();
-            this.toastr.success('Locatário ativado com sucesso', 'Ativado!');
-          }
+        if (res.status === false) {
+          this.carregarDados();
+          this.toastr.warning('Locatário desativado com sucesso', 'Desativado!');
+        } else {
+          this.carregarDados();
+          this.toastr.success('Locatário ativado com sucesso', 'Ativado!');
+        }
       },
       error: (error) => {
         console.log(error);
@@ -144,8 +147,15 @@ export class ProprietarioComponent implements OnInit {
     this.carregarDados(pagina);
   }
 
-  onStatus(){
+  onStatus() {
     this.carregarDados();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    if (window.innerWidth < 1022) {
+      this.carregarDados(0, 3);
+    }
   }
 
   recarregar() {

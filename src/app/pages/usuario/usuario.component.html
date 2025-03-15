@@ -1,13 +1,13 @@
 <app-main-contant
     titulo="Usuário"
 >
-    <main class="w-full h-max flex flex-col justify-center items-center">
+    <main class="w-full h-max flex flex-col sm:flex justify-center items-center">
         <div class="w-full h-max mt-20 flex flex-col justify-center items-center">
 
             <h1 class="text-2xl font-bold">Alterar dados</h1>
             <form action="" [formGroup]="form" (ngSubmit)="atualizar()"
-                class="w-2/4 mt-5 flex flex-col gap-5 border border-border p-5 rounded-xl">
-                <div class="flex gap-4 w-full">
+                class="w-full lg:w-2/4 mt-5 flex flex-col gap-5 border border-border p-5 rounded-xl">
+                <div class="flex flex-col md:flex-row gap-4 w-full">
                     <label class="w-full" hlmLabel>Nome
                         <input class="w-full" hlmInput type="text" name="nome" formControlName="nome"
                             placeholder="Digite o nome" />
@@ -31,8 +31,8 @@
         <div class="w-full h-max mt-20 flex flex-col justify-center items-center">
             <h1 class="text-2xl font-bold">Alterar senha</h1>
             <form action="" [formGroup]="formSenha" (ngSubmit)="atualizarSenha()"
-                class="w-2/4 mt-5 flex flex-col gap-5 border border-border p-5 rounded-xl">
-                <div class="flex gap-4 w-full">
+                class="w-full lg:w-2/4 mt-5 flex flex-col gap-5 border border-border p-5 rounded-xl">
+                <div class="flex flex-col md:flex-row gap-4 w-full">
                     <label class="w-full" hlmLabel>Nova Senha
                         <input class="w-full" hlmInput type="password" name="senha" formControlName="senha"
                             placeholder="Digite sua senha" />

@@ -1,19 +1,15 @@
 
 
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MainContantComponent } from "../../components/main-contant/main-contant.component";
-import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
-import { PropriedadeService } from '../../services/propriedade.service';
 import { ToastrService } from 'ngx-toastr';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { ProprietarioService } from '../../services/proprietario.service';
 import { ButtonPreviewComponent } from "../../components/button/button.component";
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { CpfMaskDirective } from '../../directives/cpf-mask.directive';
-import { RgMaskDirective } from '../../directives/rg-mask.directive';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 @Component({

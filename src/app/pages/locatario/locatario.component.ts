@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, HostListener } from '@angular/core';
 import { MainContantComponent } from "../../components/main-contant/main-contant.component";
 import { LocatarioService } from '../../services/locatario.service';
 import { ILocatarioContent, ILocatarioPaginado } from '../../Types/LocatarioResponse';
@@ -111,6 +111,9 @@ export class LocatarioComponent implements OnInit, OnChanges {
         console.log(error);
       }
     });
+    if (window.innerWidth < 1022) {
+      this.carregarDados(0, 3);
+    }
   }
 
 
@@ -140,7 +143,7 @@ export class LocatarioComponent implements OnInit, OnChanges {
 
     if (this.form.valid) {
       const formData = this.form.value;
-      
+
       this.service.atualizarLocatario(formData).subscribe({
         next: (response) => {
           this.toastr.success('Locatário atualizado com sucesso', 'Atualizado!');
@@ -165,13 +168,13 @@ export class LocatarioComponent implements OnInit, OnChanges {
   desativar(id: string) {
     this.service.desativarLocatario(id).subscribe({
       next: (res: ILocatarioContent) => {
-          if(res.status === false){
-            this.carregarDados();
-            this.toastr.warning('Locatário desativado com sucesso', 'Desativado!');
-          } else {
-            this.carregarDados();
-            this.toastr.success('Locatário ativado com sucesso', 'Ativado!');
-          }
+        if (res.status === false) {
+          this.carregarDados();
+          this.toastr.warning('Locatário desativado com sucesso', 'Desativado!');
+        } else {
+          this.carregarDados();
+          this.toastr.success('Locatário ativado com sucesso', 'Ativado!');
+        }
       },
       error: (error) => {
         console.log(error);
@@ -193,14 +196,21 @@ export class LocatarioComponent implements OnInit, OnChanges {
     });
   }
 
-  onStatus(){
+  onStatus() {
     this.carregarDados();
   }
 
   recarregar() {
     this.carregarDados();
   }
-  
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    if (window.innerWidth < 1022) {
+      this.carregarDados(0, 3);
+    }
+  }
+
   mudarPagina(tipo: string) {
     if (tipo === 'anterior') {
       const pagina = this.pagina - 1;
