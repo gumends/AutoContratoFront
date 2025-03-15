@@ -1,23 +1,116 @@
-<app-main-contant
-    titulo="Usuários"
->
+<app-main-contant titulo="Usuários">
     <div class="bg-card rounded-lg p-6">
-
         <div class="overflow-x-auto">
-            <div class="p-4 flex gap-5 border border-solid border-border rounded-t-lg">
+            <div class="px-4 py-2 mb-4 xl:mb-0 flex sm:flex-row gap-5 flex-col-reverse border border-solid border-border rounded-lg lg:rounded-b-none">
                 <div class="flex items-center gap-2">
-                    <mode-theme-icon (click)="recarregar()" size="20px" icon="heroArrowPath"
-                        class="text-foreground cursor-pointer hover:text-primary transition-colors duration-200" />
+                    <div class="flex items-center gap-2">
+                        <mode-theme-icon (click)="recarregar()" size="20px" icon="heroArrowPath"
+                            class="text-foreground cursor-pointer mt-1 hover:text-primary transition-colors duration-200" />
+                    </div>
                 </div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 relative">
                     <input hlmInput type="text" [(ngModel)]="nome"
-                        class="w-64 px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        class="w-full lg:w-96 px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="Pesquisar por nome..." />
                     <mode-theme-icon (click)="buscar()" size="23px" icon="heroMagnifyingGlass"
-                        class="text-foreground cursor-pointer hover:text-primary transition-colors duration-200" />
+                        class="text-foreground cursor-pointer absolute right-2 top-[24px] transform -translate-y-1/2" />
                 </div>
             </div>
-            <table class="w-full text-left border border-solid border-border">
+            <div class="overflow-x-auto xl:hidden">
+                <div *ngFor="let item of conteudo" class="mb-4 p-4 border border-border rounded-lg">
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Nome</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">{{item.nome}}</div>
+                    </div>
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">CPF</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">{{item.cpf}}</div>
+                    </div>
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">E-mail</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">{{item.email}}</div>
+                    </div>
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Usuário</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">
+                            <div hlmBadge variant="secondary">
+                                {{item.permissao}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center border-b py-2">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Criado em</div>
+                        <div class="w-2/3 text-sm text-foreground text-end sm:text-start">{{item.createdAt | formatarData}}</div>
+                    </div>
+                    <div class="flex flex-wrap items-center my-5">
+                        <div class="w-1/3 text-sm font-semibold text-foreground">Ações</div>
+                        <div class="w-2/3 text-sm text-foreground justify-end sm:justify-start flex space-x-2">
+                            <a [routerLink]="['/usuario/', item.id]">
+                                <mode-theme-icon size="20px" icon="heroPencilSolid"
+                                    class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-primary hover:text-primary-foreground" />
+                            </a>
+                            <hlm-alert-dialog>
+                                <button id='edit-profile' class="bg-red-600 hover:bg-red-700" brnAlertDialogTrigger hlmBtn>
+                                    <mode-theme-icon
+                                        class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 text-white"
+                                        size="23px" icon="heroTrashSolid">
+                                    </mode-theme-icon>
+                                </button>
+                                <hlm-alert-dialog-content *brnAlertDialogContent='let ctx'>
+                                    <hlm-alert-dialog-header>
+                                        <h3 hlmAlertDialogTitle>Você tem certeza?</h3>
+                                        <p hlmAlertDialogDescription>
+                                            Caso confirme, essa ação não poderá ser desfeita.
+                                        </p>
+                                    </hlm-alert-dialog-header>
+                                    <hlm-alert-dialog-footer class="gap-2">
+                                        <button hlmAlertDialogCancel (click)='ctx.close()'>Cancelar</button>
+                                        <button hlmAlertDialogAction
+                                            (click)='deletar(item.id); ctx.close()'>Confirmar</button>
+                                    </hlm-alert-dialog-footer>
+                                </hlm-alert-dialog-content>
+                            </hlm-alert-dialog>
+                            <hlm-alert-dialog>
+                                <button id='edit-profile' class="bg-orange-500 hover:bg-orange-600" brnAlertDialogTrigger hlmBtn>
+                                    <mode-theme-icon
+                                        class="cursor-pointer flex items-center justify-center rounded-full transition-colors duration-200 text-white"
+                                        size="23px" icon="heroExclamationTriangle">
+                                    </mode-theme-icon>
+                                </button>
+                                <hlm-alert-dialog-content *brnAlertDialogContent='let ctx'>
+                                    <hlm-alert-dialog-header>
+                                        <h3 hlmAlertDialogTitle>Alteração de permissão</h3>
+                                        <p hlmAlertDialogDescription>
+                                            Escolha a permissão desejada
+                                        </p>
+                                    </hlm-alert-dialog-header>
+                                    <hlm-alert-dialog-footer class="gap-2">
+                                        <form [formGroup]="form" (ngSubmit)="alterarPermissao(item.id)">
+                                            <brn-select class="inline-block" placeholder="Select an option"
+                                                formControlName="permissão">
+                                                <hlm-select-trigger class="w-56">
+                                                    <hlm-select-value />
+                                                </hlm-select-trigger>
+                                                <hlm-select-content>
+                                                    <hlm-option value="ADMIN">Admin</hlm-option>
+                                                    <hlm-option value="USER">User</hlm-option>
+                                                </hlm-select-content>
+                                            </brn-select>
+                                            <div class="flex justify-end gap-2 mt-4">
+                                                <button hlmAlertDialogCancel type="button" (click)='ctx.close()'>Cancelar</button>
+                                                <button hlmAlertDialogAction type="submit" (click)='ctx.close()'>Confirmar</button>
+                                            </div>
+                                        </form>
+                                    </hlm-alert-dialog-footer>
+                                </hlm-alert-dialog-content>
+                            </hlm-alert-dialog>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabela para telas maiores -->
+            <table class="hidden xl:table w-full text-left border border-solid border-border">
                 <thead>
                     <tr class="border-b border-border bg-muted">
                         <th class="px-6 py-4 text-sm font-semibold text-foreground">Nome</th>
@@ -30,7 +123,6 @@
                         <th class="py-4 text-sm font-semibold text-foreground"></th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <tr *ngFor="let item of conteudo" class="transition-colors duration-200 hover:bg-muted/50">
                         <td class="px-6 py-4 text-sm text-foreground">{{item.nome}}</td>
@@ -50,8 +142,7 @@
                         </td>
                         <td class="px-2 text-sm text-foreground">
                             <hlm-alert-dialog>
-                                <button id='edit-profile' class="bg-red-600 hover:bg-red-700" brnAlertDialogTrigger
-                                    hlmBtn>
+                                <button id='edit-profile' class="bg-red-600 hover:bg-red-700" brnAlertDialogTrigger hlmBtn>
                                     <mode-theme-icon
                                         class="cursor-pointer p-2 flex items-center justify-center rounded-full transition-colors duration-200 text-white"
                                         size="23px" icon="heroTrashSolid">
@@ -74,8 +165,7 @@
                         </td>
                         <td class="py-4 text-sm text-foreground">
                             <hlm-alert-dialog>
-                                <button id='edit-profile' class="bg-orange-500 hover:bg-orange-600" brnAlertDialogTrigger
-                                    hlmBtn>
+                                <button id='edit-profile' class="bg-orange-500 hover:bg-orange-600" brnAlertDialogTrigger hlmBtn>
                                     <mode-theme-icon
                                         class="cursor-pointer flex items-center justify-center rounded-full transition-colors duration-200 text-white"
                                         size="23px" icon="heroExclamationTriangle">
@@ -112,21 +202,53 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="flex justify-end mt-6">
-            <nav class="inline-flex rounded-md shadow-sm">
-                <a
-                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md hover:bg-muted/50 transition-colors duration-200">
-                    <mode-theme-icon size="20px" icon="heroArrowSmallLeftSolid" />
-                </a>
-                <p
-                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border">
-                    {{pagina + 1}} de {{total}}</p>
-                <a
-                    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md hover:bg-muted/50 transition-colors duration-200">
-                    <mode-theme-icon size="20px" icon="heroArrowSmallRightSolid" />
-                </a>
-            </nav>
+            <div class="flex justify-between flex-col gap-3 md:gap-0 md:flex-row py-2 px-4 border lg:border-t-0 rounded-lg rounded-t-lg md:rounded-t-none">
+                <button hlmBtn variant="outline" class="text-sm" [routerLink]="['/usuario/novo']">
+                    Novo Usuário
+                </button>
+                <nav class="flex flex-col md:flex-row items-center gap-3 sm:gap-5 rounded-md shadow-sm">
+                    <brn-select class="lg:inline-block relative w-full sm:w-30 hidden" [formControl]="selectControl"
+                        placeholder="Itens por página">
+                        <hlm-select-trigger class="w-full sm:w-30">
+                            <hlm-select-value />
+                        </hlm-select-trigger>
+                        <hlm-select-content>
+                            <hlm-option value="10">10</hlm-option>
+                            <hlm-option value="20">20</hlm-option>
+                            <hlm-option value="50">50</hlm-option>
+                            <hlm-option value="100">100</hlm-option>
+                        </hlm-select-content>
+                    </brn-select>
+                    <brn-select class="inline-block relative w-full sm:w-30 lg:hidden" [formControl]="selectControl"
+                        placeholder="Itens por página">
+                        <hlm-select-trigger class="w-full sm:w-30">
+                            <hlm-select-value />
+                        </hlm-select-trigger>
+                        <hlm-select-content>
+                            <hlm-option value="10">3</hlm-option>
+                            <hlm-option value="20">6</hlm-option>
+                            <hlm-option value="50">10</hlm-option>
+                            <hlm-option value="100">20</hlm-option>
+                        </hlm-select-content>
+                    </brn-select>
+                    <div class="flex items-center">
+                        <span
+                            class="flex items-center pt-1 justify-center h-10 w-8 text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground border border-border rounded-l-md hover:bg-muted/50 transition-colors duration-200"
+                            (click)="mudarPagina('anterior')">
+                            <mode-theme-icon size="20px" icon="heroArrowSmallLeftSolid" />
+                        </span>
+                        <p
+                            class="flex items-center justify-center h-10 px-4 w-20 text-sm font-medium text-muted-foreground border border-border cursor-default">
+                            {{ pagina + 1 }} de {{ total }}
+                        </p>
+                        <span
+                            class="flex items-center pt-1 justify-center h-10 w-8 text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground border border-border rounded-r-md hover:bg-muted/50 transition-colors duration-200"
+                            (click)="mudarPagina('proximo')">
+                            <mode-theme-icon size="20px" icon="heroArrowSmallRightSolid" />
+                        </span>
+                    </div>
+                </nav>
+            </div>
         </div>
     </div>
 </app-main-contant>

@@ -1,6 +1,6 @@
 
 
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, HostListener } from '@angular/core';
 import { MainContantComponent } from "../../components/main-contant/main-contant.component";
 import { NgFor } from '@angular/common';
 import { FormatarDataPipe } from '../../pipes/data.pipe';
@@ -8,7 +8,7 @@ import { AppComponent } from "../../components/icon/icon.component";
 import { Subject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { PropriedadeService } from '../../services/propriedade.service';
@@ -67,6 +67,7 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
   status: boolean = true;
   nome: string = '';
   permissao: string = '';
+  selectControl = new FormControl('');
 
   private destroy$ = new Subject<void>();
 
@@ -74,9 +75,7 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
 
   constructor(
     private service: UsuarioService,
-    private authService: AuthService,
     private fb: FormBuilder,
-    private servicePropriedade: PropriedadeService,
     private toastr: ToastrService
   ) {
     this.form = this.fb.group({
@@ -94,10 +93,30 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.carregarDados();
+    if (window.innerWidth < 1022) {
+      this.carregarDados(0, 3);
+    }
   }
 
   buscar() {
     this.carregarDados();
+  }
+
+  mudarPagina(tipo: string) {
+    if (tipo === 'anterior') {
+      const pagina = this.pagina - 1;
+      this.carregarDados(pagina);
+      return;
+    }
+    const pagina = this.pagina + 1;
+    this.carregarDados(pagina);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    if (window.innerWidth < 1022) {
+      this.carregarDados(0, 3);
+    }
   }
 
   deletar(id: string) {
@@ -113,8 +132,8 @@ export class UsuariosComponent implements OnInit, OnDestroy, OnChanges {
     });
   }
 
-  carregarDados() {
-    this.service.buscarUsuarios(this.pagina, this.tamanho, this.nome).subscribe({
+  carregarDados(pagina: number = 0, tamanho: number = 10) {
+    this.service.buscarUsuarios(pagina, tamanho, this.nome).subscribe({
       next: (res: IUsuarioResponse) => {
         this.conteudo = res.content;
         this.pagina = res.number;
