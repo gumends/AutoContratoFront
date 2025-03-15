@@ -3,8 +3,8 @@
 >
     <main class="w-full h-max flex justify-center items-center">
         <form action="" [formGroup]="form" (ngSubmit)="salvar()"
-            class="w-2/4 mt-20 flex flex-col gap-5 border border-border p-5 rounded-xl">
-            <div class="flex gap-4 w-full">
+            class="w-2/4 mt-20 flex flex-col gap-0 lg:gap-5 border border-border p-5 rounded-xl">
+            <div class="inline lg:flex gap-4 w-full">
                 <label class="w-full" hlmLabel>Nome
                     <input class="w-full" hlmInput type="text" name="nome" formControlName="nome"
                         placeholder="Digite o nome" />
@@ -13,7 +13,7 @@
                     <input hlmInput class="w-full" type="date" formControlName="nascimento" />
                 </label>
             </div>
-            <div class="flex gap-4 w-full">
+            <div class="inline lg:flex gap-4 w-full">
                 <label class="w-full" hlmLabel>CPF
                     <input class="w-full" hlmInput type="text" appCpfMask name="cpf" formControlName="cpf"
                         placeholder="Digite o CPF" />
@@ -23,7 +23,7 @@
                         placeholder="Digite o RG" />
                 </label>
             </div>
-            <div class="flex gap-4 w-full">
+            <div class="w-full">
                 <label class="w-full" hlmLabel>Propriedade
                     <brn-select class="w-full" placeholder="Selecione uma propriedade" formControlName="propriedadeId">
                         <hlm-select-trigger class="w-full mt-1">

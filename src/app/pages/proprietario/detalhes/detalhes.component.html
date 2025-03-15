@@ -3,19 +3,19 @@
 >
     <main class="w-full h-max flex justify-center items-center">
         <form action="" [formGroup]="form" (ngSubmit)="salvar()"
-            class="w-2/4 mt-20 flex flex-col gap-5 border border-border p-5 rounded-xl">
+            class="w-2/4 mt-20 flex flex-col gap-0 lg:gap-5 border border-border p-5 rounded-xl">
             <div class="flex gap-4 w-full">
                 <label class="w-full" hlmLabel>Nome
                     <input class="w-full" hlmInput type="text" name="nome" formControlName="nome"
                         placeholder="Digite o nome" />
                 </label>
             </div>
-            <div class="flex gap-4 w-full">
+            <div class="inline lg:flex gap-4 w-full">
                 <label class="w-full" hlmLabel>Nascimento
                     <input hlmInput class="w-full" type="date" formControlName="nascimento" />
                 </label>
                 <label class="w-full" hlmLabel>Nacionalidade
-                    <brn-select class="w-full" placeholder="Selecione uma nacionalidade" formControlName="nacionalidade">
+                    <brn-select class="w-full" placeholder="Nacionalidades" formControlName="nacionalidade">
                         <hlm-select-trigger class="w-full mt-1">
                             <hlm-select-value />
                         </hlm-select-trigger>
@@ -37,7 +37,7 @@
                 </label>
                 
             </div>
-            <div class="flex gap-4 w-full">
+            <div class="inline lg:flex gap-4 w-full">
                 <label class="w-full" hlmLabel>CPF
                     <input class="w-full" hlmInput type="text" appCpfMask name="cpf" formControlName="cpf"
                         placeholder="Digite o CPF" />
